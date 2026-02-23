@@ -42,18 +42,8 @@ function initializePopovers() {
 
 // ===== FORM VALIDATION =====
 function initializeFormValidation() {
-    // Custom validation for Bootstrap 5
-    const forms = document.querySelectorAll('.needs-validation');
-
-    Array.from(forms).forEach(form => {
-        form.addEventListener('submit', event => {
-            if (!form.checkValidity()) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-        }, false);
-    });
+    // NOTE: Form validation disabled - handled server-side
+    // The checkValidity() + preventDefault() was blocking form submissions
 
     // Email belajar.id auto-complete
     const emailInputs = document.querySelectorAll('input[type="email"]');

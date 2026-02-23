@@ -4,8 +4,8 @@
  * Last Updated: 2026-02-12
  */
 
-const CACHE_NAME = 'wakande-v1';
-const DYNAMIC_CACHE = 'wakande-dynamic-v1';
+const CACHE_NAME = 'wakande-v2';
+const DYNAMIC_CACHE = 'wakande-dynamic-v2';
 const OFFLINE_URL = '/offline.html';
 
 // Assets to cache on install
@@ -84,6 +84,12 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
+
+  // CRITICAL: Never intercept non-GET requests (POST, PUT, DELETE, etc.)
+  // This ensures form submissions always go directly to the server
+  if (request.method !== 'GET') {
+    return;
+  }
 
   // Skip cross-origin requests
   if (url.origin !== self.location.origin) {

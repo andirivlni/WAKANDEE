@@ -31,9 +31,10 @@ class ItemRequest extends FormRequest
             'legacy_message' => ['required', 'string', 'min:10', 'max:1000'],
         ];
 
-        // Validation for sale items
-        if ($this->type === 'sale') {
-            $rules['price'] = ['required', 'numeric', 'min:1000', 'max:10000000'];
+       if ($this->type === 'sale') {
+        $rules['price'] = ['required', 'numeric', 'min:1000', 'max:10000000'];
+        } else {
+        $rules['price'] = ['nullable', 'numeric'];
         }
 
         // Validation for images

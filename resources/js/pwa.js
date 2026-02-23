@@ -3,10 +3,14 @@
  * Handles service worker registration and offline capabilities
  */
 
-// ===== SERVICE WORKER REGISTRATION =====
+// ===== SERVICE WORKER - DISABLED FOR NOW =====
+// Unregister any existing service worker to prevent request interception
 if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        registerServiceWorker();
+    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for (let registration of registrations) {
+            registration.unregister();
+            console.log('🗑️ Service Worker unregistered');
+        }
     });
 }
 
