@@ -10,7 +10,7 @@
             <h1 class="h3 fw-bold mb-1">Transaksi Saya</h1>
             <p class="text-secondary mb-0">Kelola semua transaksi pembelian dan penjualanmu</p>
         </div>
-        <a href="{{ route('catalog.index') }}" class="btn btn-primary btn-rounded px-4 py-2">
+        <a href="{{ route('catalog.index') }}" class="btn btn-success btn-rounded px-4 py-2">
             <i class="bi bi-plus-circle me-2"></i>Beli Barang
         </a>
     </div>
@@ -88,7 +88,7 @@
                                         <i class="bi bi-cart-check me-1"></i>Pembelian
                                     </span>
                                 @else
-                                    <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2">
+                                    <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2">
                                         <i class="bi bi-truck me-1"></i>Penjualan
                                     </span>
                                 @endif
@@ -98,7 +98,7 @@
                         <!-- Amount -->
                         <div class="col-lg-2">
                             <div class="text-lg-center">
-                                <span class="fw-bold d-block" style="color: #667eea;">
+                                <span class="fw-bold d-block" style="color: #22c55e;">
                                     Rp {{ number_format($trx->total_amount, 0, ',', '.') }}
                                 </span>
                                 <small class="text-secondary">
@@ -126,7 +126,7 @@
                                 <small class="text-secondary d-block mb-1">
                                     {{ $trx->created_at->diffForHumans() }}
                                 </small>
-                                <i class="bi bi-chevron-right" style="color: #667eea;"></i>
+                                <i class="bi bi-chevron-right" style="color: #22c55e;"></i>
                             </div>
                         </div>
                     </div>
@@ -156,12 +156,12 @@
             </p>
             <div class="d-flex gap-3 justify-content-center">
                 @if(request('type') != 'sold')
-                    <a href="{{ route('catalog.index') }}" class="btn btn-primary btn-rounded px-5 py-3">
+                    <a href="{{ route('catalog.index') }}" class="btn btn-success btn-rounded px-5 py-3">
                         <i class="bi bi-search me-2"></i>Jelajahi Katalog
                     </a>
                 @endif
                 @if(request('type') != 'bought')
-                    <a href="{{ route('items.create') }}" class="btn btn-outline-primary btn-rounded px-5 py-3">
+                    <a href="{{ route('items.create') }}" class="btn btn-outline-success btn-rounded px-5 py-3">
                         <i class="bi bi-cloud-upload me-2"></i>Upload Barang
                     </a>
                 @endif
@@ -196,12 +196,12 @@
     }
 
     .transaction-tab:hover {
-        color: #667eea;
+        color: #22c55e;
     }
 
     .transaction-tab.active {
-        border-bottom-color: #667eea;
-        color: #667eea;
+        border-bottom-color: #22c55e;
+        color: #22c55e;
     }
 
     .status-filter {
@@ -212,14 +212,14 @@
     }
 
     .status-filter:hover {
-        background: rgba(102,126,234,0.05);
-        border-color: rgba(102,126,234,0.3);
-        color: #667eea;
+        background: rgba(34, 197, 94,0.05);
+        border-color: rgba(34, 197, 94,0.3);
+        color: #22c55e;
     }
 
     .status-filter.active {
-        background: #667eea;
-        border-color: #667eea;
+        background: #22c55e;
+        border-color: #22c55e;
         color: white;
     }
 
@@ -231,7 +231,7 @@
 
     .transaction-card:hover {
         transform: translateX(4px);
-        box-shadow: 0 8px 16px rgba(102,126,234,0.08);
+        box-shadow: 0 8px 16px rgba(34, 197, 94,0.08);
     }
 
     [data-bs-theme="dark"] .transaction-card {

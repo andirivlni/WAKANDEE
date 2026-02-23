@@ -8,7 +8,7 @@
         <div class="col-lg-6">
             <!-- Header -->
             <div class="text-center mb-5">
-                <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-4 py-2 mb-3">
+                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-4 py-2 mb-3">
                     <i class="bi bi-bank me-2"></i>TRANSFER BANK
                 </span>
                 <h1 class="h2 fw-bold mb-3">Instruksi Pembayaran</h1>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="d-flex justify-content-between mb-2">
                     <span class="text-secondary">Total Pembayaran</span>
-                    <span class="fw-bold text-primary">Rp {{ number_format($transaction->total_amount, 0, ',', '.') }}</span>
+                    <span class="fw-bold text-success">Rp {{ number_format($transaction->total_amount, 0, ',', '.') }}</span>
                 </div>
             </div>
 
@@ -103,7 +103,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100 py-3 rounded-pill">
+                    <button type="submit" class="btn btn-success w-100 py-3 rounded-pill">
                         <i class="bi bi-check-circle me-2"></i>Konfirmasi Pembayaran
                     </button>
                 </form>

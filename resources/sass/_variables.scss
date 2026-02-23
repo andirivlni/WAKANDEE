@@ -1,7 +1,15 @@
 // Body
-$body-bg: #f8fafc;
+$body-bg: #ffffff;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
+$font-family-sans-serif: "Nunito", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+
+// Colors override (Hijau Muda dan Putih saja)
+$primary: #4ade80;
+$success: #22c55e;
+$info: #86efac;
+$white: #ffffff;
+$light: #ffffff;
+$dark: #1f2937;

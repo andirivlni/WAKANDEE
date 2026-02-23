@@ -8,7 +8,7 @@
         <div class="col-lg-8">
             <!-- Header -->
             <div class="text-center mb-5">
-                <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-4 py-2 mb-3">
+                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-4 py-2 mb-3">
                     <i class="bi bi-cart-check me-2"></i>CHECKOUT
                 </span>
                 <h1 class="h2 fw-bold mb-3">Selesaikan Transaksimu</h1>
@@ -24,8 +24,8 @@
                 <!-- Item Summary -->
                 <div class="checkout-card p-4 p-md-5 mb-4">
                     <div class="d-flex align-items-center gap-3 mb-4">
-                        <div class="checkout-step d-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10" style="width: 40px; height: 40px;">
-                            <span class="fw-bold text-primary">1</span>
+                        <div class="checkout-step d-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10" style="width: 40px; height: 40px;">
+                            <span class="fw-bold text-success">1</span>
                         </div>
                         <h5 class="fw-bold mb-0">Ringkasan Barang</h5>
                     </div>
@@ -63,8 +63,8 @@
                 <!-- Delivery Method -->
                 <div class="checkout-card p-4 p-md-5 mb-4">
                     <div class="d-flex align-items-center gap-3 mb-4">
-                        <div class="checkout-step d-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10" style="width: 40px; height: 40px;">
-                            <span class="fw-bold text-primary">2</span>
+                        <div class="checkout-step d-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10" style="width: 40px; height: 40px;">
+                            <span class="fw-bold text-success">2</span>
                         </div>
                         <h5 class="fw-bold mb-0">Metode Pengiriman</h5>
                     </div>
@@ -116,8 +116,8 @@
                 <!-- Payment Method -->
                 <div class="checkout-card p-4 p-md-5 mb-4">
                     <div class="d-flex align-items-center gap-3 mb-4">
-                        <div class="checkout-step d-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10" style="width: 40px; height: 40px;">
-                            <span class="fw-bold text-primary">3</span>
+                        <div class="checkout-step d-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10" style="width: 40px; height: 40px;">
+                            <span class="fw-bold text-success">3</span>
                         </div>
                         <h5 class="fw-bold mb-0">Metode Pembayaran</h5>
                     </div>
@@ -158,8 +158,8 @@
                 <!-- Notes -->
                 <div class="checkout-card p-4 p-md-5 mb-4">
                     <div class="d-flex align-items-center gap-3 mb-4">
-                        <div class="checkout-step d-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10" style="width: 40px; height: 40px;">
-                            <span class="fw-bold text-primary">4</span>
+                        <div class="checkout-step d-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10" style="width: 40px; height: 40px;">
+                            <span class="fw-bold text-success">4</span>
                         </div>
                         <h5 class="fw-bold mb-0">Catatan (Opsional)</h5>
                     </div>
@@ -176,8 +176,8 @@
                 <!-- Summary -->
                 <div class="checkout-card p-4 p-md-5 mb-4">
                     <div class="d-flex align-items-center gap-3 mb-4">
-                        <div class="checkout-step d-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10" style="width: 40px; height: 40px;">
-                            <span class="fw-bold text-primary">5</span>
+                        <div class="checkout-step d-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10" style="width: 40px; height: 40px;">
+                            <span class="fw-bold text-success">5</span>
                         </div>
                         <h5 class="fw-bold mb-0">Ringkasan Pembayaran</h5>
                     </div>
@@ -199,7 +199,7 @@
 
                         <div class="d-flex justify-content-between">
                             <span class="fw-bold">Total</span>
-                            <span class="fw-bold h4 mb-0" style="color: #667eea;">
+                            <span class="fw-bold h4 mb-0" style="color: #22c55e;">
                                 Rp {{ number_format(($item->price ?? 0) + ($item->type == 'sale' ? 1000 : 0), 0, ',', '.') }}
                             </span>
                         </div>
@@ -211,13 +211,13 @@
                     <div class="form-check mb-4">
                         <input class="form-check-input" type="checkbox" id="terms" required>
                         <label class="form-check-label small text-secondary" for="terms">
-                            Saya setuju dengan <a href="#" class="text-decoration-none" style="color: #667eea;">Syarat & Ketentuan</a>
+                            Saya setuju dengan <a href="#" class="text-decoration-none" style="color: #22c55e;">Syarat & Ketentuan</a>
                             dan akan melakukan transaksi dengan jujur dan bertanggung jawab
                         </label>
                     </div>
 
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary btn-rounded py-3" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                        <button type="submit" class="btn btn-success btn-rounded py-3" style="background: #22c55e; border: none;">
                             <i class="bi bi-check2-circle me-2"></i>
                             {{ $item->type == 'gift' ? 'Ambil Barang Gratis' : 'Buat Pesanan' }}
                         </button>
@@ -293,13 +293,13 @@
     }
 
     .delivery-option:hover, .payment-option:hover {
-        border-color: #667eea;
-        background: rgba(102,126,234,0.02);
+        border-color: #22c55e;
+        background: rgba(34, 197, 94,0.02);
     }
 
     .delivery-option.active, .payment-option.active {
-        border-color: #667eea;
-        background: rgba(102,126,234,0.05);
+        border-color: #22c55e;
+        background: rgba(34, 197, 94,0.05);
     }
 
     [data-bs-theme="dark"] .checkout-card {

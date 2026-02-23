@@ -241,7 +241,7 @@ function showInstallSuccess() {
         html: '<p class="mb-0">WAKANDE berhasil diinstall ke perangkatmu.</p>' +
               '<p class="small text-secondary mt-2">Sekarang bisa diakses offline dan lebih cepat.</p>',
         confirmButtonText: 'Mulai',
-        confirmButtonColor: '#667eea'
+        confirmButtonColor: '#22c55e'
     });
 }
 
@@ -381,7 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (navbar && !document.querySelector('.pwa-mode')) {
             const installBtn = document.createElement('button');
             installBtn.id = 'install-pwa';
-            installBtn.className = 'btn btn-outline-primary btn-rounded ms-2';
+            installBtn.className = 'btn btn-outline-success btn-rounded ms-2';
             installBtn.style.display = 'none';
             installBtn.innerHTML = '<i class="bi bi-download me-1"></i>Install App';
             navbar.parentElement?.appendChild(installBtn);

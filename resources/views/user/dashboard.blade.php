@@ -10,8 +10,8 @@
                 <h1 class="h3 fw-bold mb-1">Halo, {{ Auth::user()->name }}! 👋</h1>
                 <p class="text-secondary mb-0">{{ now()->format('l, d F Y') }}</p>
             </div>
-            <a href="{{ route('items.create') }}" class="btn btn-primary btn-rounded px-4 py-2"
-                style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+            <a href="{{ route('items.create') }}" class="btn btn-success btn-rounded px-4 py-2"
+                style="background: #22c55e; border: none;">
                 <i class="bi bi-plus-circle me-2"></i>Upload Barang
             </a>
         </div>
@@ -22,8 +22,8 @@
                 <div class="stat-card h-100 p-4">
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center"
-                            style="width: 48px; height: 48px; background: rgba(102, 126, 234, 0.1);">
-                            <i class="bi bi-box-seam fs-4" style="color: #667eea;"></i>
+                            style="width: 48px; height: 48px; background: rgba(34, 197, 94, 0.1);">
+                            <i class="bi bi-box-seam fs-4" style="color: #22c55e;"></i> 
                         </div>
                         <span class="badge bg-light text-dark rounded-pill px-3 py-2">Total</span>
                     </div>
@@ -44,8 +44,8 @@
                 <div class="stat-card h-100 p-4">
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center"
-                            style="width: 48px; height: 48px; background: rgba(118, 75, 162, 0.1);">
-                            <i class="bi bi-gift fs-4" style="color: #764ba2;"></i>
+                            style="width: 48px; height: 48px; background: rgba(74, 222, 128, 0.1);">
+                            <i class="bi bi-gift fs-4" style="color: #4ade80;"></i>
                         </div>
                         <span class="badge bg-light text-dark rounded-pill px-3 py-2">Terjual</span>
                     </div>
@@ -71,7 +71,7 @@
                     <h3 class="fw-bold mb-1">{{ $stats['bought_items'] ?? 0 }}</h3>
                     <p class="text-secondary small mb-0">Barang Didapatkan</p>
                     <div class="mt-3">
-                        <span class="text-primary small">
+                        <span class="text-success small">
                             <i class="bi bi-piggy-bank"></i> Hemat Rp
                             {{ number_format($stats['total_savings'] ?? 0, 0, ',', '.') }}
                         </span>
@@ -91,7 +91,7 @@
                     <h3 class="fw-bold mb-1">{{ $stats['wishlist_count'] ?? 0 }}</h3>
                     <p class="text-secondary small mb-0">Barang Disimpan</p>
                     <div class="mt-3">
-                        <a href="{{ route('wishlist.index') }}" class="text-decoration-none small" style="color: #667eea;">
+                        <a href="{{ route('wishlist.index') }}" class="text-decoration-none small" style="color: #22c55e;">
                             Lihat semua <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -126,7 +126,7 @@
                 <div class="admin-card p-4 mb-4">
                     <h6 class="fw-bold mb-3">Aksi Cepat</h6>
                     <div class="d-grid gap-2">
-                        <a href="{{ route('items.create') }}" class="btn btn-outline-primary rounded-pill text-start py-2">
+                        <a href="{{ route('items.create') }}" class="btn btn-outline-success rounded-pill text-start py-2">
                             <i class="bi bi-cloud-upload me-2"></i>Upload Barang Baru
                         </a>
                         <a href="{{ route('catalog.index') }}"
@@ -178,7 +178,7 @@
                                         </div>
                                     </div>
                                     <a href="{{ route('items.show', $item->id) }}"
-                                        class="btn btn-sm btn-link text-decoration-none p-0" style="color: #667eea;">
+                                        class="btn btn-sm btn-link text-decoration-none p-0" style="color: #22c55e;">
                                         Detail
                                     </a>
                                 </div>
@@ -187,7 +187,7 @@
 
                         <div class="mt-3 text-center">
                             <a href="{{ route('items.index') }}" class="text-decoration-none small"
-                                style="color: #667eea;">
+                                style="color: #22c55e;">
                                 Lihat semua barang <i class="bi bi-arrow-right"></i>
                             </a>
                         </div>
@@ -201,11 +201,11 @@
                 <div class="admin-card p-4 mb-4">
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h6 class="fw-bold mb-0">
-                            <i class="bi bi-cart-check me-2" style="color: #667eea;"></i>
+                            <i class="bi bi-cart-check me-2" style="color: #22c55e;"></i>
                             Transaksi Pembelian Terbaru
                         </h6>
                         <a href="{{ route('transactions.index') }}" class="text-decoration-none small"
-                            style="color: #667eea;">
+                            style="color: #22c55e;">
                             Lihat semua <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -250,7 +250,7 @@
                                             <td>
                                                 <div class="d-flex align-items-center gap-2">
                                                     <div class="avatar-circle"
-                                                        style="width: 32px; height: 32px; font-size: 0.8rem; background: rgba(102,126,234,0.1); color: #667eea;">
+                                                        style="width: 32px; height: 32px; font-size: 0.8rem; background: rgba(34, 197, 94,0.1); color: #22c55e;">
                                                         {{ strtoupper(substr($trx->seller->name, 0, 1)) }}
                                                     </div>
                                                     <span class="small">{{ Str::limit($trx->seller->name, 15) }}</span>
@@ -271,7 +271,7 @@
                                             <td>
                                                 <a href="{{ route('transactions.show', $trx->id) }}"
                                                     class="btn btn-sm btn-link text-decoration-none p-0"
-                                                    style="color: #667eea;">
+                                                    style="color: #22c55e;">
                                                     Detail
                                                 </a>
                                             </td>
@@ -286,7 +286,7 @@
                                 <i class="bi bi-cart-x fs-1 text-secondary opacity-50"></i>
                             </div>
                             <p class="text-secondary mb-2">Belum ada transaksi pembelian</p>
-                            <a href="{{ route('catalog.index') }}" class="btn btn-primary btn-sm rounded-pill px-4">
+                            <a href="{{ route('catalog.index') }}" class="btn btn-success btn-sm rounded-pill px-4">
                                 <i class="bi bi-search me-2"></i>Jelajahi Katalog
                             </a>
                         </div>
@@ -297,11 +297,11 @@
                 <div class="admin-card p-4">
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h6 class="fw-bold mb-0">
-                            <i class="bi bi-truck me-2" style="color: #764ba2;"></i>
+                            <i class="bi bi-truck me-2" style="color: #4ade80;"></i>
                             Transaksi Penjualan Terbaru
                         </h6>
                         <a href="{{ route('transactions.index') }}" class="text-decoration-none small"
-                            style="color: #667eea;">
+                            style="color: #22c55e;">
                             Lihat semua <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -346,7 +346,7 @@
                                             <td>
                                                 <div class="d-flex align-items-center gap-2">
                                                     <div class="avatar-circle"
-                                                        style="width: 32px; height: 32px; font-size: 0.8rem; background: rgba(118,75,162,0.1); color: #764ba2;">
+                                                        style="width: 32px; height: 32px; font-size: 0.8rem; background: rgba(74, 222, 128,0.1); color: #4ade80;">
                                                         {{ strtoupper(substr($trx->buyer->name, 0, 1)) }}
                                                     </div>
                                                     <span class="small">{{ Str::limit($trx->buyer->name, 15) }}</span>
@@ -367,7 +367,7 @@
                                             <td>
                                                 <a href="{{ route('transactions.show', $trx->id) }}"
                                                     class="btn btn-sm btn-link text-decoration-none p-0"
-                                                    style="color: #667eea;">
+                                                    style="color: #22c55e;">
                                                     Detail
                                                 </a>
                                             </td>
@@ -382,7 +382,7 @@
                                 <i class="bi bi-gift fs-1 text-secondary opacity-50"></i>
                             </div>
                             <p class="text-secondary mb-2">Belum ada transaksi penjualan</p>
-                            <a href="{{ route('items.create') }}" class="btn btn-primary btn-sm rounded-pill px-4">
+                            <a href="{{ route('items.create') }}" class="btn btn-success btn-sm rounded-pill px-4">
                                 <i class="bi bi-cloud-upload me-2"></i>Upload Barang
                             </a>
                         </div>
@@ -404,7 +404,7 @@
 
             .stat-card:hover {
                 transform: translateY(-4px);
-                box-shadow: 0 16px 24px rgba(102, 126, 234, 0.08);
+                box-shadow: 0 16px 24px rgba(34, 197, 94, 0.08);
             }
 
             .admin-card {
@@ -442,15 +442,15 @@
                 font-weight: 600;
             }
 
-            .btn-outline-primary {
-                border-color: rgba(102, 126, 234, 0.2);
-                color: #667eea;
+            .btn-outline-success {
+                border-color: rgba(34, 197, 94, 0.2);
+                color: #22c55e;
             }
 
-            .btn-outline-primary:hover {
-                background: rgba(102, 126, 234, 0.1);
-                border-color: #667eea;
-                color: #667eea;
+            .btn-outline-success:hover {
+                background: rgba(34, 197, 94, 0.1);
+                border-color: #22c55e;
+                color: #22c55e;
             }
         </style>
     @endpush

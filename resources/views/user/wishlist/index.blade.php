@@ -13,7 +13,7 @@
             </h1>
             <p class="text-secondary mb-0">Barang-barang yang kamu simpan untuk dibeli nanti</p>
         </div>
-        <a href="{{ route('catalog.index') }}" class="btn btn-primary btn-rounded px-4 py-2">
+        <a href="{{ route('catalog.index') }}" class="btn btn-success btn-rounded px-4 py-2">
             <i class="bi bi-plus-circle me-2"></i>Jelajahi Katalog
         </a>
     </div>
@@ -37,8 +37,8 @@
             <div class="col-md-4">
                 <div class="stat-card p-3 rounded-4">
                     <div class="d-flex align-items-center gap-3">
-                        <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: rgba(102,126,234,0.1);">
-                            <i class="bi bi-gift fs-4" style="color: #667eea;"></i>
+                        <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: rgba(34, 197, 94,0.1);">
+                            <i class="bi bi-gift fs-4" style="color: #22c55e;"></i>
                         </div>
                         <div>
                             <h4 class="fw-bold mb-0">{{ $wishlist->where('item.type', 'gift')->count() }}</h4>
@@ -96,7 +96,7 @@
                                         <i class="bi bi-gift me-1"></i>Gratis
                                     </span>
                                 @else
-                                    <span class="badge bg-primary rounded-pill px-3 py-2">
+                                    <span class="badge bg-success rounded-pill px-3 py-2">
                                         <i class="bi bi-tag me-1"></i>Dijual
                                     </span>
                                 @endif
@@ -131,7 +131,7 @@
 
                             <!-- Legacy Message Preview -->
                             <div class="legacy-preview p-3 rounded-3 mb-3">
-                                <i class="bi bi-quote me-1" style="color: #667eea; font-size: 0.8rem;"></i>
+                                <i class="bi bi-quote me-1" style="color: #22c55e; font-size: 0.8rem;"></i>
                                 <span class="small text-secondary">
                                     {{ Str::limit($item->item->legacy_message, 60) }}
                                 </span>
@@ -141,7 +141,7 @@
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div>
                                     @if($item->item->type == 'sale')
-                                        <span class="fw-bold" style="color: #667eea; font-size: 1.1rem;">
+                                        <span class="fw-bold" style="color: #22c55e; font-size: 1.1rem;">
                                             Rp {{ number_format($item->item->price, 0, ',', '.') }}
                                         </span>
                                         <small class="text-secondary d-block">+ admin Rp1.000</small>
@@ -165,8 +165,8 @@
                             <div class="d-flex gap-2">
                                 @if(!$isOutOfStock)
                                     <a href="{{ route('transactions.checkout', $item->item_id) }}"
-                                       class="btn btn-primary grow rounded-pill py-2"
-                                       style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                                       class="btn btn-success grow rounded-pill py-2"
+                                       style="background: #22c55e; border: none;">
                                         <i class="bi bi-{{ $item->item->type == 'gift' ? 'gift' : 'cart' }} me-1"></i>
                                         {{ $item->item->type == 'gift' ? 'Ambil' : 'Beli' }}
                                     </a>
@@ -206,7 +206,7 @@
             <div class="mb-4 position-relative">
                 <i class="bi bi-heart fs-1 text-secondary opacity-25"></i>
                 <i class="bi bi-plus-circle-fill position-absolute bottom-0 end-0 translate-middle"
-                   style="color: #667eea; font-size: 1.5rem; background: white; border-radius: 50%; padding: 0.2rem;"></i>
+                   style="color: #22c55e; font-size: 1.5rem; background: white; border-radius: 50%; padding: 0.2rem;"></i>
             </div>
 
             <h5 class="fw-bold mb-3">Wishlist-mu Masih Kosong</h5>
@@ -215,12 +215,12 @@
             </p>
 
             <div class="d-flex flex-wrap gap-3 justify-content-center">
-                <a href="{{ route('catalog.index') }}" class="btn btn-primary btn-rounded px-5 py-3">
+                <a href="{{ route('catalog.index') }}" class="btn btn-success btn-rounded px-5 py-3">
                     <i class="bi bi-grid me-2"></i>Jelajahi Katalog
                 </a>
 
                 @guest
-                    <a href="{{ route('register') }}" class="btn btn-outline-primary btn-rounded px-5 py-3">
+                    <a href="{{ route('register') }}" class="btn btn-outline-success btn-rounded px-5 py-3">
                         <i class="bi bi-person-plus me-2"></i>Daftar Sekarang
                     </a>
                 @endguest
@@ -231,7 +231,7 @@
                 <div class="col-lg-8">
                     <div class="tips-card p-4 rounded-4">
                         <h6 class="fw-semibold mb-3">
-                            <i class="bi bi-lightbulb me-2" style="color: #667eea;"></i>
+                            <i class="bi bi-lightbulb me-2" style="color: #22c55e;"></i>
                             Tips Menggunakan Wishlist
                         </h6>
                         <div class="row g-3">
@@ -247,7 +247,7 @@
                             <div class="col-md-4">
                                 <div class="text-center">
                                     <div class="tip-icon mx-auto mb-2">
-                                        <i class="bi bi-bell fs-4" style="color: #667eea;"></i>
+                                        <i class="bi bi-bell fs-4" style="color: #22c55e;"></i>
                                     </div>
                                     <small class="d-block fw-semibold">Pantau Harga</small>
                                     <span class="text-secondary small">Dapat notifikasi jika harga turun</span>
@@ -373,7 +373,7 @@
 
     .wishlist-card:hover {
         transform: translateY(-8px);
-        box-shadow: 0 16px 24px rgba(102,126,234,0.08);
+        box-shadow: 0 16px 24px rgba(34, 197, 94,0.08);
     }
 
     .stat-card {
@@ -385,12 +385,12 @@
 
     .stat-card:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 16px rgba(102,126,234,0.08);
+        box-shadow: 0 8px 16px rgba(34, 197, 94,0.08);
     }
 
     .legacy-preview {
-        background: rgba(102,126,234,0.03);
-        border-left: 3px solid #667eea;
+        background: rgba(34, 197, 94,0.03);
+        border-left: 3px solid #22c55e;
     }
 
     .remove-wishlist {
@@ -403,8 +403,8 @@
     }
 
     .tips-card {
-        background: linear-gradient(135deg, rgba(102,126,234,0.03) 0%, rgba(118,75,162,0.03) 100%);
-        border: 1px solid rgba(102,126,234,0.1);
+        background: rgba(34, 197, 94, 0.05);
+        border: 1px solid rgba(34, 197, 94,0.1);
     }
 
     .tip-icon {
@@ -471,12 +471,12 @@
     }
 
     .page-link:hover {
-        background: rgba(102,126,234,0.1);
-        color: #667eea;
+        background: rgba(34, 197, 94,0.1);
+        color: #22c55e;
     }
 
     .page-item.active .page-link {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: #22c55e;
         color: white;
     }
 
@@ -486,7 +486,7 @@
     }
 
     [data-bs-theme="dark"] .page-link:hover {
-        background: rgba(102,126,234,0.2);
+        background: rgba(34, 197, 94,0.2);
     }
 </style>
 @endpush

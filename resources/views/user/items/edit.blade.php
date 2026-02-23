@@ -41,8 +41,8 @@
                 <!-- Informasi Dasar -->
                 <div class="form-step-card p-4 p-md-5 mb-4">
                     <div class="d-flex align-items-center gap-3 mb-4">
-                        <div class="step-number d-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10" style="width: 40px; height: 40px;">
-                            <span class="fw-bold text-primary">1</span>
+                        <div class="step-number d-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10" style="width: 40px; height: 40px;">
+                            <span class="fw-bold text-success">1</span>
                         </div>
                         <h5 class="fw-bold mb-0">Informasi Dasar</h5>
                     </div>
@@ -112,8 +112,8 @@
                 <!-- Foto Barang -->
                 <div class="form-step-card p-4 p-md-5 mb-4">
                     <div class="d-flex align-items-center gap-3 mb-4">
-                        <div class="step-number d-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10" style="width: 40px; height: 40px;">
-                            <span class="fw-bold text-primary">2</span>
+                        <div class="step-number d-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10" style="width: 40px; height: 40px;">
+                            <span class="fw-bold text-success">2</span>
                         </div>
                         <h5 class="fw-bold mb-0">Foto Barang</h5>
                     </div>
@@ -151,7 +151,7 @@
                             <i class="bi bi-cloud-upload fs-1 text-secondary mb-3"></i>
                             <h6 class="fw-bold mb-2">Drag & drop foto disini</h6>
                             <p class="small text-secondary mb-3">atau</p>
-                            <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-4" id="selectFilesBtn">
+                            <button type="button" class="btn btn-outline-success btn-sm rounded-pill px-4" id="selectFilesBtn">
                                 Pilih File
                             </button>
                             <input type="file" class="d-none" id="images" name="images[]" multiple accept="image/jpeg,image/png,image/jpg">
@@ -165,8 +165,8 @@
                 <!-- Tipe & Harga -->
                 <div class="form-step-card p-4 p-md-5 mb-4">
                     <div class="d-flex align-items-center gap-3 mb-4">
-                        <div class="step-number d-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10" style="width: 40px; height: 40px;">
-                            <span class="fw-bold text-primary">3</span>
+                        <div class="step-number d-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10" style="width: 40px; height: 40px;">
+                            <span class="fw-bold text-success">3</span>
                         </div>
                         <h5 class="fw-bold mb-0">Tipe & Harga</h5>
                     </div>
@@ -204,8 +204,8 @@
                 <!-- Legacy Message -->
                 <div class="form-step-card p-4 p-md-5 mb-4">
                     <div class="d-flex align-items-center gap-3 mb-4">
-                        <div class="step-number d-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10" style="width: 40px; height: 40px;">
-                            <span class="fw-bold text-primary">4</span>
+                        <div class="step-number d-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10" style="width: 40px; height: 40px;">
+                            <span class="fw-bold text-success">4</span>
                         </div>
                         <h5 class="fw-bold mb-0">Legacy Message ✨</h5>
                     </div>
@@ -235,7 +235,7 @@
 
                 <!-- Submit -->
                 <div class="d-flex gap-3">
-                    <button type="submit" class="btn btn-primary btn-rounded px-5 py-3 grow" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                    <button type="submit" class="btn btn-success btn-rounded px-5 py-3 grow" style="background: #22c55e; border: none;">
                         <i class="bi bi-check-circle me-2"></i>Simpan Perubahan
                     </button>
                     <a href="{{ route('items.show', $item->id) }}" class="btn btn-outline-secondary btn-rounded px-5 py-3">
@@ -272,8 +272,8 @@
 
     uploadArea.addEventListener('dragover', (e) => {
         e.preventDefault();
-        uploadArea.style.background = 'rgba(102,126,234,0.05)';
-        uploadArea.style.borderColor = '#667eea';
+        uploadArea.style.background = 'rgba(34, 197, 94,0.05)';
+        uploadArea.style.borderColor = '#22c55e';
     });
 
     uploadArea.addEventListener('dragleave', (e) => {

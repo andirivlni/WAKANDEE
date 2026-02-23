@@ -33,7 +33,7 @@
                         <i class="bi bi-gift me-1"></i> Gratis
                     </span>
                 @else
-                    <span class="badge bg-primary rounded-pill px-3 py-2">
+                    <span class="badge bg-success rounded-pill px-3 py-2">
                         <i class="bi bi-tag me-1"></i> Dijual
                     </span>
                 @endif
@@ -76,9 +76,9 @@
             </div>
 
             <!-- Legacy Message Preview -->
-            <div class="mb-3 p-3 rounded-3" style="background: rgba(102, 126, 234, 0.05); border-left: 3px solid #667eea;">
+            <div class="mb-3 p-3 rounded-3" style="background: rgba(34, 197, 94, 0.05); border-left: 3px solid #22c55e;">
                 <p class="small text-secondary mb-0" style="line-height: 1.4;">
-                    <i class="bi bi-quote me-1" style="color: #667eea;"></i>
+                    <i class="bi bi-quote me-1" style="color: #22c55e;"></i>
                     {{ Str::limit($item->legacy_message, 60) }}
                 </p>
             </div>
@@ -87,7 +87,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div>
                     @if($item->type === 'sale')
-                        <span class="fw-bold" style="color: #667eea; font-size: 1.1rem;">
+                        <span class="fw-bold" style="color: #22c55e; font-size: 1.1rem;">
                             Rp {{ number_format($item->price, 0, ',', '.') }}
                         </span>
                         <span class="text-secondary small ms-1">
@@ -113,7 +113,7 @@
             <div class="mt-3">
                 <a href="{{ route('catalog.show', $item->id) }}"
                    class="btn w-100 rounded-pill"
-                   style="background: rgba(102, 126, 234, 0.1); color: #667eea; border: 1px solid rgba(102, 126, 234, 0.2);">
+                   style="background: rgba(34, 197, 94, 0.1); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.2);">
                     <i class="bi bi-eye me-1"></i> Lihat Detail
                     <i class="bi bi-arrow-right ms-1"></i>
                 </a>

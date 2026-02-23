@@ -12,7 +12,7 @@
     --bg-sidebar: #1a1a2c;
     --bg-navbar: rgba(26, 26, 44, 0.8);
 
-    --text-primary: #ffffff;
+    --text-success: #ffffff;
     --text-secondary: #a0a0b0;
     --text-muted: #707080;
 
@@ -22,13 +22,13 @@
     --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
     --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
     --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.4);
-    --shadow-hover: 0 16px 24px rgba(102, 126, 234, 0.15);
+    --shadow-hover: 0 16px 24px rgba(34, 197, 94, 0.15);
 }
 
 /* ===== BASE DARK MODE ===== */
 [data-bs-theme="dark"] body {
     background-color: var(--bg-body);
-    color: var(--text-primary);
+    color: var(--text-success);
 }
 
 /* ===== CARDS & CONTAINERS ===== */
@@ -68,7 +68,7 @@
 
 [data-bs-theme="dark"] .nav-link:hover,
 [data-bs-theme="dark"] .nav-link.active {
-    background: rgba(102, 126, 234, 0.15);
+    background: rgba(34, 197, 94, 0.15);
     color: white;
 }
 
@@ -80,11 +80,11 @@
 }
 
 [data-bs-theme="dark"] .dropdown-item {
-    color: var(--text-primary);
+    color: var(--text-success);
 }
 
 [data-bs-theme="dark"] .dropdown-item:hover {
-    background: rgba(102, 126, 234, 0.15);
+    background: rgba(34, 197, 94, 0.15);
     color: white;
 }
 
@@ -97,14 +97,14 @@
 [data-bs-theme="dark"] .form-select {
     background: rgba(255, 255, 255, 0.05);
     border-color: var(--border-color);
-    color: var(--text-primary);
+    color: var(--text-success);
 }
 
 [data-bs-theme="dark"] .form-control:focus,
 [data-bs-theme="dark"] .form-select:focus {
     background: rgba(26, 26, 44, 0.9);
     border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15);
 }
 
 [data-bs-theme="dark"] .form-control::placeholder {
@@ -125,7 +125,7 @@
 /* ===== SEARCH BOX ===== */
 [data-bs-theme="dark"] .search-box input {
     background: rgba(255, 255, 255, 0.03);
-    color: var(--text-primary);
+    color: var(--text-success);
 }
 
 [data-bs-theme="dark"] .search-box input:focus {
@@ -170,7 +170,7 @@
 
 /* ===== LEGACY MESSAGE ===== */
 [data-bs-theme="dark"] .legacy-message {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(74, 222, 128, 0.1) 100%);
 }
 
 [data-bs-theme="dark"] .legacy-message::before {
@@ -199,7 +199,7 @@
 
 /* ===== TABLES ===== */
 [data-bs-theme="dark"] .table {
-    color: var(--text-primary);
+    color: var(--text-success);
 }
 
 [data-bs-theme="dark"] .table > :not(caption) > * > * {
@@ -219,7 +219,7 @@
 }
 
 [data-bs-theme="dark"] .page-link:hover {
-    background: rgba(102, 126, 234, 0.15);
+    background: rgba(34, 197, 94, 0.15);
     color: white;
 }
 
@@ -340,11 +340,11 @@
 /* ===== SWEET ALERT ===== */
 [data-bs-theme="dark"] .swal2-popup {
     background: var(--bg-card);
-    color: var(--text-primary);
+    color: var(--text-success);
 }
 
 [data-bs-theme="dark"] .swal2-title {
-    color: var(--text-primary);
+    color: var(--text-success);
 }
 
 [data-bs-theme="dark"] .swal2-html-container {
@@ -389,7 +389,7 @@
 }
 
 [data-bs-theme="dark"] .text-dark {
-    color: var(--text-primary) !important;
+    color: var(--text-success) !important;
 }
 
 [data-bs-theme="dark"] .text-muted {

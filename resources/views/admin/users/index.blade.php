@@ -10,7 +10,7 @@
             <h1 class="h3 fw-bold mb-1">Manajemen User</h1>
             <p class="text-secondary mb-0">Kelola dan monitoring semua pengguna WAKANDE</p>
         </div>
-        <button class="btn btn-primary btn-rounded px-4 py-3" onclick="openCreateAdminModal()">
+        <button class="btn btn-success btn-rounded px-4 py-3" onclick="openCreateAdminModal()">
             <i class="bi bi-person-plus me-2"></i>Tambah Admin
         </button>
     </div>
@@ -18,10 +18,10 @@
     <!-- Stats Cards -->
     <div class="row g-4 mb-4">
         <div class="col-xl-3 col-md-6">
-            <div class="user-stat-card p-4 rounded-4">
+            <div class="user-stat-card p-4 rounded-3">
                 <div class="d-flex align-items-center gap-3">
-                    <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: rgba(102,126,234,0.1);">
-                        <i class="bi bi-people fs-3" style="color: #667eea;"></i>
+                    <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: #dcfce7;">
+                        <i class="bi bi-people fs-3" style="color: #22c55e;"></i>
                     </div>
                     <div>
                         <h3 class="fw-bold mb-1">{{ number_format($stats['total_users'] ?? 0) }}</h3>
@@ -31,9 +31,9 @@
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
-            <div class="user-stat-card p-4 rounded-4">
+            <div class="user-stat-card p-4 rounded-3">
                 <div class="d-flex align-items-center gap-3">
-                    <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: rgba(25,135,84,0.1);">
+                    <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: #dcfce7;">
                         <i class="bi bi-check-circle fs-3" style="color: #198754;"></i>
                     </div>
                     <div>
@@ -44,9 +44,9 @@
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
-            <div class="user-stat-card p-4 rounded-4">
+            <div class="user-stat-card p-4 rounded-3">
                 <div class="d-flex align-items-center gap-3">
-                    <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: rgba(108,117,125,0.1);">
+                    <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: #f3f4f6;">
                         <i class="bi bi-x-circle fs-3" style="color: #6c757d;"></i>
                     </div>
                     <div>
@@ -57,10 +57,10 @@
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
-            <div class="user-stat-card p-4 rounded-4">
+            <div class="user-stat-card p-4 rounded-3">
                 <div class="d-flex align-items-center gap-3">
-                    <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: rgba(118,75,162,0.1);">
-                        <i class="bi bi-shield fs-3" style="color: #764ba2;"></i>
+                    <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: #dcfce7;">
+                        <i class="bi bi-shield fs-3" style="color: #4ade80;"></i>
                     </div>
                     <div>
                         <h3 class="fw-bold mb-1">{{ number_format($stats['total_admins'] ?? 0) }}</h3>
@@ -72,7 +72,7 @@
     </div>
 
     <!-- Filter & Search -->
-    <div class="admin-card p-4 rounded-4 mb-4">
+    <div class="admin-card p-4 rounded-3 mb-4">
         <div class="row g-3 align-items-center">
             <div class="col-lg-5">
                 <form action="{{ route('admin.users.index') }}" method="GET" id="searchForm">
@@ -81,7 +81,7 @@
                         <input type="text"
                                name="search"
                                class="form-control form-control-lg rounded-pill border-0 shadow-none"
-                               style="padding-left: 45px; background: rgba(102,126,234,0.02);"
+                               style="padding-left: 45px; background: #f8fafc;"
                                placeholder="Cari berdasarkan nama, email, atau sekolah..."
                                value="{{ request('search') }}">
                     </div>
@@ -113,7 +113,7 @@
 
     <!-- Users Table -->
     @if($users->count() > 0)
-        <div class="admin-card p-4 rounded-4">
+        <div class="admin-card p-4 rounded-3">
             <div class="table-responsive">
                 <table class="table table-hover align-middle">
                     <thead class="small text-secondary">
@@ -142,7 +142,7 @@
                                                      style="object-fit: cover;">
                                             @else
                                                 <div class="avatar-circle"
-                                                     style="width: 48px; height: 48px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                                     style="width: 48px; height: 48px; background: #22c55e;">
                                                     {{ strtoupper(substr($user->name, 0, 1)) }}
                                                 </div>
                                             @endif
@@ -156,7 +156,7 @@
                                             <h6 class="fw-bold mb-1">{{ $user->name }}</h6>
                                             <small class="text-secondary">{{ $user->email }}</small>
                                             @if($user->role == 'admin')
-                                                <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-2 py-1 ms-2">
+                                                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-2 py-1 ms-2">
                                                     <i class="bi bi-shield"></i>
                                                 </span>
                                             @endif
@@ -178,7 +178,7 @@
                                 </td>
                                 <td>
                                     @if($user->role == 'admin')
-                                        <span class="badge bg-primary rounded-pill px-3 py-2">
+                                        <span class="badge bg-success rounded-pill px-3 py-2">
                                             <i class="bi bi-shield me-1"></i>Admin
                                         </span>
                                     @else
@@ -222,7 +222,7 @@
                                 <td>
                                     <div class="d-flex gap-2">
                                         <a href="{{ route('admin.users.show', $user->id) }}"
-                                           class="btn btn-sm btn-outline-primary rounded-circle p-2"
+                                           class="btn btn-sm btn-outline-success rounded-circle p-2"
                                            style="width: 36px; height: 36px;"
                                            data-bs-toggle="tooltip"
                                            title="Detail">
@@ -263,12 +263,12 @@
         </div>
     @else
         <!-- Empty State -->
-        <div class="admin-card p-5 rounded-4 text-center">
+        <div class="admin-card p-5 rounded-3 text-center">
             <div class="empty-state">
                 <i class="bi bi-people fs-1 text-secondary opacity-25 mb-3"></i>
                 <h5 class="fw-bold mb-3">Tidak Ada User</h5>
                 <p class="text-secondary mb-4">Belum ada pengguna yang terdaftar di WAKANDE.</p>
-                <a href="{{ route('admin.dashboard') }}" class="btn btn-primary rounded-pill px-5 py-3">
+                <a href="{{ route('admin.dashboard') }}" class="btn btn-success rounded-pill px-5 py-3">
                     <i class="bi bi-arrow-left me-2"></i>Kembali ke Dashboard
                 </a>
             </div>
@@ -279,10 +279,10 @@
 <!-- Create Admin Modal -->
 <div class="modal fade" id="createAdminModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content rounded-4 border-0">
+        <div class="modal-content rounded-3 border-0">
             <div class="modal-header border-0 pt-4 px-4">
                 <h5 class="modal-title fw-bold">
-                    <i class="bi bi-person-plus me-2" style="color: #667eea;"></i>
+                    <i class="bi bi-person-plus me-2" style="color: #22c55e;"></i>
                     Tambah Admin Baru
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -344,14 +344,14 @@
                         </div>
                     </div>
 
-                    <div class="alert alert-info rounded-3 border-0 mt-3" style="background: rgba(102,126,234,0.05);">
-                        <i class="bi bi-info-circle me-2" style="color: #667eea;"></i>
+                    <div class="alert alert-info rounded-3 border-0 mt-3" style="background: #f0fdf4;">
+                        <i class="bi bi-info-circle me-2" style="color: #22c55e;"></i>
                         <small class="text-secondary">Admin akan memiliki akses penuh ke panel moderasi dan manajemen user.</small>
                     </div>
                 </div>
                 <div class="modal-footer border-0 px-4 pb-4">
                     <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary rounded-pill px-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                    <button type="submit" class="btn btn-success rounded-pill px-4" style="background: #22c55e; border: none;">
                         <i class="bi bi-person-plus me-2"></i>Tambah Admin
                     </button>
                 </div>
@@ -513,14 +513,14 @@
 <style>
     .user-stat-card {
         background: white;
-        border: 1px solid rgba(0,0,0,0.02);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        border: 1px solid transparent;
+        box-shadow: 0 4px 12px transparent;
         transition: all 0.3s;
     }
 
     .user-stat-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 16px 24px rgba(102,126,234,0.08);
+        
     }
 
     .avatar-circle {
@@ -535,16 +535,16 @@
     .table > :not(caption) > * > * {
         padding: 1rem 0.75rem;
         background: transparent;
-        border-bottom-color: rgba(0,0,0,0.02);
+        border-bottom-color: transparent;
     }
 
     [data-bs-theme="dark"] .user-stat-card {
         background: #1a1a2c;
-        border-color: rgba(255,255,255,0.05);
+        border-color: transparent;
     }
 
     [data-bs-theme="dark"] .table > :not(caption) > * > * {
-        border-bottom-color: rgba(255,255,255,0.05);
+        border-bottom-color: transparent;
     }
 
     .empty-state {

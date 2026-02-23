@@ -12,15 +12,15 @@
         <div class="row align-items-center g-5">
             <div class="col-lg-6">
                 <!-- Badge -->
-                <div class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded-pill mb-4" style="background: rgba(102, 126, 234, 0.1); border: 1px solid rgba(102, 126, 234, 0.2);">
-                    <i class="bi bi-gem" style="color: #667eea;"></i>
-                    <span class="small fw-semibold" style="color: #667eea;">#WarisanAkademik</span>
+                <div class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded-pill mb-4" style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.2);">
+                    <i class="bi bi-gem" style="color: #22c55e;"></i>
+                    <span class="small fw-semibold" style="color: #22c55e;">#WarisanAkademik</span>
                 </div>
 
                 <!-- Headline -->
                 <h1 class="display-4 fw-bold mb-4" style="line-height: 1.2;">
                     Warisan Akademik untuk
-                    <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    <span style="background: #22c55e; color: #22c55e;">
                         Generasi Berikutnya
                     </span>
                 </h1>
@@ -33,7 +33,7 @@
 
                 <!-- CTA Buttons -->
                 <div class="d-flex flex-wrap gap-3 mb-5">
-                    <a href="{{ route('catalog.index') }}" class="btn btn-primary btn-rounded px-5 py-3" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                    <a href="{{ route('catalog.index') }}" class="btn btn-success btn-rounded px-5 py-3" style="background: #22c55e; border: none;">
                         <i class="bi bi-search me-2"></i>Jelajahi Katalog
                         <i class="bi bi-arrow-right ms-2"></i>
                     </a>
@@ -52,19 +52,19 @@
                 <div class="row g-4">
                     <div class="col-4">
                         <div class="d-flex flex-column">
-                            <span class="h3 fw-bold mb-1" style="color: #667eea;">{{ $stats['total_items'] ?? 0 }}+</span>
+                            <span class="h3 fw-bold mb-1" style="color: #22c55e;">{{ $stats['total_items'] ?? 0 }}+</span>
                             <span class="small text-secondary">Barang Tersedia</span>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="d-flex flex-column">
-                            <span class="h3 fw-bold mb-1" style="color: #667eea;">{{ $stats['total_transactions'] ?? 0 }}+</span>
+                            <span class="h3 fw-bold mb-1" style="color: #22c55e;">{{ $stats['total_transactions'] ?? 0 }}+</span>
                             <span class="small text-secondary">Transaksi Sukses</span>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="d-flex flex-column">
-                            <span class="h3 fw-bold mb-1" style="color: #667eea;">{{ $stats['total_students'] ?? 0 }}+</span>
+                            <span class="h3 fw-bold mb-1" style="color: #22c55e;">{{ $stats['total_students'] ?? 0 }}+</span>
                             <span class="small text-secondary">Siswa Terbantu</span>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                     <!-- Floating Cards -->
                     <div class="position-absolute top-0 start-0 translate-middle-y" style="animation: float 6s ease-in-out infinite;">
                         <div class="glass-card p-3 d-flex align-items-center gap-3">
-                            <div class="avatar-circle" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <div class="avatar-circle" style="background: #22c55e;">
                                 <i class="bi bi-book text-white"></i>
                             </div>
                             <div>
@@ -89,7 +89,7 @@
 
                     <div class="position-absolute top-50 end-0" style="animation: float 8s ease-in-out infinite;">
                         <div class="glass-card p-3 d-flex align-items-center gap-3">
-                            <div class="avatar-circle" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">
+                            <div class="avatar-circle" style="background: #22c55e;">
                                 <i class="bi bi-bag text-white"></i>
                             </div>
                             <div>
@@ -101,7 +101,7 @@
 
                     <div class="position-absolute bottom-0 start-50 translate-middle-x mb-5" style="animation: float 10s ease-in-out infinite;">
                         <div class="glass-card p-3 d-flex align-items-center gap-3">
-                            <div class="avatar-circle" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <div class="avatar-circle" style="background: #22c55e;">
                                 <i class="bi bi-calculator text-white"></i>
                             </div>
                             <div>
@@ -114,7 +114,7 @@
                     <!-- Main Illustration -->
                     <div class="text-center">
                         <img src="{{ asset('images/hero-illustration.svg') }}" alt="Hero Illustration" class="img-fluid" style="max-width: 120%;" onerror="this.style.display='none'">
-                        <div class="hero-circle position-absolute top-50 start-50 translate-middle" style="width: 400px; height: 400px; background: radial-gradient(circle, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.05) 100%); border-radius: 50%; z-index: -1;"></div>
+                        <div class="hero-circle position-absolute top-50 start-50 translate-middle" style="width: 400px; height: 400px; background: radial-gradient(circle, rgba(34, 197, 94,0.1) 0%, rgba(74, 222, 128,0.05) 100%); border-radius: 50%; z-index: -1;"></div>
                     </div>
                 </div>
             </div>
@@ -135,52 +135,52 @@
 
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
-                <div class="category-card text-center p-4 rounded-4 h-100" style="background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.05) 100%); border: 1px solid rgba(102,126,234,0.1); transition: transform 0.3s;">
-                    <div class="category-icon mx-auto mb-3" style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 30px; display: flex; align-items: center; justify-content: center;">
+                <div class="category-card text-center p-4 rounded-4 h-100" style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94,0.1); transition: transform 0.3s;">
+                    <div class="category-icon mx-auto mb-3" style="width: 80px; height: 80px; background: #22c55e; border-radius: 30px; display: flex; align-items: center; justify-content: center;">
                         <i class="bi bi-journal-bookmark-fill fs-1 text-white"></i>
                     </div>
                     <h5 class="fw-bold mb-2">Buku</h5>
                     <p class="small text-secondary mb-3">{{ $categories['buku'] ?? 0 }}+ barang tersedia</p>
-                    <a href="{{ route('catalog.index', ['category' => 'buku']) }}" class="btn btn-link text-decoration-none p-0" style="color: #667eea;">
+                    <a href="{{ route('catalog.index', ['category' => 'buku']) }}" class="btn btn-link text-decoration-none p-0" style="color: #22c55e;">
                         Jelajahi <i class="bi bi-arrow-right"></i>
                     </a>
                 </div>
             </div>
 
             <div class="col-lg-3 col-md-6">
-                <div class="category-card text-center p-4 rounded-4 h-100" style="background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.05) 100%); border: 1px solid rgba(102,126,234,0.1); transition: transform 0.3s;">
-                    <div class="category-icon mx-auto mb-3" style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 30px; display: flex; align-items: center; justify-content: center;">
+                <div class="category-card text-center p-4 rounded-4 h-100" style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94,0.1); transition: transform 0.3s;">
+                    <div class="category-icon mx-auto mb-3" style="width: 80px; height: 80px; background: #22c55e; border-radius: 30px; display: flex; align-items: center; justify-content: center;">
                         <i class="bi bi-bag-check-fill fs-1 text-white"></i>
                     </div>
                     <h5 class="fw-bold mb-2">Seragam</h5>
                     <p class="small text-secondary mb-3">{{ $categories['seragam'] ?? 0 }}+ barang tersedia</p>
-                    <a href="{{ route('catalog.index', ['category' => 'seragam']) }}" class="btn btn-link text-decoration-none p-0" style="color: #667eea;">
+                    <a href="{{ route('catalog.index', ['category' => 'seragam']) }}" class="btn btn-link text-decoration-none p-0" style="color: #22c55e;">
                         Jelajahi <i class="bi bi-arrow-right"></i>
                     </a>
                 </div>
             </div>
 
             <div class="col-lg-3 col-md-6">
-                <div class="category-card text-center p-4 rounded-4 h-100" style="background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.05) 100%); border: 1px solid rgba(102,126,234,0.1); transition: transform 0.3s;">
-                    <div class="category-icon mx-auto mb-3" style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 30px; display: flex; align-items: center; justify-content: center;">
+                <div class="category-card text-center p-4 rounded-4 h-100" style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94,0.1); transition: transform 0.3s;">
+                    <div class="category-icon mx-auto mb-3" style="width: 80px; height: 80px; background: #22c55e; border-radius: 30px; display: flex; align-items: center; justify-content: center;">
                         <i class="bi bi-tools fs-1 text-white"></i>
                     </div>
                     <h5 class="fw-bold mb-2">Alat Praktikum</h5>
                     <p class="small text-secondary mb-3">{{ $categories['alat_praktikum'] ?? 0 }}+ barang tersedia</p>
-                    <a href="{{ route('catalog.index', ['category' => 'alat_praktikum']) }}" class="btn btn-link text-decoration-none p-0" style="color: #667eea;">
+                    <a href="{{ route('catalog.index', ['category' => 'alat_praktikum']) }}" class="btn btn-link text-decoration-none p-0" style="color: #22c55e;">
                         Jelajahi <i class="bi bi-arrow-right"></i>
                     </a>
                 </div>
             </div>
 
             <div class="col-lg-3 col-md-6">
-                <div class="category-card text-center p-4 rounded-4 h-100" style="background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.05) 100%); border: 1px solid rgba(102,126,234,0.1); transition: transform 0.3s;">
-                    <div class="category-icon mx-auto mb-3" style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 30px; display: flex; align-items: center; justify-content: center;">
+                <div class="category-card text-center p-4 rounded-4 h-100" style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94,0.1); transition: transform 0.3s;">
+                    <div class="category-icon mx-auto mb-3" style="width: 80px; height: 80px; background: #22c55e; border-radius: 30px; display: flex; align-items: center; justify-content: center;">
                         <i class="bi bi-grid-3x3-gap-fill fs-1 text-white"></i>
                     </div>
                     <h5 class="fw-bold mb-2">Lainnya</h5>
                     <p class="small text-secondary mb-3">{{ $categories['lainnya'] ?? 0 }}+ barang tersedia</p>
-                    <a href="{{ route('catalog.index', ['category' => 'lainnya']) }}" class="btn btn-link text-decoration-none p-0" style="color: #667eea;">
+                    <a href="{{ route('catalog.index', ['category' => 'lainnya']) }}" class="btn btn-link text-decoration-none p-0" style="color: #22c55e;">
                         Jelajahi <i class="bi bi-arrow-right"></i>
                     </a>
                 </div>
@@ -190,7 +190,7 @@
 </section>
 
 <!-- How It Works -->
-<section class="py-5" style="background: rgba(102, 126, 234, 0.02);">
+<section class="py-5" style="background: rgba(34, 197, 94, 0.02);">
     <div class="container">
         <div class="text-center mb-5">
             <span class="badge bg-light text-dark rounded-pill px-4 py-2 mb-3">CARA KERJA</span>
@@ -203,8 +203,8 @@
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
                 <div class="step-card text-center p-4 h-100">
-                    <div class="step-number mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: white; border-radius: 20px; box-shadow: 0 8px 16px rgba(102,126,234,0.1);">
-                        <span class="h3 fw-bold mb-0" style="color: #667eea;">1</span>
+                    <div class="step-number mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: white; border-radius: 20px; box-shadow: 0 8px 16px rgba(34, 197, 94,0.1);">
+                        <span class="h3 fw-bold mb-0" style="color: #22c55e;">1</span>
                     </div>
                     <h5 class="fw-bold mb-3">Upload Barang</h5>
                     <p class="small text-secondary">Foto barang, tulis deskripsi, dan jangan lupa tambahkan Legacy Message untuk adik kelas</p>
@@ -213,8 +213,8 @@
 
             <div class="col-lg-3 col-md-6">
                 <div class="step-card text-center p-4 h-100">
-                    <div class="step-number mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: white; border-radius: 20px; box-shadow: 0 8px 16px rgba(102,126,234,0.1);">
-                        <span class="h3 fw-bold mb-0" style="color: #667eea;">2</span>
+                    <div class="step-number mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: white; border-radius: 20px; box-shadow: 0 8px 16px rgba(34, 197, 94,0.1);">
+                        <span class="h3 fw-bold mb-0" style="color: #22c55e;">2</span>
                     </div>
                     <h5 class="fw-bold mb-3">Moderasi Admin</h5>
                     <p class="small text-secondary">Admin akan memverifikasi barangmu dalam 1x24 jam untuk memastikan kualitas</p>
@@ -223,8 +223,8 @@
 
             <div class="col-lg-3 col-md-6">
                 <div class="step-card text-center p-4 h-100">
-                    <div class="step-number mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: white; border-radius: 20px; box-shadow: 0 8px 16px rgba(102,126,234,0.1);">
-                        <span class="h3 fw-bold mb-0" style="color: #667eea;">3</span>
+                    <div class="step-number mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: white; border-radius: 20px; box-shadow: 0 8px 16px rgba(34, 197, 94,0.1);">
+                        <span class="h3 fw-bold mb-0" style="color: #22c55e;">3</span>
                     </div>
                     <h5 class="fw-bold mb-3">Temukan & Transaksi</h5>
                     <p class="small text-secondary">Cari barang yang kamu butuhkan, pilih metode pembayaran QRIS atau COD</p>
@@ -233,8 +233,8 @@
 
             <div class="col-lg-3 col-md-6">
                 <div class="step-card text-center p-4 h-100">
-                    <div class="step-number mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: white; border-radius: 20px; box-shadow: 0 8px 16px rgba(102,126,234,0.1);">
-                        <span class="h3 fw-bold mb-0" style="color: #667eea;">4</span>
+                    <div class="step-number mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: white; border-radius: 20px; box-shadow: 0 8px 16px rgba(34, 197, 94,0.1);">
+                        <span class="h3 fw-bold mb-0" style="color: #22c55e;">4</span>
                     </div>
                     <h5 class="fw-bold mb-3">Serah Terima</h5>
                     <p class="small text-secondary">Ambil barang di Drop-off Point sekolah, transaksi selesai, legacy berlanjut</p>
@@ -253,7 +253,7 @@
                 <span class="badge bg-light text-dark rounded-pill px-4 py-2 mb-3">FEATURED</span>
                 <h2 class="fw-bold mb-0">Barang Populer</h2>
             </div>
-            <a href="{{ route('catalog.index') }}" class="btn btn-link text-decoration-none" style="color: #667eea;">
+            <a href="{{ route('catalog.index') }}" class="btn btn-link text-decoration-none" style="color: #22c55e;">
                 Lihat Semua <i class="bi bi-arrow-right"></i>
             </a>
         </div>
@@ -270,12 +270,12 @@
 @endif
 
 <!-- Legacy Message Spotlight -->
-<section class="py-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+<section class="py-5" style="background: #22c55e;">
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-6">
                 <span class="badge bg-white text-dark rounded-pill px-4 py-2 mb-4">
-                    <i class="bi bi-quote me-2" style="color: #667eea;"></i>Legacy Message
+                    <i class="bi bi-quote me-2" style="color: #22c55e;"></i>Legacy Message
                 </span>
                 <h2 class="fw-bold text-white mb-4">"Lebih dari Sekadar Barang Bekas"</h2>
                 <p class="text-white opacity-75 mb-4" style="font-size: 1.1rem;">
@@ -289,7 +289,7 @@
                         sekarang giliranku untuk berbagi. Sukses selalu!"
                     </p>
                     <div class="d-flex align-items-center">
-                        <div class="avatar-circle me-3" style="background: white; color: #667eea; width: 48px; height: 48px;">
+                        <div class="avatar-circle me-3" style="background: white; color: #22c55e; width: 48px; height: 48px;">
                             A
                         </div>
                         <div>
@@ -346,7 +346,7 @@
             <div class="col-lg-4">
                 <div class="testimonial-card p-4 rounded-4 h-100" style="background: white; box-shadow: 0 8px 24px rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.02);">
                     <div class="d-flex align-items-center mb-3">
-                        <div class="avatar-circle me-3" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div class="avatar-circle me-3" style="background: #22c55e;">
                             B
                         </div>
                         <div>
@@ -365,7 +365,7 @@
             <div class="col-lg-4">
                 <div class="testimonial-card p-4 rounded-4 h-100" style="background: white; box-shadow: 0 8px 24px rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.02);">
                     <div class="d-flex align-items-center mb-3">
-                        <div class="avatar-circle me-3" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div class="avatar-circle me-3" style="background: #22c55e;">
                             S
                         </div>
                         <div>
@@ -384,7 +384,7 @@
             <div class="col-lg-4">
                 <div class="testimonial-card p-4 rounded-4 h-100" style="background: white; box-shadow: 0 8px 24px rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.02);">
                     <div class="d-flex align-items-center mb-3">
-                        <div class="avatar-circle me-3" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div class="avatar-circle me-3" style="background: #22c55e;">
                             D
                         </div>
                         <div>
@@ -406,18 +406,18 @@
 <!-- CTA Section -->
 <section class="py-5">
     <div class="container">
-        <div class="cta-card rounded-5 p-5 text-center" style="background: linear-gradient(135deg, rgba(102,126,234,0.05) 0%, rgba(118,75,162,0.05) 100%); border: 1px solid rgba(102,126,234,0.1);">
+        <div class="cta-card rounded-5 p-5 text-center" style="background: rgba(34, 197, 94, 0.05); border: 1px solid rgba(34, 197, 94,0.1);">
             <h2 class="fw-bold mb-3">Siap Menjadi Bagian dari Warisan Akademik?</h2>
             <p class="text-secondary mb-4" style="max-width: 600px; margin: 0 auto;">
                 Mulai dari upload barang pertama kamu atau temukan perlengkapan sekolah impianmu
             </p>
             <div class="d-flex justify-content-center gap-3">
                 @guest
-                    <a href="{{ route('register') }}" class="btn btn-primary btn-rounded px-5 py-3" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                    <a href="{{ route('register') }}" class="btn btn-success btn-rounded px-5 py-3" style="background: #22c55e; border: none;">
                         <i class="bi bi-person-plus me-2"></i>Daftar Sekarang
                     </a>
                 @else
-                    <a href="{{ route('items.create') }}" class="btn btn-primary btn-rounded px-5 py-3" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                    <a href="{{ route('items.create') }}" class="btn btn-success btn-rounded px-5 py-3" style="background: #22c55e; border: none;">
                         <i class="bi bi-cloud-upload me-2"></i>Upload Barang
                     </a>
                 @endguest
@@ -445,7 +445,7 @@
 
     .category-card:hover {
         transform: translateY(-8px);
-        box-shadow: 0 16px 32px rgba(102,126,234,0.1);
+        box-shadow: 0 16px 32px rgba(34, 197, 94,0.1);
     }
 
     .step-card {
@@ -479,7 +479,7 @@
 
     .cta-card:hover {
         transform: scale(1.01);
-        box-shadow: 0 24px 48px rgba(102,126,234,0.1);
+        box-shadow: 0 24px 48px rgba(34, 197, 94,0.1);
     }
 
     /* Dark mode adjustments */

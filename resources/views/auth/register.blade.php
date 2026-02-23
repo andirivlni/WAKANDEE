@@ -175,8 +175,8 @@
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="terms" id="terms" required>
                 <label class="form-check-label small text-secondary" for="terms">
-                    Saya menyetujui <a href="#" class="text-decoration-none" style="color: #667eea;">Syarat & Ketentuan</a>
-                    dan <a href="#" class="text-decoration-none" style="color: #667eea;">Kebijakan Privasi</a> WAKANDE
+                    Saya menyetujui <a href="#" class="text-decoration-none" style="color: #22c55e;">Syarat & Ketentuan</a>
+                    dan <a href="#" class="text-decoration-none" style="color: #22c55e;">Kebijakan Privasi</a> WAKANDE
                 </label>
                 <div class="invalid-feedback">
                     Anda harus menyetujui syarat & ketentuan
@@ -192,7 +192,7 @@
         <!-- Login Link -->
         <div class="text-center">
             <span class="text-secondary small">Sudah punya akun?</span>
-            <a href="{{ route('login') }}" class="text-decoration-none small fw-semibold ms-2" style="color: #667eea;">
+            <a href="{{ route('login') }}" class="text-decoration-none small fw-semibold ms-2" style="color: #22c55e;">
                 Masuk sekarang <i class="bi bi-arrow-right"></i>
             </a>
         </div>
@@ -377,7 +377,7 @@
 
     [data-bs-theme="dark"] .auth-input:focus {
         background: rgba(26, 26, 44, 0.9);
-        border-color: #667eea;
+        border-color: #22c55e;
     }
 
     [data-bs-theme="dark"] .form-check-input {

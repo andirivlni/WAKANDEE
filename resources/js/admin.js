@@ -28,8 +28,8 @@ function initializeAdminCharts() {
                     {
                         label: 'Transaksi',
                         data: JSON.parse(transactionCtx.dataset.transactions || '[]'),
-                        borderColor: '#667eea',
-                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        borderColor: '#22c55e',
+                        backgroundColor: 'rgba(34, 197, 94, 0.1)',
                         borderWidth: 2,
                         tension: 0.4,
                         pointRadius: 4,
@@ -100,7 +100,7 @@ function initializeAdminCharts() {
                 datasets: [{
                     data: JSON.parse(categoryCtx.dataset.data || '[]'),
                     backgroundColor: [
-                        '#667eea',
+                        '#22c55e',
                         '#198754',
                         '#ffc107',
                         '#0dcaf0',

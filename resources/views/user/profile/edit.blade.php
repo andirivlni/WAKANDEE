@@ -8,7 +8,7 @@
         <div class="col-lg-8">
             <!-- Header -->
             <div class="text-center mb-5">
-                <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-4 py-2 mb-3">
+                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-4 py-2 mb-3">
                     <i class="bi bi-person me-2"></i>PROFIL
                 </span>
                 <h1 class="h2 fw-bold mb-3">Edit Profil</h1>
@@ -29,19 +29,19 @@
                                  class="rounded-circle"
                                  width="120"
                                  height="120"
-                                 style="object-fit: cover; border: 4px solid rgba(102,126,234,0.2);">
+                                 style="object-fit: cover; border: 4px solid rgba(34, 197, 94,0.2);">
                         @else
                             <div class="avatar-circle mx-auto"
                                  id="profilePreview"
-                                 style="width: 120px; height: 120px; font-size: 3rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                 style="width: 120px; height: 120px; font-size: 3rem; background: #22c55e;">
                                 {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                             </div>
                         @endif
                     </div>
 
                     <!-- Upload Button -->
-                    <label for="profile_photo" class="btn btn-primary btn-sm rounded-circle position-absolute bottom-0 end-0 p-2"
-                           style="width: 40px; height: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: 2px solid white;">
+                    <label for="profile_photo" class="btn btn-success btn-sm rounded-circle position-absolute bottom-0 end-0 p-2"
+                           style="width: 40px; height: 40px; background: #22c55e; border: 2px solid white;">
                         <i class="bi bi-camera-fill"></i>
                         <input type="file" id="profile_photo" name="profile_photo" class="d-none" accept="image/*" form="profileForm">
                     </label>
@@ -67,8 +67,8 @@
                 <!-- Personal Information -->
                 <div class="profile-card p-4 p-md-5 mb-4">
                     <div class="d-flex align-items-center gap-3 mb-4">
-                        <div class="section-icon d-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10" style="width: 40px; height: 40px;">
-                            <i class="bi bi-person-badge text-primary"></i>
+                        <div class="section-icon d-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10" style="width: 40px; height: 40px;">
+                            <i class="bi bi-person-badge text-success"></i>
                         </div>
                         <h5 class="fw-bold mb-0">Informasi Pribadi</h5>
                     </div>
@@ -146,8 +146,8 @@
                 <!-- School Information -->
                 <div class="profile-card p-4 p-md-5 mb-4">
                     <div class="d-flex align-items-center gap-3 mb-4">
-                        <div class="section-icon d-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10" style="width: 40px; height: 40px;">
-                            <i class="bi bi-building text-primary"></i>
+                        <div class="section-icon d-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10" style="width: 40px; height: 40px;">
+                            <i class="bi bi-building text-success"></i>
                         </div>
                         <h5 class="fw-bold mb-0">Informasi Sekolah</h5>
                     </div>
@@ -200,21 +200,21 @@
                 <!-- Account Information -->
                 <div class="profile-card p-4 p-md-5 mb-4">
                     <div class="d-flex align-items-center gap-3 mb-4">
-                        <div class="section-icon d-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10" style="width: 40px; height: 40px;">
-                            <i class="bi bi-shield-check text-primary"></i>
+                        <div class="section-icon d-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10" style="width: 40px; height: 40px;">
+                            <i class="bi bi-shield-check text-success"></i>
                         </div>
                         <h5 class="fw-bold mb-0">Informasi Akun</h5>
                     </div>
 
                     <div class="row g-4">
                         <div class="col-md-6">
-                            <div class="p-3 rounded-4" style="background: rgba(102,126,234,0.02);">
+                            <div class="p-3 rounded-4" style="background: rgba(34, 197, 94,0.02);">
                                 <small class="text-secondary d-block mb-1">Member Since</small>
                                 <span class="fw-semibold">{{ Auth::user()->created_at->format('d F Y') }}</span>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="p-3 rounded-4" style="background: rgba(102,126,234,0.02);">
+                            <div class="p-3 rounded-4" style="background: rgba(34, 197, 94,0.02);">
                                 <small class="text-secondary d-block mb-1">Status Akun</small>
                                 <span class="badge bg-success rounded-pill px-3 py-2">
                                     <i class="bi bi-check-circle me-1"></i>Aktif
@@ -222,12 +222,12 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            <div class="p-3 rounded-4 d-flex justify-content-between align-items-center" style="background: rgba(102,126,234,0.02);">
+                            <div class="p-3 rounded-4 d-flex justify-content-between align-items-center" style="background: rgba(34, 197, 94,0.02);">
                                 <div>
                                     <small class="text-secondary d-block mb-1">Password</small>
                                     <span class="fw-semibold">••••••••</span>
                                 </div>
-                                <a href="{{ route('profile.password') }}" class="btn btn-outline-primary btn-sm rounded-pill px-4">
+                                <a href="{{ route('profile.password') }}" class="btn btn-outline-success btn-sm rounded-pill px-4">
                                     <i class="bi bi-pencil me-1"></i>Ubah Password
                                 </a>
                             </div>
@@ -237,7 +237,7 @@
 
                 <!-- Submit Buttons -->
                 <div class="d-flex gap-3">
-                    <button type="submit" class="btn btn-primary btn-rounded px-5 py-3 grow" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                    <button type="submit" class="btn btn-success btn-rounded px-5 py-3 grow" style="background: #22c55e; border: none;">
                         <i class="bi bi-check-circle me-2"></i>Simpan Perubahan
                     </button>
                     <a href="{{ route('dashboard') }}" class="btn btn-outline-secondary btn-rounded px-5 py-3">
@@ -269,7 +269,7 @@
                     img.src = e.target.result;
                     img.alt = '{{ Auth::user()->name }}';
                     img.className = 'rounded-circle';
-                    img.style = 'width: 120px; height: 120px; object-fit: cover; border: 4px solid rgba(102,126,234,0.2);';
+                    img.style = 'width: 120px; height: 120px; object-fit: cover; border: 4px solid rgba(34, 197, 94,0.2);';
                     previewContainer.innerHTML = '';
                     previewContainer.appendChild(img);
                 }

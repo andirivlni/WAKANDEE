@@ -26,8 +26,8 @@
             <!-- Transaction Card -->
             <div class="success-card p-4 p-md-5 rounded-4 mb-4">
                 <div class="d-flex align-items-center gap-3 mb-4">
-                    <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: rgba(102,126,234,0.1);">
-                        <i class="bi bi-receipt fs-4" style="color: #667eea;"></i>
+                    <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: rgba(34, 197, 94,0.1);">
+                        <i class="bi bi-receipt fs-4" style="color: #22c55e;"></i>
                     </div>
                     <div>
                         <h6 class="fw-bold mb-1">Detail Transaksi</h6>
@@ -48,7 +48,7 @@
 
                     <div class="d-flex justify-content-between">
                         <span class="text-secondary">Total Pembayaran</span>
-                        <span class="fw-bold h5 mb-0" style="color: #667eea;">
+                        <span class="fw-bold h5 mb-0" style="color: #22c55e;">
                             Rp {{ number_format($transaction->total_amount, 0, ',', '.') }}
                         </span>
                     </div>
@@ -77,7 +77,7 @@
             <!-- Next Steps -->
             <div class="next-steps-card p-4 p-md-5 rounded-4 mb-4">
                 <h6 class="fw-bold mb-3">
-                    <i class="bi bi-compass me-2" style="color: #667eea;"></i>
+                    <i class="bi bi-compass me-2" style="color: #22c55e;"></i>
                     Langkah Selanjutnya
                 </h6>
 
@@ -95,8 +95,8 @@
                     @endif
 
                     <div class="d-flex gap-3">
-                        <div class="step-number d-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10" style="width: 32px; height: 32px;">
-                            <span class="fw-bold text-primary">{{ $transaction->payment_method == 'qris' && $transaction->payment_status == 'pending' ? '2' : '1' }}</span>
+                        <div class="step-number d-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10" style="width: 32px; height: 32px;">
+                            <span class="fw-bold text-success">{{ $transaction->payment_method == 'qris' && $transaction->payment_status == 'pending' ? '2' : '1' }}</span>
                         </div>
                         <div class="grow">
                             <p class="fw-semibold mb-1">Koordinasi dengan Penjual</p>
@@ -105,8 +105,8 @@
                     </div>
 
                     <div class="d-flex gap-3">
-                        <div class="step-number d-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10" style="width: 32px; height: 32px;">
-                            <span class="fw-bold text-primary">{{ $transaction->payment_method == 'qris' && $transaction->payment_status == 'pending' ? '3' : '2' }}</span>
+                        <div class="step-number d-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10" style="width: 32px; height: 32px;">
+                            <span class="fw-bold text-success">{{ $transaction->payment_method == 'qris' && $transaction->payment_status == 'pending' ? '3' : '2' }}</span>
                         </div>
                         <div class="grow">
                             <p class="fw-semibold mb-1">Serah Terima Barang</p>
@@ -115,8 +115,8 @@
                     </div>
 
                     <div class="d-flex gap-3">
-                        <div class="step-number d-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10" style="width: 32px; height: 32px;">
-                            <span class="fw-bold text-primary">{{ $transaction->payment_method == 'qris' && $transaction->payment_status == 'pending' ? '4' : '3' }}</span>
+                        <div class="step-number d-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10" style="width: 32px; height: 32px;">
+                            <span class="fw-bold text-success">{{ $transaction->payment_method == 'qris' && $transaction->payment_status == 'pending' ? '4' : '3' }}</span>
                         </div>
                         <div class="grow">
                             <p class="fw-semibold mb-1">Konfirmasi Penerimaan</p>
@@ -128,7 +128,7 @@
 
             <!-- Action Buttons -->
             <div class="d-flex flex-wrap gap-3 justify-content-center">
-                <a href="{{ route('transactions.show', $transaction->id) }}" class="btn btn-primary btn-rounded px-5 py-3">
+                <a href="{{ route('transactions.show', $transaction->id) }}" class="btn btn-success btn-rounded px-5 py-3">
                     <i class="bi bi-eye me-2"></i>Lihat Detail Transaksi
                 </a>
 
@@ -185,8 +185,8 @@
     }
 
     .next-steps-card {
-        background: linear-gradient(135deg, rgba(102,126,234,0.05) 0%, rgba(118,75,162,0.05) 100%);
-        border: 1px solid rgba(102,126,234,0.1);
+        background: rgba(34, 197, 94, 0.05);
+        border: 1px solid rgba(34, 197, 94,0.1);
     }
 
     .success-animation {

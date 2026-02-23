@@ -4,7 +4,7 @@
      style="{{ $transparent ? 'background: transparent !important; backdrop-filter: none;' : '' }}">
     <div class="container">
         <a class="navbar-brand fw-bold" href="{{ url('/') }}">
-            <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            <span style="background: #22c55e; color: #22c55e;">
                 WAKANDE
             </span>
         </a>
@@ -41,10 +41,10 @@
                 aria-expanded="false">
 
             @if(Auth::user()->profile_photo)
-                <img src="{{ Storage::url(Auth::user()->profile_photo) }}" alt="Avatar" class="rounded-circle" width="36" height="36" style="object-fit: cover; border: 2px solid rgba(102, 126, 234, 0.2);">
+                <img src="{{ Storage::url(Auth::user()->profile_photo) }}" alt="Avatar" class="rounded-circle" width="36" height="36" style="object-fit: cover; border: 2px solid rgba(34, 197, 94, 0.2);">
             @else
                 <div class="avatar-circle d-flex align-items-center justify-content-center text-white fw-bold"
-                     style="width: 36px; height: 36px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%;">
+                     style="width: 36px; height: 36px; background: #22c55e; border-radius: 50%;">
                     {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                 </div>
             @endif
@@ -85,7 +85,7 @@
             <div class="d-flex align-items-center gap-3">
                 @guest
                     <a href="{{ route('login') }}" class="btn btn-outline-secondary btn-rounded">Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-primary btn-rounded">Register</a>
+                    <a href="{{ route('register') }}" class="btn btn-success btn-rounded">Register</a>
                 @else
                     <div class="dropdown">
                         <button class="btn p-0 border-0 d-flex align-items-center shadow-none"
@@ -94,10 +94,10 @@
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false">
                             @if(Auth::user()->profile_photo)
-                                <img src="{{ Storage::url(Auth::user()->profile_photo) }}" alt="Avatar" class="rounded-circle" width="36" height="36" style="object-fit: cover; border: 2px solid rgba(102, 126, 234, 0.2);">
+                                <img src="{{ Storage::url(Auth::user()->profile_photo) }}" alt="Avatar" class="rounded-circle" width="36" height="36" style="object-fit: cover; border: 2px solid rgba(34, 197, 94, 0.2);">
                             @else
                                 <div class="avatar-circle d-flex align-items-center justify-content-center text-white fw-bold"
-                                     style="width: 36px; height: 36px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%;">
+                                     style="width: 36px; height: 36px; background: #22c55e; border-radius: 50%;">
                                     {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                                 </div>
                             @endif

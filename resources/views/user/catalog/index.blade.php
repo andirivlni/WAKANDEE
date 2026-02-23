@@ -5,7 +5,7 @@
 @section('content')
     <div class="container py-4">
         <div class="text-center mb-5">
-            <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-4 py-2 mb-3">
+            <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-4 py-2 mb-3">
                 <i class="bi bi-grid me-2"></i>KATALOG
             </span>
             <h1 class="display-5 fw-bold mb-3">Temukan Kebutuhan Akademikmu</h1>
@@ -24,7 +24,7 @@
                                 class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
                             <input type="text" name="search"
                                 class="form-control form-control-lg rounded-pill border-0 shadow-none"
-                                style="padding-left: 45px; background: rgba(102,126,234,0.02);"
+                                style="padding-left: 45px; background: rgba(34, 197, 94,0.02);"
                                 placeholder="Cari buku, seragam, alat praktikum..." value="{{ request('search') }}">
                         </div>
                     </form>
@@ -35,7 +35,7 @@
                             data-bs-toggle="offcanvas" data-bs-target="#filterCanvas">
                             <i class="bi bi-sliders2 me-2"></i>Filter
                             @if (request()->hasAny(['category', 'type', 'condition', 'school', 'min_price', 'max_price']))
-                                <span class="badge bg-primary ms-2 rounded-pill">•</span>
+                                <span class="badge bg-success ms-2 rounded-pill">•</span>
                             @endif
                         </button>
 
@@ -144,7 +144,7 @@
                     </span>
                 @endif
 
-                <a href="{{ route('catalog.index') }}" class="text-decoration-none small ms-2" style="color: #667eea;">
+                <a href="{{ route('catalog.index') }}" class="text-decoration-none small ms-2" style="color: #22c55e;">
                     <i class="bi bi-x-circle me-1"></i>Hapus semua
                 </a>
             </div>
@@ -197,7 +197,7 @@
                                         @if ($item->type == 'gift')
                                             <span class="badge bg-success rounded-pill px-3 py-1">Gratis</span>
                                         @else
-                                            <span class="badge bg-primary rounded-pill px-3 py-1">Dijual</span>
+                                            <span class="badge bg-success rounded-pill px-3 py-1">Dijual</span>
                                         @endif
                                         <span
                                             class="badge bg-light text-dark rounded-pill px-3 py-1">{{ $item->category_label }}</span>
@@ -215,14 +215,14 @@
                             <div class="col-md-3">
                                 <div class="text-md-end">
                                     @if ($item->type == 'sale')
-                                        <span class="h5 fw-bold d-block mb-1" style="color: #667eea;">Rp
+                                        <span class="h5 fw-bold d-block mb-1" style="color: #22c55e;">Rp
                                             {{ number_format($item->price, 0, ',', '.') }}</span>
                                         <small class="text-secondary d-block mb-2">+ admin Rp1.000</small>
                                     @else
                                         <span class="h5 fw-bold text-success d-block mb-2">Gratis</span>
                                     @endif
                                     <a href="{{ route('catalog.show', $item->id) }}"
-                                        class="btn btn-sm btn-outline-primary rounded-pill px-4">
+                                        class="btn btn-sm btn-outline-success rounded-pill px-4">
                                         Lihat Detail
                                     </a>
                                 </div>
@@ -245,7 +245,7 @@
                     Maaf, tidak ada barang yang sesuai dengan kriteria pencarianmu. Coba kata kunci lain atau hapus filter.
                 </p>
                 <div class="d-flex gap-3 justify-content-center">
-                    <a href="{{ route('catalog.index') }}" class="btn btn-primary btn-rounded px-5 py-3">
+                    <a href="{{ route('catalog.index') }}" class="btn btn-success btn-rounded px-5 py-3">
                         <i class="bi bi-arrow-repeat me-2"></i>Reset Filter
                     </a>
                     @guest
@@ -399,7 +399,7 @@
                 </div>
 
                 <div class="d-grid gap-2 mt-4">
-                    <button type="submit" class="btn btn-primary rounded-pill py-3">
+                    <button type="submit" class="btn btn-success rounded-pill py-3">
                         <i class="bi bi-check2 me-2"></i>Terapkan Filter
                     </button>
                     <a href="{{ route('catalog.index') }}" class="btn btn-outline-secondary rounded-pill py-3">
@@ -471,13 +471,13 @@
 
             .list-item-card:hover {
                 transform: translateX(4px);
-                box-shadow: 0 8px 16px rgba(102, 126, 234, 0.08);
+                box-shadow: 0 8px 16px rgba(34, 197, 94, 0.08);
             }
 
             .view-toggle.active {
-                background: rgba(102, 126, 234, 0.1);
-                color: #667eea;
-                border-color: #667eea;
+                background: rgba(34, 197, 94, 0.1);
+                color: #22c55e;
+                border-color: #22c55e;
             }
 
             .offcanvas {
@@ -495,8 +495,8 @@
             }
 
             .filter-section .form-check-input:checked {
-                background-color: #667eea;
-                border-color: #667eea;
+                background-color: #22c55e;
+                border-color: #22c55e;
             }
         </style>
     @endpush

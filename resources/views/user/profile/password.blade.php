@@ -9,7 +9,7 @@
             <!-- Header -->
             <div class="text-center mb-5">
                 <div class="mb-3">
-                    <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-4 py-2">
+                    <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-4 py-2">
                         <i class="bi bi-shield-lock me-2"></i>KEAMANAN
                     </span>
                 </div>
@@ -17,7 +17,7 @@
                 <p class="text-secondary">
                     Pastikan passwordmu kuat dan tidak digunakan di platform lain
                 </p>
-                <a href="{{ route('profile.edit') }}" class="btn btn-link text-decoration-none" style="color: #667eea;">
+                <a href="{{ route('profile.edit') }}" class="btn btn-link text-decoration-none" style="color: #22c55e;">
                     <i class="bi bi-arrow-left me-1"></i>Kembali ke Edit Profil
                 </a>
             </div>
@@ -138,9 +138,9 @@
                     </div>
 
                     <!-- Password Tips -->
-                    <div class="password-tips p-4 rounded-4 mb-4" style="background: rgba(102,126,234,0.02);">
+                    <div class="password-tips p-4 rounded-4 mb-4" style="background: rgba(34, 197, 94,0.02);">
                         <h6 class="fw-semibold mb-3">
-                            <i class="bi bi-lightbulb me-2" style="color: #667eea;"></i>
+                            <i class="bi bi-lightbulb me-2" style="color: #22c55e;"></i>
                             Tips Password Aman
                         </h6>
                         <ul class="small text-secondary mb-0" style="padding-left: 1rem;">
@@ -153,7 +153,7 @@
 
                     <!-- Submit Buttons -->
                     <div class="d-flex gap-3">
-                        <button type="submit" class="btn btn-primary btn-rounded px-5 py-3 grow" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                        <button type="submit" class="btn btn-success btn-rounded px-5 py-3 grow" style="background: #22c55e; border: none;">
                             <i class="bi bi-shield-check me-2"></i>Update Password
                         </button>
                         <a href="{{ route('profile.edit') }}" class="btn btn-outline-secondary btn-rounded px-5 py-3">
@@ -165,7 +165,7 @@
 
             <!-- Security Notice -->
             <div class="text-center mt-4">
-                <div class="d-inline-flex align-items-center gap-2 p-3 rounded-4" style="background: rgba(102,126,234,0.02);">
+                <div class="d-inline-flex align-items-center gap-2 p-3 rounded-4" style="background: rgba(34, 197, 94,0.02);">
                     <i class="bi bi-shield-check text-success"></i>
                     <span class="small text-secondary">
                         Akunmu dilindungi dengan enkripsi SSL

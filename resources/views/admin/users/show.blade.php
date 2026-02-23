@@ -38,7 +38,7 @@
         <!-- Left Column - User Profile -->
         <div class="col-xl-4">
             <!-- Profile Card -->
-            <div class="admin-card p-4 rounded-4 mb-4">
+            <div class="admin-card p-4 rounded-3 mb-4">
                 <div class="text-center mb-4">
                     <div class="position-relative d-inline-block">
                         @if($user->profile_photo)
@@ -46,10 +46,10 @@
                                  alt="{{ $user->name }}"
                                  class="rounded-circle"
                                  width="120" height="120"
-                                 style="object-fit: cover; border: 4px solid rgba(102,126,234,0.2);">
+                                 style="object-fit: cover; border: 4px solid rgba(34, 197, 94,0.2);">
                         @else
                             <div class="avatar-circle mx-auto"
-                                 style="width: 120px; height: 120px; font-size: 3rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                 style="width: 120px; height: 120px; font-size: 3rem; background: #22c55e;">
                                 {{ strtoupper(substr($user->name, 0, 1)) }}
                             </div>
                         @endif
@@ -65,7 +65,7 @@
                     <p class="text-secondary mb-2">{{ $user->email }}</p>
 
                     @if($user->role == 'admin')
-                        <span class="badge bg-primary rounded-pill px-4 py-2">
+                        <span class="badge bg-success rounded-pill px-4 py-2">
                             <i class="bi bi-shield me-1"></i> Administrator
                         </span>
                     @else
@@ -80,8 +80,8 @@
                 <!-- Contact Info -->
                 <div class="vstack gap-3">
                     <div class="d-flex align-items-center gap-3">
-                        <div class="info-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: rgba(102,126,234,0.1);">
-                            <i class="bi bi-building" style="color: #667eea;"></i>
+                        <div class="info-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: #dcfce7;">
+                            <i class="bi bi-building" style="color: #22c55e;"></i>
                         </div>
                         <div>
                             <small class="text-secondary d-block">Sekolah</small>
@@ -90,8 +90,8 @@
                     </div>
 
                     <div class="d-flex align-items-center gap-3">
-                        <div class="info-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: rgba(102,126,234,0.1);">
-                            <i class="bi bi-book" style="color: #667eea;"></i>
+                        <div class="info-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: #dcfce7;">
+                            <i class="bi bi-book" style="color: #22c55e;"></i>
                         </div>
                         <div>
                             <small class="text-secondary d-block">Kelas</small>
@@ -100,7 +100,7 @@
                     </div>
 
                     <div class="d-flex align-items-center gap-3">
-                        <div class="info-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: rgba(25,135,84,0.1);">
+                        <div class="info-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: #dcfce7;">
                             <i class="bi bi-whatsapp" style="color: #198754;"></i>
                         </div>
                         <div>
@@ -117,7 +117,7 @@
                     </div>
 
                     <div class="d-flex align-items-center gap-3">
-                        <div class="info-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: rgba(108,117,125,0.1);">
+                        <div class="info-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: #f3f4f6;">
                             <i class="bi bi-calendar" style="color: #6c757d;"></i>
                         </div>
                         <div>
@@ -130,45 +130,45 @@
             </div>
 
             <!-- Stats Summary -->
-            <div class="admin-card p-4 rounded-4">
+            <div class="admin-card p-4 rounded-3">
                 <h5 class="fw-bold mb-3">
-                    <i class="bi bi-pie-chart me-2" style="color: #667eea;"></i>
+                    <i class="bi bi-pie-chart me-2" style="color: #22c55e;"></i>
                     Ringkasan Aktivitas
                 </h5>
 
                 <div class="row g-3">
                     <div class="col-6">
-                        <div class="p-3 rounded-3 text-center" style="background: rgba(102,126,234,0.05);">
-                            <h4 class="fw-bold mb-1" style="color: #667eea;">{{ number_format($stats['total_items'] ?? 0) }}</h4>
+                        <div class="p-3 rounded-3 text-center" style="background: #f0fdf4;">
+                            <h4 class="fw-bold mb-1" style="color: #22c55e;">{{ number_format($stats['total_items'] ?? 0) }}</h4>
                             <small class="text-secondary">Total Barang</small>
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="p-3 rounded-3 text-center" style="background: rgba(25,135,84,0.05);">
+                        <div class="p-3 rounded-3 text-center" style="background: #f0fdf4;">
                             <h4 class="fw-bold mb-1" style="color: #198754;">{{ number_format($stats['approved_items'] ?? 0) }}</h4>
                             <small class="text-secondary">Disetujui</small>
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="p-3 rounded-3 text-center" style="background: rgba(255,193,7,0.05);">
+                        <div class="p-3 rounded-3 text-center" style="background: #fffbeb;">
                             <h4 class="fw-bold mb-1" style="color: #ffc107;">{{ number_format($stats['pending_items'] ?? 0) }}</h4>
                             <small class="text-secondary">Pending</small>
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="p-3 rounded-3 text-center" style="background: rgba(220,53,69,0.05);">
+                        <div class="p-3 rounded-3 text-center" style="background: #fef2f2;">
                             <h4 class="fw-bold mb-1" style="color: #dc3545;">{{ number_format($stats['total_items'] - $stats['approved_items'] - $stats['pending_items'] ?? 0) }}</h4>
                             <small class="text-secondary">Ditolak</small>
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="p-3 rounded-3 text-center" style="background: rgba(13,202,240,0.05);">
+                        <div class="p-3 rounded-3 text-center" style="background: #ecfeff;">
                             <h4 class="fw-bold mb-1" style="color: #0dcaf0;">{{ number_format($stats['total_bought'] ?? 0) }}</h4>
                             <small class="text-secondary">Pembelian</small>
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="p-3 rounded-3 text-center" style="background: rgba(111,66,193,0.05);">
+                        <div class="p-3 rounded-3 text-center" style="background: #f3e8ff;">
                             <h4 class="fw-bold mb-1" style="color: #6f42c1;">{{ number_format($stats['total_sold'] ?? 0) }}</h4>
                             <small class="text-secondary">Penjualan</small>
                         </div>
@@ -179,7 +179,7 @@
 
                 <div class="d-flex justify-content-between align-items-center">
                     <span class="text-secondary">Total Transaksi</span>
-                    <span class="fw-bold h5 mb-0" style="color: #667eea;">
+                    <span class="fw-bold h5 mb-0" style="color: #22c55e;">
                         Rp {{ number_format(($stats['total_earned'] ?? 0) + ($stats['total_spent'] ?? 0), 0, ',', '.') }}
                     </span>
                 </div>
@@ -197,10 +197,10 @@
         <!-- Right Column - User Activity -->
         <div class="col-xl-8">
             <!-- User's Items -->
-            <div class="admin-card p-4 rounded-4 mb-4">
+            <div class="admin-card p-4 rounded-3 mb-4">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h5 class="fw-bold mb-0">
-                        <i class="bi bi-box me-2" style="color: #667eea;"></i>
+                        <i class="bi bi-box me-2" style="color: #22c55e;"></i>
                         Barang Upload
                     </h5>
                     <span class="badge bg-light text-dark rounded-pill px-4 py-2">
@@ -244,7 +244,7 @@
                                             @if($item->type == 'gift')
                                                 <span class="badge bg-success bg-opacity-10 text-success">Gratis</span>
                                             @else
-                                                <span class="badge bg-primary bg-opacity-10 text-primary">Dijual</span>
+                                                <span class="badge bg-success bg-opacity-10 text-success">Dijual</span>
                                             @endif
                                         </td>
                                         <td>
@@ -270,7 +270,7 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('admin.moderation.show', $item->id) }}"
-                                               class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                                               class="btn btn-sm btn-outline-success rounded-pill px-3">
                                                 <i class="bi bi-eye me-1"></i>Detail
                                             </a>
                                         </td>
@@ -282,7 +282,7 @@
 
                     @if($items->count() > 5)
                         <div class="text-center mt-3">
-                            <button class="btn btn-link text-decoration-none" style="color: #667eea;">
+                            <button class="btn btn-link text-decoration-none" style="color: #22c55e;">
                                 Lihat Semua Barang <i class="bi bi-arrow-right"></i>
                             </button>
                         </div>
@@ -296,10 +296,10 @@
             </div>
 
             <!-- User's Transactions as Buyer -->
-            <div class="admin-card p-4 rounded-4 mb-4">
+            <div class="admin-card p-4 rounded-3 mb-4">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h5 class="fw-bold mb-0">
-                        <i class="bi bi-cart-check me-2" style="color: #667eea;"></i>
+                        <i class="bi bi-cart-check me-2" style="color: #22c55e;"></i>
                         Riwayat Pembelian
                     </h5>
                     <span class="badge bg-light text-dark rounded-pill px-4 py-2">
@@ -367,10 +367,10 @@
             </div>
 
             <!-- User's Transactions as Seller -->
-            <div class="admin-card p-4 rounded-4">
+            <div class="admin-card p-4 rounded-3">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h5 class="fw-bold mb-0">
-                        <i class="bi bi-truck me-2" style="color: #667eea;"></i>
+                        <i class="bi bi-truck me-2" style="color: #22c55e;"></i>
                         Riwayat Penjualan
                     </h5>
                     <span class="badge bg-light text-dark rounded-pill px-4 py-2">
@@ -540,7 +540,7 @@
 
     [data-bs-theme="dark"] .admin-card {
         background: #1a1a2c;
-        border-color: rgba(255,255,255,0.05);
+        border-color: transparent;
     }
 </style>
 @endpush

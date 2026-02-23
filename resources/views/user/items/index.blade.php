@@ -10,7 +10,7 @@
             <h1 class="h3 fw-bold mb-1">Barang Saya</h1>
             <p class="text-secondary mb-0">Kelola semua barang yang telah kamu upload</p>
         </div>
-        <a href="{{ route('items.create') }}" class="btn btn-primary btn-rounded px-4 py-2" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+        <a href="{{ route('items.create') }}" class="btn btn-success btn-rounded px-4 py-2" style="background: #22c55e; border: none;">
             <i class="bi bi-plus-circle me-2"></i>Upload Barang
         </a>
     </div>
@@ -85,7 +85,7 @@
                                         <i class="bi bi-gift me-1"></i>Gratis
                                     </span>
                                 @else
-                                    <span class="badge bg-primary rounded-pill px-3 py-2">
+                                    <span class="badge bg-success rounded-pill px-3 py-2">
                                         <i class="bi bi-tag me-1"></i>Dijual
                                     </span>
                                 @endif
@@ -122,7 +122,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
                                     @if($item->type == 'sale')
-                                        <span class="fw-bold" style="color: #667eea;">Rp {{ number_format($item->price, 0, ',', '.') }}</span>
+                                        <span class="fw-bold" style="color: #22c55e;">Rp {{ number_format($item->price, 0, ',', '.') }}</span>
                                     @else
                                         <span class="fw-bold text-success">Gratis</span>
                                     @endif
@@ -132,7 +132,7 @@
                                         <i class="bi bi-eye me-1"></i>Detail
                                     </a>
                                     @if($item->status == 'pending')
-                                        <a href="{{ route('items.edit', $item->id) }}" class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                                        <a href="{{ route('items.edit', $item->id) }}" class="btn btn-sm btn-outline-success rounded-pill px-3">
                                             <i class="bi bi-pencil me-1"></i>Edit
                                         </a>
                                     @endif
@@ -158,7 +158,7 @@
             <p class="text-secondary mb-4" style="max-width: 400px; margin: 0 auto;">
                 Kamu belum mengupload barang apapun. Yuk mulai berbagi dengan adik kelas!
             </p>
-            <a href="{{ route('items.create') }}" class="btn btn-primary btn-rounded px-5 py-3" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+            <a href="{{ route('items.create') }}" class="btn btn-success btn-rounded px-5 py-3" style="background: #22c55e; border: none;">
                 <i class="bi bi-cloud-upload me-2"></i>Upload Barang Pertama
             </a>
         </div>
@@ -175,13 +175,13 @@
     }
 
     .stat-tab:hover {
-        background: rgba(102,126,234,0.02);
-        border-color: rgba(102,126,234,0.2);
+        background: rgba(34, 197, 94,0.02);
+        border-color: rgba(34, 197, 94,0.2);
     }
 
     .stat-tab.active {
-        background: rgba(102,126,234,0.05);
-        border: 1px solid rgba(102,126,234,0.3);
+        background: rgba(34, 197, 94,0.05);
+        border: 1px solid rgba(34, 197, 94,0.3);
     }
 
     .item-card {
@@ -195,7 +195,7 @@
 
     .item-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 16px 24px rgba(102,126,234,0.08);
+        box-shadow: 0 16px 24px rgba(34, 197, 94,0.08);
     }
 
     [data-bs-theme="dark"] .stat-tab,

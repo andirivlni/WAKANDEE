@@ -47,14 +47,14 @@ window.Swal = Swal;
 // SweetAlert2 default configuration
 window.Swal.fire = Swal.fire;
 window.Swal.mixin({
-    confirmButtonColor: '#667eea',
+    confirmButtonColor: '#22c55e',
     cancelButtonColor: '#6c757d',
     confirmButtonText: 'Ya',
     cancelButtonText: 'Batal',
     reverseButtons: true,
     customClass: {
         popup: 'rounded-4',
-        confirmButton: 'btn btn-primary rounded-pill px-4 mx-1',
+        confirmButton: 'btn btn-success rounded-pill px-4 mx-1',
         cancelButton: 'btn btn-outline-secondary rounded-pill px-4 mx-1'
     },
     buttonsStyling: false

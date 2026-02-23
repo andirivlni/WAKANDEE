@@ -5,7 +5,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="mb-4">
                     <h4 class="fw-bold mb-3">
-                        <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        <span style="background: #22c55e; color: #22c55e;">
                             WAKANDE
                         </span>
                     </h4>

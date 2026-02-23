@@ -32,9 +32,9 @@
         <!-- Left Column - Item Details -->
         <div class="col-xl-8">
             <!-- Item Images -->
-            <div class="admin-card p-4 rounded-4 mb-4">
+            <div class="admin-card p-4 rounded-3 mb-4">
                 <h5 class="fw-bold mb-3">
-                    <i class="bi bi-images me-2" style="color: #667eea;"></i>
+                    <i class="bi bi-images me-2" style="color: #22c55e;"></i>
                     Foto Barang
                 </h5>
 
@@ -49,7 +49,7 @@
 
                 <div class="row g-3">
                     <div class="col-lg-8">
-                        <div class="main-image-container rounded-4 overflow-hidden" style="background: #f8f9fa; aspect-ratio: 1;">
+                        <div class="main-image-container rounded-3 overflow-hidden" style="background: #f8f9fa; aspect-ratio: 1;">
                             <img src="{{ $firstImage }}" alt="{{ $item->name }}" id="mainImage" class="w-100 h-100" style="object-fit: contain;">
                         </div>
                     </div>
@@ -79,9 +79,9 @@
             </div>
 
             <!-- Item Information -->
-            <div class="admin-card p-4 rounded-4 mb-4">
+            <div class="admin-card p-4 rounded-3 mb-4">
                 <h5 class="fw-bold mb-3">
-                    <i class="bi bi-info-circle me-2" style="color: #667eea;"></i>
+                    <i class="bi bi-info-circle me-2" style="color: #22c55e;"></i>
                     Informasi Barang
                 </h5>
 
@@ -111,7 +111,7 @@
                                 @if($item->type == 'gift')
                                     <span class="badge bg-success">Gratis</span>
                                 @else
-                                    <span class="badge bg-primary">Dijual - Rp {{ number_format($item->price, 0, ',', '.') }}</span>
+                                    <span class="badge bg-success">Dijual - Rp {{ number_format($item->price, 0, ',', '.') }}</span>
                                 @endif
                             </p>
                         </div>
@@ -126,7 +126,7 @@
                     <div class="col-12">
                         <div class="info-group">
                             <small class="text-secondary d-block mb-1">Deskripsi Barang</small>
-                            <div class="p-3 rounded-3" style="background: rgba(102,126,234,0.02);">
+                            <div class="p-3 rounded-3" style="background: #f8fafc;">
                                 <p class="mb-0" style="line-height: 1.6;">{{ nl2br(e($item->description)) }}</p>
                             </div>
                         </div>
@@ -135,18 +135,18 @@
             </div>
 
             <!-- Legacy Message -->
-            <div class="legacy-card p-4 rounded-4 mb-4">
+            <div class="legacy-card p-4 rounded-3 mb-4">
                 <div class="d-flex gap-3">
-                    <i class="bi bi-quote fs-1" style="color: #667eea; opacity: 0.3;"></i>
+                    <i class="bi bi-quote fs-1" style="color: #22c55e; opacity: 0.3;"></i>
                     <div>
-                        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 mb-2">
+                        <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2 mb-2">
                             <i class="bi bi-chat-quote me-1"></i>Legacy Message
                         </span>
                         <p class="fw-light fst-italic mb-3" style="font-size: 1.2rem;">
                             "{{ $item->legacy_message }}"
                         </p>
                         <div class="d-flex align-items-center gap-2">
-                            <div class="avatar-circle" style="width: 40px; height: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <div class="avatar-circle" style="width: 40px; height: 40px; background: #22c55e;">
                                 {{ strtoupper(substr($item->user->name, 0, 1)) }}
                             </div>
                             <div>
@@ -162,9 +162,9 @@
         <!-- Right Column - User & Moderation Info -->
         <div class="col-xl-4">
             <!-- Uploader Info -->
-            <div class="admin-card p-4 rounded-4 mb-4">
+            <div class="admin-card p-4 rounded-3 mb-4">
                 <h5 class="fw-bold mb-3">
-                    <i class="bi bi-person me-2" style="color: #667eea;"></i>
+                    <i class="bi bi-person me-2" style="color: #22c55e;"></i>
                     Informasi Uploader
                 </h5>
 
@@ -172,7 +172,7 @@
                     @if($item->user->profile_photo)
                         <img src="{{ Storage::url($item->user->profile_photo) }}" alt="{{ $item->user->name }}" class="rounded-circle" width="64" height="64" style="object-fit: cover;">
                     @else
-                        <div class="avatar-circle" style="width: 64px; height: 64px; font-size: 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div class="avatar-circle" style="width: 64px; height: 64px; font-size: 1.5rem; background: #22c55e;">
                             {{ strtoupper(substr($item->user->name, 0, 1)) }}
                         </div>
                     @endif
@@ -202,15 +202,15 @@
 
                 <hr class="opacity-25 my-3">
 
-                <a href="{{ route('admin.users.show', $item->user_id) }}" class="btn btn-outline-primary rounded-pill w-100 py-2">
+                <a href="{{ route('admin.users.show', $item->user_id) }}" class="btn btn-outline-success rounded-pill w-100 py-2">
                     <i class="bi bi-box-arrow-up-right me-2"></i>Lihat Profil Uploader
                 </a>
             </div>
 
             <!-- Moderation History -->
-            <div class="admin-card p-4 rounded-4 mb-4">
+            <div class="admin-card p-4 rounded-3 mb-4">
                 <h5 class="fw-bold mb-3">
-                    <i class="bi bi-clock-history me-2" style="color: #667eea;"></i>
+                    <i class="bi bi-clock-history me-2" style="color: #22c55e;"></i>
                     Riwayat Moderasi
                 </h5>
 
@@ -230,7 +230,7 @@
                                         <small class="text-secondary">{{ $log->created_at->diffForHumans() }}</small>
                                     </div>
                                     @if($log->reason)
-                                        <p class="small text-secondary mb-0 mt-2 p-2 rounded-3" style="background: rgba(0,0,0,0.02);">
+                                        <p class="small text-secondary mb-0 mt-2 p-2 rounded-3" style="background: transparent;">
                                             <i class="bi bi-chat me-1"></i>{{ $log->reason }}
                                         </p>
                                     @endif
@@ -247,9 +247,9 @@
             </div>
 
             <!-- Moderation Guidelines -->
-            <div class="guidelines-card p-4 rounded-4">
+            <div class="guidelines-card p-4 rounded-3">
                 <h6 class="fw-bold mb-3">
-                    <i class="bi bi-shield-check me-2" style="color: #667eea;"></i>
+                    <i class="bi bi-shield-check me-2" style="color: #22c55e;"></i>
                     Panduan Moderasi
                 </h6>
                 <ul class="small text-secondary mb-0" style="padding-left: 1rem;">
@@ -268,7 +268,7 @@
 <!-- Approve Modal -->
 <div class="modal fade" id="approveModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content rounded-4 border-0">
+        <div class="modal-content rounded-3 border-0">
             <div class="modal-header border-0 pt-4 px-4">
                 <h5 class="modal-title fw-bold">Setujui Barang</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -277,7 +277,7 @@
                 @csrf
                 <div class="modal-body px-4 pb-4">
                     <p class="text-secondary mb-3">Apakah kamu yakin ingin menyetujui barang ini?</p>
-                    <div class="alert alert-success rounded-3 border-0" style="background: rgba(25,135,84,0.05);">
+                    <div class="alert alert-success rounded-3 border-0" style="background: #f0fdf4;">
                         <div class="d-flex gap-2">
                             <i class="bi bi-check-circle-fill text-success mt-1"></i>
                             <div>
@@ -306,7 +306,7 @@
 <!-- Reject Modal -->
 <div class="modal fade" id="rejectModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content rounded-4 border-0">
+        <div class="modal-content rounded-3 border-0">
             <div class="modal-header border-0 pt-4 px-4">
                 <h5 class="modal-title fw-bold">Tolak Barang</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -314,7 +314,7 @@
             <form action="{{ route('admin.moderation.reject', $item->id) }}" method="POST">
                 @csrf
                 <div class="modal-body px-4 pb-4">
-                    <div class="alert alert-danger rounded-3 border-0 mb-4" style="background: rgba(220,53,69,0.05);">
+                    <div class="alert alert-danger rounded-3 border-0 mb-4" style="background: #fef2f2;">
                         <div class="d-flex gap-2">
                             <i class="bi bi-exclamation-triangle-fill text-danger mt-1"></i>
                             <div>
@@ -438,7 +438,7 @@
 <style>
     .main-image-container {
         background: white;
-        border: 1px solid rgba(0,0,0,0.02);
+        border: 1px solid transparent;
     }
 
     .thumbnail-container {
@@ -447,17 +447,17 @@
     }
 
     .thumbnail-container.active {
-        border-color: #667eea;
+        border-color: #22c55e;
     }
 
     .legacy-card {
-        background: linear-gradient(135deg, rgba(102,126,234,0.05) 0%, rgba(118,75,162,0.05) 100%);
-        border-left: 6px solid #667eea;
+        background: #f0fdf4;
+        border-left: 6px solid #22c55e;
     }
 
     .guidelines-card {
-        background: rgba(102,126,234,0.02);
-        border: 1px solid rgba(102,126,234,0.1);
+        background: #f8fafc;
+        border: 1px solid #dcfce7;
     }
 
     .info-group {
@@ -471,11 +471,11 @@
     }
 
     [data-bs-theme="dark"] .info-group {
-        background: rgba(255,255,255,0.02);
+        background: transparent;
     }
 
     [data-bs-theme="dark"] .guidelines-card {
-        background: rgba(255,255,255,0.02);
+        background: transparent;
     }
 </style>
 @endpush

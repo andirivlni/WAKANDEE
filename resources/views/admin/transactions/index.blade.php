@@ -14,7 +14,7 @@
             <button class="btn btn-outline-success rounded-pill px-4 py-3" onclick="exportTransactions()">
                 <i class="bi bi-download me-2"></i>Export CSV
             </button>
-            <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-4 py-3">
+            <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-4 py-3">
                 <i class="bi bi-cash-stack me-2"></i>Total Pendapatan: Rp {{ number_format($stats['total_revenue'] ?? 0, 0, ',', '.') }}
             </span>
         </div>
@@ -23,10 +23,10 @@
     <!-- Stats Cards -->
     <div class="row g-4 mb-4">
         <div class="col-xl-3 col-md-6">
-            <div class="transaction-stat-card p-4 rounded-4">
+            <div class="transaction-stat-card p-4 rounded-3">
                 <div class="d-flex align-items-center gap-3">
-                    <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: rgba(102,126,234,0.1);">
-                        <i class="bi bi-arrow-left-right fs-3" style="color: #667eea;"></i>
+                    <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: #dcfce7;">
+                        <i class="bi bi-arrow-left-right fs-3" style="color: #22c55e;"></i>
                     </div>
                     <div>
                         <h3 class="fw-bold mb-1">{{ number_format($stats['total_transactions'] ?? 0) }}</h3>
@@ -36,9 +36,9 @@
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
-            <div class="transaction-stat-card p-4 rounded-4">
+            <div class="transaction-stat-card p-4 rounded-3">
                 <div class="d-flex align-items-center gap-3">
-                    <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: rgba(25,135,84,0.1);">
+                    <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: #dcfce7;">
                         <i class="bi bi-check-circle fs-3" style="color: #198754;"></i>
                     </div>
                     <div>
@@ -49,9 +49,9 @@
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
-            <div class="transaction-stat-card p-4 rounded-4">
+            <div class="transaction-stat-card p-4 rounded-3">
                 <div class="d-flex align-items-center gap-3">
-                    <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: rgba(255,193,7,0.1);">
+                    <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: #fef3c7;">
                         <i class="bi bi-clock fs-3" style="color: #ffc107;"></i>
                     </div>
                     <div>
@@ -62,7 +62,7 @@
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
-            <div class="transaction-stat-card p-4 rounded-4">
+            <div class="transaction-stat-card p-4 rounded-3">
                 <div class="d-flex align-items-center gap-3">
                     <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: rgba(13,202,240,0.1);">
                         <i class="bi bi-cash fs-3" style="color: #0dcaf0;"></i>
@@ -77,17 +77,17 @@
     </div>
 
     <!-- Daily Transactions Chart -->
-    <div class="admin-card p-4 rounded-4 mb-4">
+    <div class="admin-card p-4 rounded-3 mb-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
                 <h5 class="fw-bold mb-1">
-                    <i class="bi bi-graph-up me-2" style="color: #667eea;"></i>
+                    <i class="bi bi-graph-up me-2" style="color: #22c55e;"></i>
                     Grafik Transaksi 30 Hari Terakhir
                 </h5>
                 <p class="text-secondary small mb-0">Jumlah transaksi dan pendapatan per hari</p>
             </div>
             <div class="d-flex gap-3">
-                <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2">
+                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2">
                     <i class="bi bi-check-circle me-1"></i> Transaksi
                 </span>
                 <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2">
@@ -101,7 +101,7 @@
     </div>
 
     <!-- Filter & Search -->
-    <div class="admin-card p-4 rounded-4 mb-4">
+    <div class="admin-card p-4 rounded-3 mb-4">
         <div class="row g-3 align-items-center">
             <div class="col-lg-4">
                 <form action="{{ route('admin.transactions.index') }}" method="GET" id="searchForm">
@@ -110,7 +110,7 @@
                         <input type="text"
                                name="search"
                                class="form-control form-control-lg rounded-pill border-0 shadow-none"
-                               style="padding-left: 45px; background: rgba(102,126,234,0.02);"
+                               style="padding-left: 45px; background: #f8fafc;"
                                placeholder="Cari kode transaksi, pembeli, atau penjual..."
                                value="{{ request('search') }}">
                     </div>
@@ -140,7 +140,7 @@
                             <i class="bi bi-calendar me-2"></i>
                             {{ request('date_from') && request('date_to') ? request('date_from') . ' - ' . request('date_to') : 'Filter Tanggal' }}
                         </button>
-                        <div class="dropdown-menu dropdown-menu-end rounded-4 p-3" style="min-width: 300px;">
+                        <div class="dropdown-menu dropdown-menu-end rounded-3 p-3" style="min-width: 300px;">
                             <form id="dateFilterForm" onsubmit="applyDateFilter(event)">
                                 <div class="mb-3">
                                     <label class="form-label small fw-semibold">Dari Tanggal</label>
@@ -151,7 +151,7 @@
                                     <input type="date" name="date_to" class="form-control rounded-3" value="{{ request('date_to') }}">
                                 </div>
                                 <div class="d-flex gap-2">
-                                    <button type="submit" class="btn btn-primary rounded-pill px-4 grow">Terapkan</button>
+                                    <button type="submit" class="btn btn-success rounded-pill px-4 grow">Terapkan</button>
                                     <a href="{{ route('admin.transactions.index', array_merge(request()->except(['date_from', 'date_to']))) }}" class="btn btn-outline-secondary rounded-pill px-4">Reset</a>
                                 </div>
                             </form>
@@ -168,7 +168,7 @@
 
     <!-- Transactions Table -->
     @if($transactions->count() > 0)
-        <div class="admin-card p-4 rounded-4">
+        <div class="admin-card p-4 rounded-3">
             <div class="table-responsive">
                 <table class="table table-hover align-middle">
                     <thead class="small text-secondary">
@@ -217,7 +217,7 @@
                                         @if($trx->buyer->profile_photo)
                                             <img src="{{ Storage::url($trx->buyer->profile_photo) }}" alt="{{ $trx->buyer->name }}" class="rounded-circle" width="32" height="32" style="object-fit: cover;">
                                         @else
-                                            <div class="avatar-circle" style="width: 32px; height: 32px; background: rgba(102,126,234,0.1); color: #667eea;">
+                                            <div class="avatar-circle" style="width: 32px; height: 32px; background: #dcfce7; color: #22c55e;">
                                                 {{ strtoupper(substr($trx->buyer->name, 0, 1)) }}
                                             </div>
                                         @endif
@@ -229,7 +229,7 @@
                                         @if($trx->seller->profile_photo)
                                             <img src="{{ Storage::url($trx->seller->profile_photo) }}" alt="{{ $trx->seller->name }}" class="rounded-circle" width="32" height="32" style="object-fit: cover;">
                                         @else
-                                            <div class="avatar-circle" style="width: 32px; height: 32px; background: rgba(118,75,162,0.1); color: #764ba2;">
+                                            <div class="avatar-circle" style="width: 32px; height: 32px; background: #dcfce7; color: #4ade80;">
                                                 {{ strtoupper(substr($trx->seller->name, 0, 1)) }}
                                             </div>
                                         @endif
@@ -237,7 +237,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="fw-bold" style="color: #667eea;">Rp {{ number_format($trx->total_amount, 0, ',', '.') }}</span>
+                                    <span class="fw-bold" style="color: #22c55e;">Rp {{ number_format($trx->total_amount, 0, ',', '.') }}</span>
                                     @if($trx->admin_fee > 0)
                                         <small class="text-secondary d-block">+ admin {{ number_format($trx->admin_fee, 0, ',', '.') }}</small>
                                     @endif
@@ -263,7 +263,7 @@
                                 <td>
                                     <div class="d-flex gap-2">
                                         <button type="button"
-                                                class="btn btn-sm btn-outline-primary rounded-circle p-2"
+                                                class="btn btn-sm btn-outline-success rounded-circle p-2"
                                                 style="width: 36px; height: 36px;"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#detailModal{{ $trx->id }}"
@@ -310,12 +310,12 @@
         </div>
     @else
         <!-- Empty State -->
-        <div class="admin-card p-5 rounded-4 text-center">
+        <div class="admin-card p-5 rounded-3 text-center">
             <div class="empty-state">
                 <i class="bi bi-arrow-left-right fs-1 text-secondary opacity-25 mb-3"></i>
                 <h5 class="fw-bold mb-3">Belum Ada Transaksi</h5>
                 <p class="text-secondary mb-4">Belum ada transaksi yang terjadi di WAKANDE.</p>
-                <a href="{{ route('admin.dashboard') }}" class="btn btn-primary rounded-pill px-5 py-3">
+                <a href="{{ route('admin.dashboard') }}" class="btn btn-success rounded-pill px-5 py-3">
                     <i class="bi bi-arrow-left me-2"></i>Kembali ke Dashboard
                 </a>
             </div>
@@ -327,11 +327,11 @@
 @foreach($transactions as $trx)
     <div class="modal fade" id="detailModal{{ $trx->id }}" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content rounded-4 border-0">
+            <div class="modal-content rounded-3 border-0">
                 <div class="modal-header border-0 pt-4 px-4">
                     <div class="d-flex align-items-center gap-3">
-                        <div class="modal-icon rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: rgba(102,126,234,0.1);">
-                            <i class="bi bi-receipt fs-4" style="color: #667eea;"></i>
+                        <div class="modal-icon rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: #dcfce7;">
+                            <i class="bi bi-receipt fs-4" style="color: #22c55e;"></i>
                         </div>
                         <div>
                             <h5 class="modal-title fw-bold">Detail Transaksi</h5>
@@ -346,7 +346,7 @@
                         <div class="col-md-6">
                             <div class="info-section p-3 rounded-3">
                                 <h6 class="fw-semibold mb-3">
-                                    <i class="bi bi-box me-2" style="color: #667eea;"></i>
+                                    <i class="bi bi-box me-2" style="color: #22c55e;"></i>
                                     Informasi Barang
                                 </h6>
                                 <div class="d-flex gap-3">
@@ -372,7 +372,7 @@
                         <div class="col-md-6">
                             <div class="info-section p-3 rounded-3">
                                 <h6 class="fw-semibold mb-3">
-                                    <i class="bi bi-credit-card me-2" style="color: #667eea;"></i>
+                                    <i class="bi bi-credit-card me-2" style="color: #22c55e;"></i>
                                     Ringkasan Pembayaran
                                 </h6>
                                 <div class="vstack gap-2">
@@ -389,7 +389,7 @@
                                     <hr class="my-2">
                                     <div class="d-flex justify-content-between">
                                         <span class="fw-bold">Total</span>
-                                        <span class="fw-bold h5 mb-0" style="color: #667eea;">
+                                        <span class="fw-bold h5 mb-0" style="color: #22c55e;">
                                             Rp {{ number_format($trx->total_amount, 0, ',', '.') }}
                                         </span>
                                     </div>
@@ -411,14 +411,14 @@
                         <div class="col-md-6">
                             <div class="info-section p-3 rounded-3">
                                 <h6 class="fw-semibold mb-3">
-                                    <i class="bi bi-person me-2" style="color: #667eea;"></i>
+                                    <i class="bi bi-person me-2" style="color: #22c55e;"></i>
                                     Informasi Pembeli
                                 </h6>
                                 <div class="d-flex align-items-center gap-3">
                                     @if($trx->buyer->profile_photo)
                                         <img src="{{ Storage::url($trx->buyer->profile_photo) }}" alt="{{ $trx->buyer->name }}" class="rounded-circle" width="56" height="56" style="object-fit: cover;">
                                     @else
-                                        <div class="avatar-circle" style="width: 56px; height: 56px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                        <div class="avatar-circle" style="width: 56px; height: 56px; background: #22c55e;">
                                             {{ strtoupper(substr($trx->buyer->name, 0, 1)) }}
                                         </div>
                                     @endif
@@ -437,14 +437,14 @@
                         <div class="col-md-6">
                             <div class="info-section p-3 rounded-3">
                                 <h6 class="fw-semibold mb-3">
-                                    <i class="bi bi-person me-2" style="color: #667eea;"></i>
+                                    <i class="bi bi-person me-2" style="color: #22c55e;"></i>
                                     Informasi Penjual
                                 </h6>
                                 <div class="d-flex align-items-center gap-3">
                                     @if($trx->seller->profile_photo)
                                         <img src="{{ Storage::url($trx->seller->profile_photo) }}" alt="{{ $trx->seller->name }}" class="rounded-circle" width="56" height="56" style="object-fit: cover;">
                                     @else
-                                        <div class="avatar-circle" style="width: 56px; height: 56px; background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">
+                                        <div class="avatar-circle" style="width: 56px; height: 56px; background: #22c55e;">
                                             {{ strtoupper(substr($trx->seller->name, 0, 1)) }}
                                         </div>
                                     @endif
@@ -463,7 +463,7 @@
                         <div class="col-12">
                             <div class="info-section p-3 rounded-3">
                                 <h6 class="fw-semibold mb-3">
-                                    <i class="bi bi-truck me-2" style="color: #667eea;"></i>
+                                    <i class="bi bi-truck me-2" style="color: #22c55e;"></i>
                                     Informasi Pengiriman
                                 </h6>
                                 <div class="row">
@@ -491,14 +491,14 @@
                         <div class="col-12">
                             <div class="info-section p-3 rounded-3">
                                 <h6 class="fw-semibold mb-3">
-                                    <i class="bi bi-clock-history me-2" style="color: #667eea;"></i>
+                                    <i class="bi bi-clock-history me-2" style="color: #22c55e;"></i>
                                     Timeline Transaksi
                                 </h6>
                                 <div class="timeline">
                                     <div class="timeline-item d-flex gap-3 mb-3">
                                         <div class="timeline-icon">
-                                            <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; background: rgba(102,126,234,0.1);">
-                                                <i class="bi bi-cart text-primary"></i>
+                                            <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; background: #dcfce7;">
+                                                <i class="bi bi-cart text-success"></i>
                                             </div>
                                         </div>
                                         <div>
@@ -510,7 +510,7 @@
                                     @if($trx->paid_at)
                                         <div class="timeline-item d-flex gap-3 mb-3">
                                             <div class="timeline-icon">
-                                                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; background: rgba(25,135,84,0.1);">
+                                                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; background: #dcfce7;">
                                                     <i class="bi bi-credit-card text-success"></i>
                                                 </div>
                                             </div>
@@ -524,7 +524,7 @@
                                     @if($trx->completed_at)
                                         <div class="timeline-item d-flex gap-3">
                                             <div class="timeline-icon">
-                                                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; background: rgba(25,135,84,0.1);">
+                                                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; background: #dcfce7;">
                                                     <i class="bi bi-check2-all text-success"></i>
                                                 </div>
                                             </div>
@@ -581,8 +581,8 @@
                 {
                     label: 'Jumlah Transaksi',
                     data: {!! json_encode($daily_transactions->pluck('total')) !!},
-                    backgroundColor: 'rgba(102,126,234,0.2)',
-                    borderColor: '#667eea',
+                    backgroundColor: 'rgba(34, 197, 94,0.2)',
+                    borderColor: '#22c55e',
                     borderWidth: 1,
                     borderRadius: 6,
                     yAxisID: 'y'
@@ -614,7 +614,7 @@
                 y: {
                     beginAtZero: true,
                     grid: {
-                        color: 'rgba(0,0,0,0.02)'
+                        color: 'transparent'
                     },
                     title: {
                         display: true,
@@ -782,19 +782,19 @@
 <style>
     .transaction-stat-card {
         background: white;
-        border: 1px solid rgba(0,0,0,0.02);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        border: 1px solid transparent;
+        box-shadow: 0 4px 12px transparent;
         transition: all 0.3s;
     }
 
     .transaction-stat-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 16px 24px rgba(102,126,234,0.08);
+        
     }
 
     .info-section {
-        background: rgba(102,126,234,0.02);
-        border: 1px solid rgba(102,126,234,0.05);
+        background: #f8fafc;
+        border: 1px solid #f0fdf4;
         height: 100%;
     }
 
@@ -809,22 +809,22 @@
         top: 32px;
         bottom: -16px;
         width: 2px;
-        background: rgba(0,0,0,0.05);
+        background: transparent;
     }
 
     [data-bs-theme="dark"] .transaction-stat-card,
     [data-bs-theme="dark"] .admin-card {
         background: #1a1a2c;
-        border-color: rgba(255,255,255,0.05);
+        border-color: transparent;
     }
 
     [data-bs-theme="dark"] .info-section {
-        background: rgba(255,255,255,0.02);
-        border-color: rgba(255,255,255,0.05);
+        background: transparent;
+        border-color: transparent;
     }
 
     [data-bs-theme="dark"] .timeline-item:not(:last-child)::before {
-        background: rgba(255,255,255,0.1);
+        background: #dcfce7;
     }
 
     .modal-content {
@@ -858,17 +858,17 @@
     }
 
     .page-link:hover {
-        background: rgba(102,126,234,0.1);
-        color: #667eea;
+        background: #dcfce7;
+        color: #22c55e;
     }
 
     .page-item.active .page-link {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: #22c55e;
         color: white;
     }
 
     [data-bs-theme="dark"] .page-link {
-        background: rgba(255,255,255,0.02);
+        background: transparent;
         color: white;
     }
 </style>

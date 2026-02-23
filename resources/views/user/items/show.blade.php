@@ -12,7 +12,7 @@
 
         <div class="d-flex gap-2">
             @if($item->status == 'pending')
-                <a href="{{ route('items.edit', $item->id) }}" class="btn btn-outline-primary btn-rounded">
+                <a href="{{ route('items.edit', $item->id) }}" class="btn btn-outline-success btn-rounded">
                     <i class="bi bi-pencil me-2"></i>Edit
                 </a>
                 <button type="button" class="btn btn-outline-danger btn-rounded" onclick="confirmDelete()">
@@ -87,7 +87,7 @@
                         <i class="bi bi-gift me-1"></i>Gratis
                     </span>
                 @else
-                    <span class="badge bg-primary rounded-pill px-4 py-2">
+                    <span class="badge bg-success rounded-pill px-4 py-2">
                         <i class="bi bi-tag me-1"></i>Dijual
                     </span>
                 @endif
@@ -108,7 +108,7 @@
             <div class="mb-4">
                 @if($item->type == 'sale')
                     <div class="d-flex align-items-baseline gap-2">
-                        <span class="h2 fw-bold" style="color: #667eea;">Rp {{ number_format($item->price, 0, ',', '.') }}</span>
+                        <span class="h2 fw-bold" style="color: #22c55e;">Rp {{ number_format($item->price, 0, ',', '.') }}</span>
                         <span class="text-secondary">+ admin Rp1.000</span>
                     </div>
                 @else
@@ -118,9 +118,9 @@
 
             <!-- Status Desktop -->
             <div class="d-none d-lg-block mb-4">
-                <div class="p-3 rounded-4" style="background: rgba(102,126,234,0.02);">
+                <div class="p-3 rounded-4" style="background: rgba(34, 197, 94,0.02);">
                     <div class="d-flex align-items-center gap-2">
-                        <i class="bi bi-info-circle" style="color: #667eea;"></i>
+                        <i class="bi bi-info-circle" style="color: #22c55e;"></i>
                         @if($item->status == 'pending')
                             <span class="text-warning fw-semibold">Barang sedang menunggu moderasi admin</span>
                         @elseif($item->status == 'approved')
@@ -159,7 +159,7 @@
             <!-- Legacy Message -->
             <div class="legacy-message p-4 rounded-4 mb-4">
                 <div class="d-flex gap-3">
-                    <i class="bi bi-quote fs-1" style="color: #667eea; opacity: 0.5;"></i>
+                    <i class="bi bi-quote fs-1" style="color: #22c55e; opacity: 0.5;"></i>
                     <div>
                         <p class="fw-semibold mb-2">Legacy Message 💫</p>
                         <p class="mb-2 fst-italic" style="font-size: 1.1rem;">"{{ $item->legacy_message }}"</p>
@@ -177,7 +177,7 @@
                     @if($item->user->profile_photo)
                         <img src="{{ Storage::url($item->user->profile_photo) }}" alt="{{ $item->user->name }}" class="rounded-circle" width="64" height="64" style="object-fit: cover;">
                     @else
-                        <div class="avatar-circle" style="width: 64px; height: 64px; font-size: 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div class="avatar-circle" style="width: 64px; height: 64px; font-size: 1.5rem; background: #22c55e;">
                             {{ strtoupper(substr($item->user->name, 0, 1)) }}
                         </div>
                     @endif
@@ -199,21 +199,21 @@
             <!-- Stats -->
             <div class="row g-3">
                 <div class="col-4">
-                    <div class="text-center p-3 rounded-4" style="background: rgba(102,126,234,0.02);">
-                        <i class="bi bi-eye fs-5 d-block mb-1" style="color: #667eea;"></i>
+                    <div class="text-center p-3 rounded-4" style="background: rgba(34, 197, 94,0.02);">
+                        <i class="bi bi-eye fs-5 d-block mb-1" style="color: #22c55e;"></i>
                         <span class="fw-bold">{{ $item->views_count }}</span>
                         <small class="d-block text-secondary">Dilihat</small>
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="text-center p-3 rounded-4" style="background: rgba(102,126,234,0.02);">
+                    <div class="text-center p-3 rounded-4" style="background: rgba(34, 197, 94,0.02);">
                         <i class="bi bi-heart fs-5 d-block mb-1" style="color: #dc3545;"></i>
                         <span class="fw-bold">{{ $item->wishlists->count() }}</span>
                         <small class="d-block text-secondary">Wishlist</small>
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="text-center p-3 rounded-4" style="background: rgba(102,126,234,0.02);">
+                    <div class="text-center p-3 rounded-4" style="background: rgba(34, 197, 94,0.02);">
                         <i class="bi bi-calendar fs-5 d-block mb-1" style="color: #6c757d;"></i>
                         <span class="fw-bold">{{ $item->created_at->format('d M') }}</span>
                         <small class="d-block text-secondary">Diupload</small>
@@ -280,7 +280,7 @@
     }
 
     .thumbnail-container.active {
-        border-color: #667eea;
+        border-color: #22c55e;
     }
 
     .thumbnail-container:hover {
@@ -288,8 +288,8 @@
     }
 
     .legacy-message {
-        background: linear-gradient(135deg, rgba(102,126,234,0.05) 0%, rgba(118,75,162,0.05) 100%);
-        border-left: 6px solid #667eea;
+        background: rgba(34, 197, 94, 0.05);
+        border-left: 6px solid #22c55e;
     }
 
     .seller-info {

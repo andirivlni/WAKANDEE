@@ -20,9 +20,9 @@
     <!-- Stats Cards -->
     <div class="row g-4 mb-4">
         <div class="col-md-4">
-            <div class="moderation-stat-card p-4 rounded-4 {{ request('status') == 'pending' ? 'active' : '' }}" onclick="window.location='{{ route('admin.moderation.index', ['status' => 'pending']) }}'">
+            <div class="moderation-stat-card p-4 rounded-3 {{ request('status') == 'pending' ? 'active' : '' }}" onclick="window.location='{{ route('admin.moderation.index', ['status' => 'pending']) }}'">
                 <div class="d-flex align-items-center gap-3">
-                    <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: rgba(255,193,7,0.1);">
+                    <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: #fef3c7;">
                         <i class="bi bi-clock fs-3" style="color: #ffc107;"></i>
                     </div>
                     <div>
@@ -33,9 +33,9 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="moderation-stat-card p-4 rounded-4 {{ request('status') == 'approved' ? 'active' : '' }}" onclick="window.location='{{ route('admin.moderation.index', ['status' => 'approved']) }}'">
+            <div class="moderation-stat-card p-4 rounded-3 {{ request('status') == 'approved' ? 'active' : '' }}" onclick="window.location='{{ route('admin.moderation.index', ['status' => 'approved']) }}'">
                 <div class="d-flex align-items-center gap-3">
-                    <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: rgba(25,135,84,0.1);">
+                    <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: #dcfce7;">
                         <i class="bi bi-check-circle fs-3" style="color: #198754;"></i>
                     </div>
                     <div>
@@ -46,9 +46,9 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="moderation-stat-card p-4 rounded-4 {{ request('status') == 'rejected' ? 'active' : '' }}" onclick="window.location='{{ route('admin.moderation.index', ['status' => 'rejected']) }}'">
+            <div class="moderation-stat-card p-4 rounded-3 {{ request('status') == 'rejected' ? 'active' : '' }}" onclick="window.location='{{ route('admin.moderation.index', ['status' => 'rejected']) }}'">
                 <div class="d-flex align-items-center gap-3">
-                    <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: rgba(220,53,69,0.1);">
+                    <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; background: #fee2e2;">
                         <i class="bi bi-x-circle fs-3" style="color: #dc3545;"></i>
                     </div>
                     <div>
@@ -61,7 +61,7 @@
     </div>
 
     <!-- Filter & Search -->
-    <div class="admin-card p-4 rounded-4 mb-4">
+    <div class="admin-card p-4 rounded-3 mb-4">
         <div class="row g-3 align-items-center">
             <div class="col-lg-6">
                 <form action="{{ route('admin.moderation.index') }}" method="GET" id="searchForm">
@@ -70,7 +70,7 @@
                         <input type="text"
                                name="search"
                                class="form-control form-control-lg rounded-pill border-0 shadow-none"
-                               style="padding-left: 45px; background: rgba(102,126,234,0.02);"
+                               style="padding-left: 45px; background: #f8fafc;"
                                placeholder="Cari berdasarkan nama barang, deskripsi, atau pengupload..."
                                value="{{ request('search') }}">
                     </div>
@@ -104,7 +104,7 @@
 
     <!-- Items Table -->
     @if($items->count() > 0)
-        <div class="admin-card p-4 rounded-4">
+        <div class="admin-card p-4 rounded-3">
             <div class="table-responsive">
                 <table class="table table-hover align-middle">
                     <thead class="small text-secondary">
@@ -154,7 +154,7 @@ $thumb = !empty($images) ? Storage::url($images[0]) : asset('images/default-item
                                         @if($item->user->profile_photo)
                                             <img src="{{ Storage::url($item->user->profile_photo) }}" alt="{{ $item->user->name }}" class="rounded-circle" width="36" height="36" style="object-fit: cover;">
                                         @else
-                                            <div class="avatar-circle" style="width: 36px; height: 36px; background: rgba(102,126,234,0.1); color: #667eea;">
+                                            <div class="avatar-circle" style="width: 36px; height: 36px; background: #dcfce7; color: #22c55e;">
                                                 {{ strtoupper(substr($item->user->name, 0, 1)) }}
                                             </div>
                                         @endif
@@ -175,14 +175,14 @@ $thumb = !empty($images) ? Storage::url($images[0]) : asset('images/default-item
                                             <i class="bi bi-gift me-1"></i>Gratis
                                         </span>
                                     @else
-                                        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2">
+                                        <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2">
                                             <i class="bi bi-tag me-1"></i>Dijual
                                         </span>
                                     @endif
                                 </td>
                                 <td>
                                     @if($item->type == 'sale')
-                                        <span class="fw-semibold" style="color: #667eea;">
+                                        <span class="fw-semibold" style="color: #22c55e;">
                                             Rp {{ number_format($item->price, 0, ',', '.') }}
                                         </span>
                                     @else
@@ -231,7 +231,7 @@ $thumb = !empty($images) ? Storage::url($images[0]) : asset('images/default-item
         </div>
     @else
         <!-- Empty State -->
-        <div class="admin-card p-5 rounded-4 text-center">
+        <div class="admin-card p-5 rounded-3 text-center">
             <div class="empty-state">
                 @if(request('status') == 'pending')
                     <i class="bi bi-check-circle text-success fs-1 mb-3"></i>
@@ -251,7 +251,7 @@ $thumb = !empty($images) ? Storage::url($images[0]) : asset('images/default-item
                     <p class="text-secondary mb-4">Belum ada barang yang diupload oleh pengguna.</p>
                 @endif
 
-                <a href="{{ route('admin.dashboard') }}" class="btn btn-primary rounded-pill px-5 py-3">
+                <a href="{{ route('admin.dashboard') }}" class="btn btn-success rounded-pill px-5 py-3">
                     <i class="bi bi-arrow-left me-2"></i>Kembali ke Dashboard
                 </a>
             </div>
@@ -296,25 +296,25 @@ $thumb = !empty($images) ? Storage::url($images[0]) : asset('images/default-item
 <style>
     .moderation-stat-card {
         background: white;
-        border: 1px solid rgba(0,0,0,0.02);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        border: 1px solid transparent;
+        box-shadow: 0 4px 12px transparent;
         transition: all 0.3s;
         cursor: pointer;
     }
 
     .moderation-stat-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 16px 24px rgba(102,126,234,0.08);
+        
     }
 
     .moderation-stat-card.active {
-        border: 2px solid #667eea;
-        background: rgba(102,126,234,0.02);
+        border: 2px solid #22c55e;
+        background: #f8fafc;
     }
 
     [data-bs-theme="dark"] .moderation-stat-card {
         background: #1a1a2c;
-        border-color: rgba(255,255,255,0.05);
+        border-color: transparent;
     }
 
     .empty-state {

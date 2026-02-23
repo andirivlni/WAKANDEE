@@ -110,11 +110,11 @@ function initializeFileUploads() {
         }
 
         function highlight() {
-            area.classList.add('border-primary', 'bg-primary', 'bg-opacity-10');
+            area.classList.add('border-primary', 'bg-success', 'bg-opacity-10');
         }
 
         function unhighlight() {
-            area.classList.remove('border-primary', 'bg-primary', 'bg-opacity-10');
+            area.classList.remove('border-primary', 'bg-success', 'bg-opacity-10');
         }
 
         function handleDrop(e) {

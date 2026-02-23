@@ -6,7 +6,7 @@
 <div class="container-fluid px-4">
     <h1 class="h3 fw-bold mb-4">Pengaturan</h1>
 
-    <div class="admin-card p-4 rounded-4">
+    <div class="admin-card p-4 rounded-3">
         <form action="{{ route('admin.settings.update') }}" method="POST">
             @csrf
             @method('PUT')
@@ -28,7 +28,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Simpan</button>
+            <button type="submit" class="btn btn-success">Simpan</button>
         </form>
     </div>
 </div>

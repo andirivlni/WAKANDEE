@@ -11,14 +11,14 @@
         </a>
 
         @if($transaction->payment_status == 'pending' && $transaction->buyer_id == Auth::id())
-            <a href="{{ route('transactions.payment', $transaction->id) }}" class="btn btn-primary btn-rounded px-4">
+            <a href="{{ route('transactions.payment', $transaction->id) }}" class="btn btn-success btn-rounded px-4">
                 <i class="bi bi-credit-card me-2"></i>Bayar Sekarang
             </a>
         @endif
     </div>
 
     <!-- Status Banner -->
-    <div class="status-banner p-4 rounded-4 mb-4" style="background: linear-gradient(135deg, rgba(102,126,234,0.05) 0%, rgba(118,75,162,0.05) 100%);">
+    <div class="status-banner p-4 rounded-4 mb-4" style="background: rgba(34, 197, 94, 0.05);">
         <div class="row align-items-center g-3">
             <div class="col-lg-6">
                 <div class="d-flex align-items-center gap-3">
@@ -66,7 +66,7 @@
             <!-- Item Card -->
             <div class="detail-card p-4 rounded-4 mb-4">
                 <h6 class="fw-bold mb-3">
-                    <i class="bi bi-box me-2" style="color: #667eea;"></i>Detail Barang
+                    <i class="bi bi-box me-2" style="color: #22c55e;"></i>Detail Barang
                 </h6>
 
                 <div class="d-flex gap-4">
@@ -105,7 +105,7 @@
                             </div>
                             <div class="col-md-4">
                                 <small class="text-secondary d-block">Harga Barang</small>
-                                <span class="fw-semibold" style="color: #667eea;">
+                                <span class="fw-semibold" style="color: #22c55e;">
                                     Rp {{ number_format($transaction->amount, 0, ',', '.') }}
                                 </span>
                             </div>
@@ -117,7 +117,7 @@
             <!-- Transaction Timeline -->
             <div class="detail-card p-4 rounded-4 mb-4">
                 <h6 class="fw-bold mb-4">
-                    <i class="bi bi-clock-history me-2" style="color: #667eea;"></i>Riwayat Transaksi
+                    <i class="bi bi-clock-history me-2" style="color: #22c55e;"></i>Riwayat Transaksi
                 </h6>
 
                 <div class="timeline">
@@ -125,8 +125,8 @@
                     <div class="timeline-item d-flex gap-3 mb-4">
                         <div class="timeline-icon">
                             <div class="rounded-circle d-flex align-items-center justify-content-center"
-                                 style="width: 40px; height: 40px; background: rgba(102,126,234,0.1);">
-                                <i class="bi bi-cart text-primary"></i>
+                                 style="width: 40px; height: 40px; background: rgba(34, 197, 94,0.1);">
+                                <i class="bi bi-cart text-success"></i>
                             </div>
                         </div>
                         <div class="grow">
@@ -240,9 +240,9 @@
             @if($transaction->item->legacy_message)
                 <div class="legacy-card p-4 rounded-4">
                     <div class="d-flex gap-3">
-                        <i class="bi bi-quote fs-1" style="color: #667eea; opacity: 0.3;"></i>
+                        <i class="bi bi-quote fs-1" style="color: #22c55e; opacity: 0.3;"></i>
                         <div>
-                            <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 mb-2">
+                            <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2 mb-2">
                                 <i class="bi bi-chat-quote me-1"></i>Legacy Message
                             </span>
                             <p class="fst-italic mb-3" style="font-size: 1.1rem;">
@@ -262,7 +262,7 @@
             <!-- Buyer Info -->
             <div class="detail-card p-4 rounded-4 mb-4">
                 <h6 class="fw-bold mb-3">
-                    <i class="bi bi-person me-2" style="color: #667eea;"></i>
+                    <i class="bi bi-person me-2" style="color: #22c55e;"></i>
                     {{ $transaction->buyer_id == Auth::id() ? 'Informasi Penjual' : 'Informasi Pembeli' }}
                 </h6>
 
@@ -275,7 +275,7 @@
                         <img src="{{ Storage::url($user->profile_photo) }}" alt="{{ $user->name }}"
                              class="rounded-circle" width="64" height="64" style="object-fit: cover;">
                     @else
-                        <div class="avatar-circle" style="width: 64px; height: 64px; font-size: 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div class="avatar-circle" style="width: 64px; height: 64px; font-size: 1.5rem; background: #22c55e;">
                             {{ strtoupper(substr($user->name, 0, 1)) }}
                         </div>
                     @endif
@@ -299,7 +299,7 @@
             <!-- Payment Summary -->
             <div class="detail-card p-4 rounded-4 mb-4">
                 <h6 class="fw-bold mb-3">
-                    <i class="bi bi-credit-card me-2" style="color: #667eea;"></i>Ringkasan Pembayaran
+                    <i class="bi bi-credit-card me-2" style="color: #22c55e;"></i>Ringkasan Pembayaran
                 </h6>
 
                                 <div class="vstack gap-3">
@@ -319,13 +319,13 @@
 
                     <div class="d-flex justify-content-between">
                         <span class="fw-bold">Total</span>
-                        <span class="fw-bold h5 mb-0" style="color: #667eea;">
+                        <span class="fw-bold h5 mb-0" style="color: #22c55e;">
                             Rp {{ number_format($transaction->total_amount, 0, ',', '.') }}
                         </span>
                     </div>
 
                     @if($transaction->payment_method == 'qris' && $transaction->qris_code)
-                        <div class="mt-3 p-3 rounded-3 text-center" style="background: rgba(102,126,234,0.05);">
+                        <div class="mt-3 p-3 rounded-3 text-center" style="background: rgba(34, 197, 94,0.05);">
                             <small class="text-secondary d-block mb-2">Kode QRIS</small>
                             <span class="fw-mono">{{ $transaction->qris_code }}</span>
                         </div>
@@ -336,7 +336,7 @@
             <!-- Delivery Info -->
             <div class="detail-card p-4 rounded-4">
                 <h6 class="fw-bold mb-3">
-                    <i class="bi bi-truck me-2" style="color: #667eea;"></i>Informasi Pengiriman
+                    <i class="bi bi-truck me-2" style="color: #22c55e;"></i>Informasi Pengiriman
                 </h6>
 
                 <div class="vstack gap-3">
@@ -459,8 +459,8 @@
     }
 
     .legacy-card {
-        background: linear-gradient(135deg, rgba(102,126,234,0.05) 0%, rgba(118,75,162,0.05) 100%);
-        border-left: 6px solid #667eea;
+        background: rgba(34, 197, 94, 0.05);
+        border-left: 6px solid #22c55e;
     }
 
     .timeline-item {

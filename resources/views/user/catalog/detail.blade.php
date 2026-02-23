@@ -85,7 +85,7 @@
                         <i class="bi bi-gift me-2"></i>Gratis
                     </span>
                 @else
-                    <span class="badge bg-primary rounded-pill px-4 py-3">
+                    <span class="badge bg-success rounded-pill px-4 py-3">
                         <i class="bi bi-tag me-2"></i>Dijual
                     </span>
                 @endif
@@ -103,10 +103,10 @@
             <h1 class="display-6 fw-bold mb-3">{{ $item->name }}</h1>
 
             <!-- Price -->
-            <div class="mb-4 p-4 rounded-4" style="background: linear-gradient(135deg, rgba(102,126,234,0.05) 0%, rgba(118,75,162,0.05) 100%);">
+            <div class="mb-4 p-4 rounded-4" style="background: rgba(34, 197, 94, 0.05);">
                 @if($item->type == 'sale')
                     <div class="d-flex align-items-baseline gap-2">
-                        <span class="display-5 fw-bold" style="color: #667eea;">Rp {{ number_format($item->price, 0, ',', '.') }}</span>
+                        <span class="display-5 fw-bold" style="color: #22c55e;">Rp {{ number_format($item->price, 0, ',', '.') }}</span>
                         <span class="text-secondary">+ admin Rp1.000</span>
                     </div>
                     <small class="text-secondary d-block mt-2">
@@ -124,7 +124,7 @@
             @auth
                 @if($item->user_id !== auth()->id())
                     <div class="d-grid mb-4">
-                        <a href="{{ route('transactions.checkout', $item->id) }}" class="btn btn-primary btn-rounded py-3" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                        <a href="{{ route('transactions.checkout', $item->id) }}" class="btn btn-success btn-rounded py-3" style="background: #22c55e; border: none;">
                             <i class="bi bi-{{ $item->type == 'gift' ? 'gift' : 'cart' }} me-2"></i>
                             {{ $item->type == 'gift' ? 'Ambil Gratis' : 'Beli Sekarang' }}
                             <i class="bi bi-arrow-right ms-2"></i>
@@ -137,9 +137,9 @@
                             <div>
                                 <p class="fw-semibold mb-1">Ini adalah barangmu</p>
                                 <p class="small mb-0">
-                                    <a href="{{ route('items.show', $item->id) }}" class="text-decoration-none" style="color: #667eea;">Kelola barang</a>
+                                    <a href="{{ route('items.show', $item->id) }}" class="text-decoration-none" style="color: #22c55e;">Kelola barang</a>
                                     atau
-                                    <a href="{{ route('catalog.index') }}" class="text-decoration-none" style="color: #667eea;">cari barang lain</a>
+                                    <a href="{{ route('catalog.index') }}" class="text-decoration-none" style="color: #22c55e;">cari barang lain</a>
                                 </p>
                             </div>
                         </div>
@@ -147,7 +147,7 @@
                 @endif
             @else
                 <div class="d-grid mb-4">
-                    <a href="{{ route('login') }}" class="btn btn-primary btn-rounded py-3">
+                    <a href="{{ route('login') }}" class="btn btn-success btn-rounded py-3">
                         <i class="bi bi-box-arrow-in-right me-2"></i>
                         Login untuk {{ $item->type == 'gift' ? 'Ambil Gratis' : 'Beli' }}
                     </a>
@@ -157,9 +157,9 @@
             <!-- Description -->
             <div class="mb-4">
                 <h6 class="fw-bold mb-3">
-                    <i class="bi bi-file-text me-2" style="color: #667eea;"></i>Deskripsi Barang
+                    <i class="bi bi-file-text me-2" style="color: #22c55e;"></i>Deskripsi Barang
                 </h6>
-                <div class="p-4 rounded-4" style="background: rgba(102,126,234,0.02);">
+                <div class="p-4 rounded-4" style="background: rgba(34, 197, 94,0.02);">
                     <p class="text-secondary mb-0" style="line-height: 1.8;">{{ nl2br(e($item->description)) }}</p>
                 </div>
             </div>
@@ -168,17 +168,17 @@
             <div class="legacy-message p-4 rounded-4 mb-4">
                 <div class="d-flex gap-3">
                     <div>
-                        <i class="bi bi-quote fs-1" style="color: #667eea; opacity: 0.3;"></i>
+                        <i class="bi bi-quote fs-1" style="color: #22c55e; opacity: 0.3;"></i>
                     </div>
                     <div>
-                        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 mb-2">
+                        <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2 mb-2">
                             <i class="bi bi-chat-quote me-1"></i>Legacy Message
                         </span>
                         <p class="fw-light fst-italic mb-3" style="font-size: 1.2rem; color: var(--bs-body-color);">
                             "{{ $item->legacy_message }}"
                         </p>
                         <div class="d-flex align-items-center gap-3">
-                            <div class="avatar-circle" style="width: 48px; height: 48px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <div class="avatar-circle" style="width: 48px; height: 48px; background: #22c55e;">
                                 {{ strtoupper(substr($item->user->name, 0, 1)) }}
                             </div>
                             <div>
@@ -196,13 +196,13 @@
             <!-- Seller Info -->
             <div class="seller-info p-4 rounded-4 mb-4">
                 <h6 class="fw-bold mb-3">
-                    <i class="bi bi-person-circle me-2" style="color: #667eea;"></i>Informasi Penjual
+                    <i class="bi bi-person-circle me-2" style="color: #22c55e;"></i>Informasi Penjual
                 </h6>
                 <div class="d-flex align-items-center gap-3">
                     @if($item->user->profile_photo)
                         <img src="{{ Storage::url($item->user->profile_photo) }}" alt="{{ $item->user->name }}" class="rounded-circle" width="64" height="64" style="object-fit: cover;">
                     @else
-                        <div class="avatar-circle" style="width: 64px; height: 64px; font-size: 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div class="avatar-circle" style="width: 64px; height: 64px; font-size: 1.5rem; background: #22c55e;">
                             {{ strtoupper(substr($item->user->name, 0, 1)) }}
                         </div>
                     @endif
@@ -231,14 +231,14 @@
             <!-- Stats -->
             <div class="row g-3">
                 <div class="col-4">
-                    <div class="text-center p-3 rounded-4" style="background: rgba(102,126,234,0.02);">
-                        <i class="bi bi-eye fs-4 d-block mb-2" style="color: #667eea;"></i>
+                    <div class="text-center p-3 rounded-4" style="background: rgba(34, 197, 94,0.02);">
+                        <i class="bi bi-eye fs-4 d-block mb-2" style="color: #22c55e;"></i>
                         <span class="fw-bold d-block">{{ $item->views_count }}</span>
                         <small class="text-secondary">Dilihat</small>
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="text-center p-3 rounded-4" style="background: rgba(102,126,234,0.02);">
+                    <div class="text-center p-3 rounded-4" style="background: rgba(34, 197, 94,0.02);">
                         <i class="bi bi-heart fs-4 d-block mb-2" style="color: #dc3545;"></i>
                         <span class="fw-bold d-block">
                             {{ $item->wishlists_count ?? ($item->wishlists ? $item->wishlists->count() : 0) }}
@@ -247,7 +247,7 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="text-center p-3 rounded-4" style="background: rgba(102,126,234,0.02);">
+                    <div class="text-center p-3 rounded-4" style="background: rgba(34, 197, 94,0.02);">
                         <i class="bi bi-clock-history fs-4 d-block mb-2" style="color: #6c757d;"></i>
                         <span class="fw-bold d-block">{{ $item->created_at->diffForHumans() }}</span>
                         <small class="text-secondary">Diupload</small>
@@ -281,7 +281,7 @@
                     <h4 class="fw-bold mb-1">Barang Serupa</h4>
                     <p class="text-secondary mb-0">Temukan barang lain dalam kategori {{ $item->category_label }}</p>
                 </div>
-                <a href="{{ route('catalog.index', ['category' => $item->category]) }}" class="btn btn-link text-decoration-none" style="color: #667eea;">
+                <a href="{{ route('catalog.index', ['category' => $item->category]) }}" class="btn btn-link text-decoration-none" style="color: #22c55e;">
                     Lihat Semua <i class="bi bi-arrow-right"></i>
                 </a>
             </div>
@@ -309,7 +309,7 @@
             el.style.borderColor = 'transparent';
         });
         element.classList.add('active');
-        element.style.borderColor = '#667eea';
+        element.style.borderColor = '#22c55e';
     }
 
     // Share item
@@ -379,13 +379,13 @@
     }
 
     .thumbnail-container.active {
-        border-color: #667eea !important;
-        box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+        border-color: #22c55e !important;
+        box-shadow: 0 0 0 3px rgba(34, 197, 94,0.1);
     }
 
     .legacy-message {
-        background: linear-gradient(135deg, rgba(102,126,234,0.05) 0%, rgba(118,75,162,0.05) 100%);
-        border-left: 6px solid #667eea;
+        background: rgba(34, 197, 94, 0.05);
+        border-left: 6px solid #22c55e;
     }
 
     .seller-info {
@@ -408,7 +408,7 @@
     }
 
     .breadcrumb a:hover {
-        color: #667eea !important;
+        color: #22c55e !important;
     }
 </style>
 @endpush

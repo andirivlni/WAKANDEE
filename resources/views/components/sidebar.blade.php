@@ -83,9 +83,9 @@
         <div class="d-flex flex-column">
             <div class="text-center mb-4">
                 @if(Auth::user()->profile_photo)
-                    <img src="{{ Storage::url(Auth::user()->profile_photo) }}" alt="Profile" class="rounded-circle mb-3" width="80" height="80" style="object-fit: cover; border: 3px solid rgba(102, 126, 234, 0.2);">
+                    <img src="{{ Storage::url(Auth::user()->profile_photo) }}" alt="Profile" class="rounded-circle mb-3" width="80" height="80" style="object-fit: cover; border: 3px solid rgba(34, 197, 94, 0.2);">
                 @else
-                    <div class="avatar-circle mx-auto mb-3" style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); font-size: 2rem;">
+                    <div class="avatar-circle mx-auto mb-3" style="width: 80px; height: 80px; background: #22c55e; font-size: 2rem;">
                         {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                     </div>
                 @endif

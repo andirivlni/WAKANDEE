@@ -43,7 +43,7 @@
                     <i class="bi bi-lock me-1"></i>Password
                 </label>
                 @if (Route::has('password.request'))
-                    <a href="{{ route('password.request') }}" class="text-decoration-none small" style="color: #667eea;">
+                    <a href="{{ route('password.request') }}" class="text-decoration-none small" style="color: #22c55e;">
                         Lupa password?
                     </a>
                 @endif
@@ -86,7 +86,7 @@
         <!-- Register Link -->
         <div class="text-center">
             <span class="text-secondary small">Belum punya akun?</span>
-            <a href="{{ route('register') }}" class="text-decoration-none small fw-semibold ms-2" style="color: #667eea;">
+            <a href="{{ route('register') }}" class="text-decoration-none small fw-semibold ms-2" style="color: #22c55e;">
                 Daftar sekarang <i class="bi bi-arrow-right"></i>
             </a>
         </div>
