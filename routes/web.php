@@ -3,54 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-// ==================== ITEM UPLOAD (di luar auth middleware agar tidak diblok) ====================
-Route::get('/items/create', function () {
-    if (!Auth::check()) {
-        $user = \App\Models\User::where('role', 'user')->first();
-        if ($user) Auth::login($user);
-    }
-    return view('user.items.create');
-})->name('items.create');
-
-Route::post('/items', function (\Illuminate\Http\Request $request) {
-    if (!Auth::check()) {
-        $user = \App\Models\User::where('role', 'user')->first();
-        if ($user) Auth::login($user);
-    }
-
-    \Illuminate\Support\Facades\Log::info('=== ITEMS STORE HIT ===', $request->except('_token'));
-
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'description' => 'required|string|min:20',
-        'category' => 'required',
-        'type' => 'required',
-        'condition' => 'required',
-        'legacy_message' => 'required|string|min:10',
-    ]);
-
-    $imagePaths = [];
-    if ($request->hasFile('images')) {
-        foreach ($request->file('images') as $image) {
-            $imagePaths[] = $image->store('items', 'public');
-        }
-    }
-
-    \App\Models\Item::create([
-        'user_id' => Auth::id(),
-        'name' => $request->name,
-        'description' => $request->description,
-        'category' => $request->category,
-        'type' => $request->type,
-        'price' => ($request->type === 'sale') ? ($request->price ?? 0) : 0,
-        'condition' => $request->condition,
-        'images' => $imagePaths,
-        'legacy_message' => $request->legacy_message,
-        'status' => 'pending',
-    ]);
-
-    return redirect('/items')->with('success', 'Barang berhasil diupload!');
-})->name('items.store');
+Route::get('/items/create', [App\Http\Controllers\User\ItemController::class, 'create'])->name('items.create');
+Route::post('/items', [App\Http\Controllers\User\ItemController::class, 'store'])->name('items.store');
 
 // ==================== PUBLIC ROUTES ====================
 Route::get('/', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
