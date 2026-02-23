@@ -73,7 +73,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('items.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ url('/items') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-card p-4 mb-3 shadow-sm">
