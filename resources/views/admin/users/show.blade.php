@@ -228,7 +228,7 @@
                                         <td>
                                             <div class="d-flex align-items-center gap-2">
                                                 @php
-                                                    $itemImages = json_decode($item->images, true) ?? [];
+                                                    $itemImages = is_array($item->images) ? $item->images : (is_string($item->images) ? json_decode($item->images, true) : []) ?? [];
                                                     $itemThumb = !empty($itemImages) ? Storage::url($itemImages[0]) : asset('images/default-item.png');
                                                 @endphp
                                                 <img src="{{ $itemThumb }}" alt="{{ $item->name }}" width="40" height="40" style="object-fit: cover; border-radius: 8px;">
@@ -329,7 +329,7 @@
                                         <td>
                                             <div class="d-flex align-items-center gap-2">
                                                 @php
-                                                    $trxItemImages = json_decode($trx->item->images, true) ?? [];
+                                                    $trxItemImages = is_array($trx->item->images) ? $trx->item->images : (is_string($trx->item->images) ? json_decode($trx->item->images, true) : []) ?? [];
                                                     $trxItemThumb = !empty($trxItemImages) ? Storage::url($trxItemImages[0]) : asset('images/default-item.png');
                                                 @endphp
                                                 <img src="{{ $trxItemThumb }}" alt="{{ $trx->item->name }}" width="40" height="40" style="object-fit: cover; border-radius: 8px;">
@@ -400,7 +400,7 @@
                                         <td>
                                             <div class="d-flex align-items-center gap-2">
                                                 @php
-                                                    $trxItemImages = json_decode($trx->item->images, true) ?? [];
+                                                    $trxItemImages = is_array($trx->item->images) ? $trx->item->images : (is_string($trx->item->images) ? json_decode($trx->item->images, true) : []) ?? [];
                                                     $trxItemThumb = !empty($trxItemImages) ? Storage::url($trxItemImages[0]) : asset('images/default-item.png');
                                                 @endphp
                                                 <img src="{{ $trxItemThumb }}" alt="{{ $trx->item->name }}" width="40" height="40" style="object-fit: cover; border-radius: 8px;">

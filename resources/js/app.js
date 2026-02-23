@@ -4,6 +4,7 @@
  */
 
 import './bootstrap';
+import 'bootstrap';
 import './theme';
 import './pwa';
 

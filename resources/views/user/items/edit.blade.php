@@ -120,7 +120,7 @@
 
                     <!-- Existing Images -->
                     @php
-                        $existingImages = json_decode($item->images, true) ?? [];
+                        $existingImages = is_array($item->images) ? $item->images : (is_string($item->images) ? json_decode($item->images, true) : []) ?? [];
                     @endphp
 
                     @if(!empty($existingImages))

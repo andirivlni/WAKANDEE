@@ -73,7 +73,7 @@
                     <!-- Item Image -->
                     <div class="shrink-0">
                         @php
-                            $itemImages = json_decode($transaction->item->images, true) ?? [];
+                            $itemImages = is_array($transaction->item->images) ? $transaction->item->images : (is_string($transaction->item->images) ? json_decode($transaction->item->images, true) : []) ?? [];
                             $itemThumb = !empty($itemImages) ? Storage::url($itemImages[0]) : asset('images/default-item.png');
                         @endphp
                         <img src="{{ $itemThumb }}" alt="{{ $transaction->item->name }}"

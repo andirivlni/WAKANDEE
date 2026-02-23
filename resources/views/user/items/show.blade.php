@@ -31,7 +31,7 @@
         <div class="col-lg-6">
             <div class="position-sticky" style="top: 100px;">
                 @php
-                    $images = json_decode($item->images, true) ?? [];
+                    $images = is_array($item->images) ? $item->images : (is_string($item->images) ? json_decode($item->images, true) : []) ?? [];
                     $firstImage = !empty($images) ? Storage::url($images[0]) : asset('images/default-item.png');
                 @endphp
 

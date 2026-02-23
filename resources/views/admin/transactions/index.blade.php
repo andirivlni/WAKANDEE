@@ -202,7 +202,7 @@
                                 <td>
                                     <div class="d-flex align-items-center gap-2">
                                         @php
-                                            $itemImages = json_decode($trx->item->images, true) ?? [];
+                                            $itemImages = is_array($trx->item->images) ? $trx->item->images : (is_string($trx->item->images) ? json_decode($trx->item->images, true) : []) ?? [];
                                             $itemThumb = !empty($itemImages) ? Storage::url($itemImages[0]) : asset('images/default-item.png');
                                         @endphp
                                         <img src="{{ $itemThumb }}" alt="{{ $trx->item->name }}" width="48" height="48" style="object-fit: cover; border-radius: 12px;">
@@ -351,7 +351,7 @@
                                 </h6>
                                 <div class="d-flex gap-3">
                                     @php
-                                        $itemImages = json_decode($trx->item->images, true) ?? [];
+                                        $itemImages = is_array($trx->item->images) ? $trx->item->images : (is_string($trx->item->images) ? json_decode($trx->item->images, true) : []) ?? [];
                                         $itemThumb = !empty($itemImages) ? Storage::url($itemImages[0]) : asset('images/default-item.png');
                                     @endphp
                                     <img src="{{ $itemThumb }}" alt="{{ $trx->item->name }}" width="80" height="80" style="object-fit: cover; border-radius: 12px;">

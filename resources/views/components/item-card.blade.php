@@ -8,7 +8,7 @@
                 // Pastikan images dalam bentuk array
                 $images = $item->images ?? [];
                 if (is_string($images)) {
-                    $images = json_decode($images, true) ?? [];
+                    $images = is_array($images) ? $images : (is_string($images) ? json_decode($images, true) : []) ?? [];
                 }
 
                 // Ambil gambar pertama atau default

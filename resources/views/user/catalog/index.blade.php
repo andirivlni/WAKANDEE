@@ -164,7 +164,7 @@
                         <div class="col-md-2 col-4">
                             @php
                                 // PERBAIKAN: Mengecek apakah images sudah array (Eloquent Cast) atau masih string JSON
-                                $images = is_array($item->images) ? $item->images : json_decode($item->images, true);
+                                $images = is_array($item->images) ? $item->images : is_array($item->images) ? $item->images : (is_string($item->images) ? json_decode($item->images, true) : []);
                                 $images = $images ?? [];
                                 $firstImage = !empty($images) && isset($images[0]) ? Storage::url($images[0]) : asset('images/default-item.png');
                             @endphp

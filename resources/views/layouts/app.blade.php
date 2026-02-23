@@ -60,31 +60,38 @@
                             <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm rounded-pill px-4">Login</a>
                         @else
                             <div class="dropdown">
-                                <button class="btn p-0 border-0 d-flex align-items-center dropdown-toggle shadow-none"
-                                        type="button" id="userDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    @if(Auth::user()->profile_photo)
-                                        <img src="{{ Storage::url(Auth::user()->profile_photo) }}" class="rounded-circle border" width="36" height="36" style="object-fit: cover;">
-                                    @else
-                                        <div class="avatar-circle">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</div>
-                                    @endif
-                                </button>
+    <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" 
+       href="#" 
+       role="button" 
+       id="userDropdown" 
+       data-bs-toggle="dropdown" 
+       aria-expanded="false">
+        
+        @if(Auth::user()->profile_photo)
+            <img src="{{ Storage::url(Auth::user()->profile_photo) }}" class="rounded-circle border" width="32" height="32" style="object-fit: cover;">
+        @else
+            <div class="avatar-circle" style="width: 32px; height: 32px; font-size: 0.8rem;">
+                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+            </div>
+        @endif
+        <span class="d-none d-lg-inline">{{ Auth::user()->name }}</span>
+    </a>
 
-                                <ul class="dropdown-menu dropdown-menu-end mt-2 p-2 shadow" aria-labelledby="userDropdown">
-                                    <li><h6 class="dropdown-header text-dark fw-bold">{{ Auth::user()->name }}</h6></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item py-2" href="{{ route('dashboard') }}"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
-                                    <li><a class="dropdown-item py-2" href="{{ route('profile.edit') }}"><i class="bi bi-person me-2"></i>Profile</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li>
-                                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                                            @csrf
-                                            <button type="submit" class="dropdown-item py-2 text-danger w-100 text-start">
-                                                <i class="bi bi-box-arrow-right me-2"></i>Logout
-                                            </button>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
+    <ul class="dropdown-menu dropdown-menu-end mt-2 shadow-sm border-0" aria-labelledby="userDropdown">
+        <li><h6 class="dropdown-header">Manage Account</h6></li>
+        <li><a class="dropdown-item py-2" href="{{ route('dashboard') }}"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
+        <li><a class="dropdown-item py-2" href="{{ route('profile.edit') }}"><i class="bi bi-person me-2"></i>Profile</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li>
+            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                @csrf
+                <button type="submit" class="dropdown-item py-2 text-danger w-100 text-start">
+                    <i class="bi bi-box-arrow-right me-2"></i>Logout
+                </button>
+            </form>
+        </li>
+    </ul>
+</div>
                         @endguest
                     </div>
                 </div>
@@ -112,20 +119,18 @@
         </main>
     </div>
 
-    @vite(['resources/js/app.js'])
+  @vite(['resources/js/app.js'])
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Re-inisialisasi paksa jika dropdown macet
+        window.onload = function() {
             var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
-            var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
-                return new bootstrap.Dropdown(dropdownToggleEl)
+            dropdownElementList.map(function (dropdownToggleEl) {
+                const instance = bootstrap.Dropdown.getInstance(dropdownToggleEl);
+                if (instance) { instance.dispose(); }
+                return new bootstrap.Dropdown(dropdownToggleEl);
             });
-        });
+        };
     </script>
-    @stack('scripts')
 </body>
 </html>

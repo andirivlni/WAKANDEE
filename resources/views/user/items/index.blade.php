@@ -52,7 +52,7 @@
                         <!-- Image -->
                         <div class="position-relative" style="padding-top: 75%; overflow: hidden; border-radius: 16px 16px 0 0;">
                             @php
-                                $images = json_decode($item->images, true) ?? [];
+                                $images = is_array($item->images) ? $item->images : (is_string($item->images) ? json_decode($item->images, true) : []) ?? [];
                                 $firstImage = !empty($images) ? Storage::url($images[0]) : asset('images/default-item.png');
                             @endphp
                             <img src="{{ $firstImage }}" alt="{{ $item->name }}" class="position-absolute top-0 start-0 w-100 h-100" style="object-fit: cover;">

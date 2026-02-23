@@ -42,7 +42,7 @@
                     // Fix: Ensure images is an array
                     $images = $item->images ?? [];
                     if (is_string($images)) {
-                        $images = json_decode($images, true) ?? [];
+                        $images = is_array($images) ? $images : (is_string($images) ? json_decode($images, true) : []) ?? [];
                     }
                     $firstImage = !empty($images) ? Storage::url($images[0]) : asset('images/default-item.png');
                 @endphp

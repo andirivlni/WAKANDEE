@@ -78,7 +78,7 @@
                         <!-- Item Image -->
                         <div class="position-relative" style="padding-top: 75%; overflow: hidden; border-radius: 20px 20px 0 0;">
                             @php
-                                $images = json_decode($item->item->images, true) ?? [];
+                                $images = is_array($item->item->images) ? $item->item->images : (is_string($item->item->images) ? json_decode($item->item->images, true) : []) ?? [];
                                 $firstImage = !empty($images) ? Storage::url($images[0]) : asset('images/default-item.png');
                                 $isOutOfStock = $item->item->status !== 'approved';
                             @endphp
