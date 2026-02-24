@@ -123,4 +123,19 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Allowed Hosts for Application Security
+    |--------------------------------------------------------------------------
+    |
+    | This array specifies which hosts are allowed to access the application.
+    | It's crucial to add 'healthcheck.railway.app' to allow Railway's health
+    | check system to verify your deployment without being blocked.
+    |
+    */
+    'allowed_hosts' => [
+        env('APP_URL', 'http://localhost'),
+        'healthcheck.railway.app', // Wajib untuk Railway health check
+    ],
+
 ];
