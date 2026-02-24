@@ -135,6 +135,69 @@ class TransactionMonitorController extends Controller
     }
 
     /**
+     * Complete transaction via AJAX
+     */
+    public function complete($id)
+    {
+        try {
+            $transaction = Transaction::findOrFail($id);
+
+            DB::beginTransaction();
+
+            $transaction->update([
+                'payment_status' => 'completed',
+                'completed_at' => now()
+            ]);
+
+            $transaction->item->update(['status' => 'sold']);
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Transaksi berhasil diselesaikan'
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal menyelesaikan transaksi: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Cancel transaction via AJAX
+     */
+    public function cancel($id)
+    {
+        try {
+            $transaction = Transaction::findOrFail($id);
+
+            DB::beginTransaction();
+
+            $transaction->update([
+                'payment_status' => 'cancelled'
+            ]);
+
+            $transaction->item->update(['status' => 'approved']);
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Transaksi berhasil dibatalkan'
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal membatalkan transaksi: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
      * Export transactions report.
      */
     public function export(Request $request)

@@ -95,15 +95,19 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     });
 
     Route::prefix('transactions')->name('transactions.')->group(function () {
-    Route::get('/', [App\Http\Controllers\Admin\TransactionMonitorController::class, 'index'])->name('index');
+        Route::get('/', [App\Http\Controllers\Admin\TransactionMonitorController::class, 'index'])->name('index');
 
-    // 1. PINDAHKAN EXPORT KE ATAS {id}
-    Route::get('/export', [App\Http\Controllers\Admin\TransactionMonitorController::class, 'export'])->name('export');
+        // 1. PINDAHKAN EXPORT KE ATAS {id}
+        Route::get('/export', [App\Http\Controllers\Admin\TransactionMonitorController::class, 'export'])->name('export');
 
-    // 2. Rute dengan parameter dinamis ditaruh setelahnya
-    Route::get('/{id}', [App\Http\Controllers\Admin\TransactionMonitorController::class, 'show'])->name('show');
-    Route::post('/{id}/complete', [App\Http\Controllers\Admin\TransactionMonitorController::class, 'complete'])->name('complete');
-    Route::post('/{id}/cancel', [App\Http\Controllers\Admin\TransactionMonitorController::class, 'cancel'])->name('cancel');
+        // 2. Rute dengan parameter dinamis ditaruh setelahnya
+        Route::get('/{id}', [App\Http\Controllers\Admin\TransactionMonitorController::class, 'show'])->name('show');
+        Route::post('/{id}/complete', [App\Http\Controllers\Admin\TransactionMonitorController::class, 'complete'])->name('complete');
+        Route::post('/{id}/cancel', [App\Http\Controllers\Admin\TransactionMonitorController::class, 'cancel'])->name('cancel');
+
+        // TAMBAHKAN ROUTE UNTUK AJAX (tanpa menghapus yang existing)
+        Route::post('/complete/{id}', [App\Http\Controllers\Admin\TransactionMonitorController::class, 'complete'])->name('complete.ajax');
+        Route::post('/cancel/{id}', [App\Http\Controllers\Admin\TransactionMonitorController::class, 'cancel'])->name('cancel.ajax');
     });
 
     Route::prefix('settings')->name('settings.')->group(function () {

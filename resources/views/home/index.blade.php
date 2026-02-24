@@ -293,7 +293,7 @@
                             A
                         </div>
                         <div>
-                            <p class="fw-bold text-white mb-0">Andi, SMK Negeri 1 Balikpapan</p>
+                            <p class="fw-bold text-white mb-0">Andi, SMK Negeri 6 Balikpapan</p>
                             <small class="text-white opacity-75">XI Rekayasa Perangkat Lunak</small>
                         </div>
                     </div>
