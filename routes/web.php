@@ -133,3 +133,7 @@ Route::prefix('api')->name('api.')->group(function () {
 // ==================== FALLBACK & STATIC ====================
 Route::fallback([App\Http\Controllers\FallbackController::class, 'index']);
 
+Route::get('/health', function () {
+    return response()->json(['status' => 'ok'], 200);
+});
+
