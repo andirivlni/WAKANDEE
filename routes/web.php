@@ -124,7 +124,9 @@ Route::prefix('api')->name('api.')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::post('/wishlist/toggle/{item_id}', [App\Http\Controllers\Api\WishlistController::class, 'toggle'])->name('wishlist.toggle');
         Route::get('/notifications/unread', [App\Http\Controllers\Api\NotificationController::class, 'unread'])->name('notifications.unread');
-        Route::get('/my-transactions', [App\Http\Controllers\User\TransactionController::class, 'index'])->name('transactions.index');
+        Route::get('/my-transactions', [App\Http\Controllers\User\TransactionController::class, 'index'])
+            ->name('my_transactions'); // Hasilnya nanti: api.my_transactions
+
     });
 });
 
