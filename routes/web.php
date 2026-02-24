@@ -129,7 +129,5 @@ Route::prefix('api')->name('api.')->group(function () {
 });
 
 // ==================== FALLBACK & STATIC ====================
-Route::view('/tentang', 'pages.about')->name('about');
-Route::fallback(function () {
-    return response()->view('errors.404', [], 404);
-});
+Route::fallback([App\Http\Controllers\FallbackController::class, 'index']);
+
