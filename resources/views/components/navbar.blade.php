@@ -4,9 +4,7 @@
      style="{{ $transparent ? 'background: transparent !important; backdrop-filter: none;' : '' }}">
     <div class="container">
         <a class="navbar-brand fw-bold" href="{{ url('/') }}">
-            <span style="background: #22c55e; color: #22c55e;">
-                WAKANDE
-            </span>
+            <span class="gradient-text">WAKANDE</span>
         </a>
 
         <div class="d-flex align-items-center gap-2">

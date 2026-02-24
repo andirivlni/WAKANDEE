@@ -30,11 +30,11 @@
         }
 
         .navbar {
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            z-index: 1050;
-            border-bottom: 1px solid rgba(74, 222, 128, 0.2);
-        }
+    /* backdrop-filter: blur(10px); */
+    /* -webkit-backdrop-filter: blur(10px); */
+    z-index: 1050;
+    border-bottom: 1px solid rgba(74, 222, 128, 0.2);
+}
 
         .avatar-circle {
             width: 36px;
@@ -59,6 +59,8 @@
             border-radius: 12px;
             z-index: 1100;
         }
+
+        
     </style>
 </head>
 
@@ -161,7 +163,7 @@
     </div>
 
     @vite(['resources/js/app.js'])
-
+    @stack('scripts')
 
     <script>
         window.onload = function() {

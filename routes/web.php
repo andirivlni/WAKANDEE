@@ -40,6 +40,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/payment/success/{id}', [App\Http\Controllers\User\TransactionController::class, 'success'])->name('success');
         Route::post('/{id}/confirm', [App\Http\Controllers\User\TransactionController::class, 'confirmDelivery'])->name('confirm');
         Route::post('/{id}/cancel', [App\Http\Controllers\User\TransactionController::class, 'cancel'])->name('cancel');
+
+        // TAMBAHKAN ROUTE INI UNTUK AJAX CONFIRM
+        Route::post('/confirm/{id}', [App\Http\Controllers\User\TransactionController::class, 'confirm'])->name('confirm.ajax');
     });
 
     Route::prefix('profile')->name('profile.')->group(function () {
@@ -117,6 +120,7 @@ Route::prefix('api')->name('api.')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::post('/wishlist/toggle/{item_id}', [App\Http\Controllers\Api\WishlistController::class, 'toggle'])->name('wishlist.toggle');
         Route::get('/notifications/unread', [App\Http\Controllers\Api\NotificationController::class, 'unread'])->name('notifications.unread');
+        Route::get('/my-transactions', [TransactionController::class, 'index'])->name('transactions.index');
     });
 });
 

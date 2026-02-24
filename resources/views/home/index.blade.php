@@ -20,7 +20,7 @@
                 <!-- Headline -->
                 <h1 class="display-4 fw-bold mb-4" style="line-height: 1.2;">
                     Warisan Akademik untuk
-                    <span style="background: #22c55e; color: #22c55e;">
+                    <span style="color: #22c55e;">
                         Generasi Berikutnya
                     </span>
                 </h1>
@@ -293,8 +293,8 @@
                             A
                         </div>
                         <div>
-                            <p class="fw-bold text-white mb-0">Andi, SMAN 1 Balikpapan</p>
-                            <small class="text-white opacity-75">Alumni 2024</small>
+                            <p class="fw-bold text-white mb-0">Andi, SMK Negeri 1 Balikpapan</p>
+                            <small class="text-white opacity-75">XI Rekayasa Perangkat Lunak</small>
                         </div>
                     </div>
                 </div>
@@ -335,7 +335,7 @@
 <section class="py-5">
     <div class="container">
         <div class="text-center mb-5">
-            <span class="badge bg-light text-dark rounded-pill px-4 py-2 mb-3">TESTIMONIAL</span>
+            <span class="badge bg-light text-dark rounded-pill px-4 py-2 mb-3">TESTIMONIAL </span>
             <h2 class="fw-bold mb-3">Apa Kata Mereka?</h2>
             <p class="text-secondary" style="max-width: 600px; margin: 0 auto;">
                 Ribuan siswa telah merasakan manfaat WAKANDE

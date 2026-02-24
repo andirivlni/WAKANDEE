@@ -298,4 +298,74 @@ class TransactionController extends Controller
             return back()->with('error', 'Gagal konfirmasi: ' . $e->getMessage());
         }
     }
+
+    /**
+     * AJAX Confirm (Modified to allow both buyer and seller)
+     */
+    public function confirm($id)
+    {
+        $transaction = Transaction::where(function($query) {
+                $query->where('buyer_id', Auth::id())
+                      ->orWhere('seller_id', Auth::id());
+            })
+            ->where('payment_status', 'paid')
+            ->findOrFail($id);
+
+        try {
+            DB::beginTransaction();
+            $transaction->update([
+                'payment_status' => 'completed',
+                'completed_at' => now(),
+            ]);
+            $transaction->item->update(['status' => 'sold']);
+
+            // Notifikasi untuk pihak lawan (jika buyer yang konfirm, notif ke seller, dst)
+            $notifUserId = ($transaction->buyer_id == Auth::id())
+                ? $transaction->seller_id
+                : $transaction->buyer_id;
+
+            Notification::create([
+                'user_id' => $notifUserId,
+                'type' => 'delivery_confirmed',
+                'title' => 'Barang Telah Diterima',
+                'message' => Auth::user()->name . ' telah mengkonfirmasi penerimaan ' . $transaction->item->name,
+            ]);
+
+            DB::commit();
+
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        }
+    }
+
+    /**
+     * AJAX Cancel (Added for SweetAlert)
+     */
+    public function cancel($id)
+    {
+        $transaction = Transaction::where('buyer_id', Auth::id())
+            ->where('payment_status', 'pending')
+            ->findOrFail($id);
+
+        try {
+            DB::beginTransaction();
+            $transaction->update(['payment_status' => 'cancelled']);
+            $transaction->item->update(['status' => 'approved']); // Kembalikan status barang agar bisa dibeli lagi
+
+            Notification::create([
+                'user_id' => $transaction->seller_id,
+                'type' => 'transaction_cancelled',
+                'title' => 'Transaksi Dibatalkan',
+                'message' => 'Pembeli membatalkan pesanan untuk ' . $transaction->item->name,
+            ]);
+            DB::commit();
+
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        }
+    }
 }

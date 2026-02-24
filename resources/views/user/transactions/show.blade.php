@@ -359,13 +359,13 @@
                         </div>
                     @endif
 
-                    @if($transaction->payment_status == 'paid' && $transaction->buyer_id == Auth::id())
-                        <button class="btn btn-success rounded-pill py-3 mt-2" onclick="confirmDelivery({{ $transaction->id }})">
-                            <i class="bi bi-check2-circle me-2"></i>Konfirmasi Penerimaan
-                        </button>
-                    @endif
+                    @if($transaction->payment_status == 'paid' && ($transaction->buyer_id == Auth::id() || $transaction->seller_id == Auth::id()))
+    <button class="btn btn-success rounded-pill py-3 mt-2" onclick="confirmDelivery({{ $transaction->id }})">
+        <i class="bi bi-check2-circle me-2"></i>Konfirmasi Penerimaan
+    </button>
+@endif
 
-                    @if($transaction->payment_status == 'pending' && $transaction->buyer_id == Auth::id())
+                    @if($transaction->payment_status == 'pending' && $transaction->seller_id == Auth::id())
                         <button class="btn btn-outline-danger rounded-pill py-3 mt-2" onclick="cancelTransaction({{ $transaction->id }})">
                             <i class="bi bi-x-circle me-2"></i>Batalkan Transaksi
                         </button>

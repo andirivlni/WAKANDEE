@@ -4,10 +4,8 @@
             <!-- Brand Column -->
             <div class="col-lg-4 col-md-6">
                 <div class="mb-4">
-                    <h4 class="fw-bold mb-3">
-                        <span style="background: #22c55e; color: #22c55e;">
-                            WAKANDE
-                        </span>
+                    <h4 class="fw-bold mb-3" style="color: #22c55e;">
+                        WAKANDE
                     </h4>
                     <p class="text-secondary mb-3" style="font-size: 0.95rem; line-height: 1.6;">
                         Ekosistem sirkular perlengkapan sekolah. Warisan akademik untuk generasi berikutnya.
