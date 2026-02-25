@@ -7,6 +7,7 @@ export default defineConfig({
             input: [
                 'resources/sass/app.scss',
                 'resources/css/app.css',
+                'resources/css/dark-mode.css',
                 'resources/js/app.js',
             ],
             refresh: true,
