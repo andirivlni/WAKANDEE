@@ -4,19 +4,19 @@
 
 @section('content')
 <div class="container py-4">
-    <!-- Breadcrumb -->
-    <nav aria-label="breadcrumb" class="mb-4">
-        <ol class="breadcrumb">
+    {{-- BREADCRUMB MINI --}}
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb small">
             <li class="breadcrumb-item"><a href="{{ route('catalog.index') }}" class="text-decoration-none text-secondary">Katalog</a></li>
             <li class="breadcrumb-item"><a href="{{ route('catalog.index', ['category' => $item->category]) }}" class="text-decoration-none text-secondary">{{ $item->category_label }}</a></li>
-            <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">{{ Str::limit($item->name, 30) }}</li>
+            <li class="breadcrumb-item active text-secondary fw-semibold" aria-current="page">{{ Str::limit($item->name, 25) }}</li>
         </ol>
     </nav>
 
-    <div class="row g-5">
-        <!-- Left Column - Image Gallery -->
-        <div class="col-lg-7">
-            <div class="position-sticky" style="top: 100px;">
+    <div class="row g-4">
+        {{-- LEFT COLUMN - IMAGES --}}
+        <div class="col-lg-6">
+            <div class="position-sticky" style="top: 80px;">
                 @php
                     $images = $item->images ?? [];
                     if (is_string($images)) {
@@ -25,270 +25,219 @@
                     $firstImage = !empty($images) ? Storage::url($images[0]) : asset('images/default-item.png');
                 @endphp
 
-                <!-- Main Image -->
-                <div class="main-image-container mb-3 rounded-4 overflow-hidden" style="background: white; aspect-ratio: 1; border: 1px solid rgba(0,0,0,0.02);">
+                {{-- MAIN IMAGE --}}
+                <div class="main-image-container mb-2 rounded-3 overflow-hidden border" style="aspect-ratio: 1;">
                     <img src="{{ $firstImage }}"
                          alt="{{ $item->name }}"
                          id="mainImage"
                          class="w-100 h-100"
-                         style="object-fit: contain; transition: transform 0.3s;"
-                         onmouseover="this.style.transform='scale(1.02)'"
-                         onmouseout="this.style.transform='scale(1)'">
+                         style="object-fit: contain; cursor: zoom-in; transition: transform 0.2s;"
+                         onclick="if(window.innerWidth<768) window.open(this.src,'_blank')">
                 </div>
 
-                <!-- Thumbnails -->
+                {{-- THUMBNAILS --}}
                 @php
                     $thumbnailImages = is_array($images) ? $images : [];
                 @endphp
 
                 @if(count($thumbnailImages) > 1)
-                    <div class="row g-2">
+                    <div class="d-flex gap-1 overflow-auto pb-1" style="scrollbar-width: thin;">
                         @foreach($thumbnailImages as $index => $image)
                             @if(!empty($image))
-                            <div class="col-3">
-                                <div class="thumbnail-container rounded-3 overflow-hidden {{ $index == 0 ? 'active' : '' }}"
-                                     onclick="changeMainImage('{{ Storage::url($image) }}', this)"
-                                     style="aspect-ratio: 1; cursor: pointer; border: 2px solid transparent;">
-                                    <img src="{{ Storage::url($image) }}" class="w-100 h-100" style="object-fit: cover;">
-                                </div>
+                            <div class="thumbnail-container flex-shrink-0 rounded-2 overflow-hidden {{ $index == 0 ? 'active' : '' }} border"
+                                 onclick="changeMainImage('{{ Storage::url($image) }}', this)"
+                                 style="width: 60px; height: 60px; cursor: pointer;">
+                                <img src="{{ Storage::url($image) }}" class="w-100 h-100" style="object-fit: cover;">
                             </div>
                             @endif
                         @endforeach
                     </div>
                 @endif
 
-                <!-- Share & Save -->
-                <div class="d-flex gap-3 mt-4">
-                    <button class="btn btn-outline-secondary rounded-pill grow py-3" onclick="shareItem()">
-                        <i class="bi bi-share me-2"></i>Bagikan
+                {{-- SHARE BUTTON ONLY --}}
+                <div class="d-flex gap-2 mt-2">
+                    <button class="btn btn-sm rounded-4 px-3 py-1 d-flex align-items-center" onclick="shareItem()"
+                            style="background: #F8FBF8; border: 1px solid #EDF2F0; color: #1A2A24;">
+                        <i class="bi bi-share me-1" style="font-size: 0.8rem;"></i> Bagikan
                     </button>
                     @auth
-                        <button class="btn {{ $is_wishlisted ? 'btn-danger' : 'btn-outline-secondary' }} rounded-pill grow py-3" id="wishlistBtn" onclick="toggleWishlist({{ $item->id }})">
-                            <i class="bi bi-heart{{ $is_wishlisted ? '-fill' : '' }} me-2"></i>
-                            <span id="wishlistText">{{ $is_wishlisted ? 'Di Wishlist' : 'Simpan' }}</span>
+                        <button class="btn btn-sm rounded-4 px-3 py-1 d-flex align-items-center {{ $is_wishlisted ? 'text-danger' : '' }}"
+                                style="background: #F8FBF8; border: 1px solid #EDF2F0; color: #1A2A24;"
+                                onclick="toggleWishlist({{ $item->id }})">
+                            <i class="bi bi-heart{{ $is_wishlisted ? '-fill' : '' }} me-1" style="font-size: 0.8rem; color: {{ $is_wishlisted ? '#dc3545' : '' }};"></i>
+                            <span id="wishlistText">{{ $is_wishlisted ? 'Disimpan' : 'Simpan' }}</span>
                         </button>
                     @else
-                        <a href="{{ route('login') }}" class="btn btn-outline-secondary rounded-pill grow py-3">
-                            <i class="bi bi-heart me-2"></i>Simpan
+                        <a href="{{ route('login') }}" class="btn btn-sm rounded-4 px-3 py-1 d-flex align-items-center"
+                           style="background: #F8FBF8; border: 1px solid #EDF2F0; color: #1A2A24;">
+                            <i class="bi bi-heart me-1" style="font-size: 0.8rem;"></i> Simpan
                         </a>
                     @endauth
                 </div>
             </div>
         </div>
 
-        <!-- Right Column - Item Details -->
-        <div class="col-lg-5">
-            <!-- Badges -->
-            <div class="d-flex flex-wrap gap-2 mb-4">
+        {{-- RIGHT COLUMN - DETAILS --}}
+        <div class="col-lg-6">
+            {{-- BADGES MINI --}}
+            <div class="d-flex flex-wrap gap-1 mb-2">
                 @if($item->type == 'gift')
-                    <span class="badge bg-success rounded-pill px-4 py-3">
-                        <i class="bi bi-gift me-2"></i>Gratis
+                    <span class="badge bg-success rounded-pill px-2 py-1" style="font-size: 0.65rem;">
+                        <i class="bi bi-gift me-1" style="font-size: 0.6rem;"></i>Gratis
                     </span>
                 @else
-                    <span class="badge bg-success rounded-pill px-4 py-3">
-                        <i class="bi bi-tag me-2"></i>Dijual
+                    <span class="badge bg-success rounded-pill px-2 py-1" style="font-size: 0.65rem;">
+                        <i class="bi bi-tag me-1" style="font-size: 0.6rem;"></i>Dijual
                     </span>
                 @endif
-
-                <span class="badge bg-light text-dark rounded-pill px-4 py-3">
-                    <i class="bi bi-book me-2"></i>{{ $item->category_label }}
+                <span class="badge bg-light text-dark rounded-pill px-2 py-1" style="font-size: 0.65rem; background: #F0F5F0 !important;">
+                    <i class="bi bi-book me-1" style="font-size: 0.6rem;"></i>{{ $item->category_label }}
                 </span>
-
-                <span class="badge bg-light text-dark rounded-pill px-4 py-3">
-                    <i class="bi bi-check-circle me-2"></i>{{ $item->condition_label }}
+                <span class="badge bg-light text-dark rounded-pill px-2 py-1" style="font-size: 0.65rem; background: #F0F5F0 !important;">
+                    <i class="bi bi-check-circle me-1" style="font-size: 0.6rem;"></i>{{ $item->condition_label }}
                 </span>
             </div>
 
-            <!-- Title -->
-            <h1 class="display-6 fw-bold mb-3">{{ $item->name }}</h1>
+            {{-- TITLE --}}
+            <h4 class="fw-bold mb-2" style="color: #1A2A24;">{{ $item->name }}</h4>
 
-            <!-- Price -->
-            <div class="mb-4 p-4 rounded-4" style="background: rgba(34, 197, 94, 0.05);">
+            {{-- PRICE CARD MINI --}}
+            <div class="p-3 rounded-3 mb-3" style="background: #F8FBF8;">
                 @if($item->type == 'sale')
                     <div class="d-flex align-items-baseline gap-2">
-                        <span class="display-5 fw-bold" style="color: #22c55e;">Rp {{ number_format($item->price, 0, ',', '.') }}</span>
-                        <span class="text-secondary">+ admin Rp1.000</span>
+                        <span class="fw-bold" style="color: #22c55e; font-size: 1.3rem;">Rp {{ number_format($item->price, 0, ',', '.') }}</span>
+                        <small class="text-secondary">+ Rp1.000 admin</small>
                     </div>
-                    <small class="text-secondary d-block mt-2">
-                        <i class="bi bi-info-circle"></i> Biaya admin Rp1.000 untuk transaksi berbayar
-                    </small>
                 @else
-                    <span class="display-5 fw-bold text-success">Gratis</span>
-                    <small class="text-secondary d-block mt-2">
-                        <i class="bi bi-gift"></i> Barang hibah dari kakak kelas
+                    <span class="fw-bold" style="color: #22c55e; font-size: 1.3rem;">Gratis</span>
+                    <small class="text-secondary d-block mt-1">
+                        <i class="bi bi-gift me-1" style="font-size: 0.7rem;"></i>Barang hibah dari kakak kelas
                     </small>
                 @endif
             </div>
 
-            <!-- Action Button -->
+            {{-- ACTION BUTTON --}}
             @auth
                 @if($item->user_id !== auth()->id())
-                    <div class="d-grid mb-4">
-                        <a href="{{ route('transactions.checkout', $item->id) }}" class="btn btn-success btn-rounded py-3" style="background: #22c55e; border: none;">
-                            <i class="bi bi-{{ $item->type == 'gift' ? 'gift' : 'cart' }} me-2"></i>
-                            {{ $item->type == 'gift' ? 'Ambil Gratis' : 'Beli Sekarang' }}
-                            <i class="bi bi-arrow-right ms-2"></i>
-                        </a>
-                    </div>
+                    <a href="{{ route('transactions.checkout', $item->id) }}"
+                       class="btn btn-sm w-100 rounded-4 py-2 mb-3 text-white"
+                       style="background: #22c55e; border: none; font-size: 0.9rem;">
+                        <i class="bi bi-{{ $item->type == 'gift' ? 'gift' : 'cart' }} me-2"></i>
+                        {{ $item->type == 'gift' ? 'Ambil Gratis' : 'Beli Sekarang' }}
+                    </a>
                 @else
-                    <div class="alert alert-info rounded-4 border-0 mb-4">
-                        <div class="d-flex align-items-center gap-3">
-                            <i class="bi bi-info-circle-fill fs-4"></i>
-                            <div>
-                                <p class="fw-semibold mb-1">Ini adalah barangmu</p>
-                                <p class="small mb-0">
-                                    <a href="{{ route('items.show', $item->id) }}" class="text-decoration-none" style="color: #22c55e;">Kelola barang</a>
-                                    atau
-                                    <a href="{{ route('catalog.index') }}" class="text-decoration-none" style="color: #22c55e;">cari barang lain</a>
-                                </p>
-                            </div>
-                        </div>
+                    <div class="alert alert-info rounded-3 py-2 mb-3" style="background: rgba(13,202,240,0.05); border: none;">
+                        <small><i class="bi bi-info-circle me-1"></i> Ini barangmu - <a href="{{ route('items.show', $item->id) }}" class="text-decoration-none" style="color: #22c55e;">Kelola</a></small>
                     </div>
                 @endif
             @else
-                <div class="d-grid mb-4">
-                    <a href="{{ route('login') }}" class="btn btn-success btn-rounded py-3">
-                        <i class="bi bi-box-arrow-in-right me-2"></i>
-                        Login untuk {{ $item->type == 'gift' ? 'Ambil Gratis' : 'Beli' }}
-                    </a>
-                </div>
+                <a href="{{ route('login') }}" class="btn btn-sm w-100 rounded-4 py-2 mb-3 text-white" style="background: #22c55e; border: none;">
+                    <i class="bi bi-box-arrow-in-right me-2"></i>Login untuk {{ $item->type == 'gift' ? 'Ambil' : 'Beli' }}
+                </a>
             @endauth
 
-            <!-- Description -->
-            <div class="mb-4">
-                <h6 class="fw-bold mb-3">
-                    <i class="bi bi-file-text me-2" style="color: #22c55e;"></i>Deskripsi Barang
+            {{-- DESCRIPTION --}}
+            <div class="mb-3">
+                <h6 class="fw-semibold small mb-2" style="color: #1A2A24;">
+                    <i class="bi bi-file-text me-1" style="color: #22c55e;"></i>Deskripsi
                 </h6>
-                <div class="p-4 rounded-4" style="background: rgba(34, 197, 94,0.02);">
-                    <p class="text-secondary mb-0" style="line-height: 1.8;">{{ nl2br(e($item->description)) }}</p>
+                <div class="p-3 rounded-3" style="background: #F8FBF8;">
+                    <p class="small mb-0 text-secondary" style="line-height: 1.6;">{{ nl2br(e($item->description)) }}</p>
                 </div>
             </div>
 
-            <!-- Legacy Message -->
-            <div class="legacy-message p-4 rounded-4 mb-4">
-                <div class="d-flex gap-3">
-                    <div>
-                        <i class="bi bi-quote fs-1" style="color: #22c55e; opacity: 0.3;"></i>
+            {{-- LEGACY MESSAGE MINI --}}
+            <div class="p-3 rounded-3 mb-3" style="background: #F8FBF8; border-left: 3px solid #22c55e;">
+                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-2 py-0 mb-2" style="font-size: 0.6rem;">
+                    <i class="bi bi-chat-quote me-1"></i>Legacy Message
+                </span>
+                <p class="small fst-italic mb-2" style="color: #1A2A24;">"{{ $item->legacy_message }}"</p>
+                <div class="d-flex align-items-center gap-2">
+                    <div class="avatar-circle" style="width: 28px; height: 28px; font-size: 0.7rem; background: #22c55e;">
+                        {{ strtoupper(substr($item->user->name, 0, 1)) }}
                     </div>
-                    <div>
-                        <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2 mb-2">
-                            <i class="bi bi-chat-quote me-1"></i>Legacy Message
-                        </span>
-                        <p class="fw-light fst-italic mb-3" style="font-size: 1.2rem; color: var(--bs-body-color);">
-                            "{{ $item->legacy_message }}"
-                        </p>
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="avatar-circle" style="width: 48px; height: 48px; background: #22c55e;">
-                                {{ strtoupper(substr($item->user->name, 0, 1)) }}
-                            </div>
-                            <div>
-                                <p class="fw-semibold mb-1">{{ $item->user->name }}</p>
-                                <small class="text-secondary">
-                                    <i class="bi bi-building me-1"></i>{{ $item->user->school ?? 'Sekolah' }} •
-                                    <i class="bi bi-calendar me-1"></i>{{ $item->created_at->format('d F Y') }}
-                                </small>
-                            </div>
-                        </div>
-                    </div>
+                    <small class="text-secondary">{{ $item->user->name }}</small>
+                    <small class="text-secondary">•</small>
+                    <small class="text-secondary">{{ $item->created_at->format('d M Y') }}</small>
                 </div>
             </div>
 
-            <!-- Seller Info -->
-            <div class="seller-info p-4 rounded-4 mb-4">
-                <h6 class="fw-bold mb-3">
-                    <i class="bi bi-person-circle me-2" style="color: #22c55e;"></i>Informasi Penjual
+            {{-- SELLER INFO MINI --}}
+            <div class="p-3 rounded-3 mb-3 border" style="border-color: #EDF2F0 !important;">
+                <h6 class="fw-semibold small mb-2" style="color: #1A2A24;">
+                    <i class="bi bi-person-circle me-1" style="color: #22c55e;"></i>Penjual
                 </h6>
-                <div class="d-flex align-items-center gap-3">
+                <div class="d-flex align-items-center gap-2">
                     @if($item->user->profile_photo)
-                        <img src="{{ Storage::url($item->user->profile_photo) }}" alt="{{ $item->user->name }}" class="rounded-circle" width="64" height="64" style="object-fit: cover;">
+                        <img src="{{ Storage::url($item->user->profile_photo) }}" alt="" class="rounded-circle" width="36" height="36" style="object-fit: cover;">
                     @else
-                        <div class="avatar-circle" style="width: 64px; height: 64px; font-size: 1.5rem; background: #22c55e;">
+                        <div class="avatar-circle" style="width: 36px; height: 36px; font-size: 0.9rem; background: #22c55e;">
                             {{ strtoupper(substr($item->user->name, 0, 1)) }}
                         </div>
                     @endif
                     <div>
-                        <h5 class="fw-bold mb-1">{{ $item->user->name }}</h5>
-                        <div class="d-flex flex-wrap gap-3 mb-2">
-                            <small class="text-secondary">
-                                <i class="bi bi-building me-1"></i>{{ $item->user->school ?? 'Sekolah tidak tersedia' }}
-                            </small>
-                            <small class="text-secondary">
-                                <i class="bi bi-box me-1"></i>{{ $item->user->items()->count() }} barang
-                            </small>
-                            <small class="text-secondary">
-                                <i class="bi bi-calendar-check me-1"></i>Bergabung {{ $item->user->created_at->format('M Y') }}
-                            </small>
+                        <p class="fw-semibold small mb-0">{{ $item->user->name }}</p>
+                        <div class="d-flex gap-2 small text-secondary" style="font-size: 0.65rem;">
+                            <span><i class="bi bi-building"></i> {{ $item->user->school ?? 'Sekolah' }}</span>
+                            <span><i class="bi bi-box"></i> {{ $item->user->items()->count() }} barang</span>
                         </div>
-                        @if($item->user->phone)
-                            <a href="https://wa.me/{{ $item->user->phone }}" target="_blank" class="btn btn-sm btn-success rounded-pill px-3">
-                                <i class="bi bi-whatsapp me-1"></i>Hubungi via WA
-                            </a>
-                        @endif
+                    </div>
+                    @if($item->user->phone)
+                        <a href="https://wa.me/{{ $item->user->phone }}" target="_blank" class="btn btn-sm rounded-4 px-2 py-0 ms-auto" style="background: #25D366; color: white; font-size: 0.7rem;">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                    @endif
+                </div>
+            </div>
+
+            {{-- STATS MINI --}}
+            <div class="row g-1 mb-3">
+                <div class="col-4">
+                    <div class="text-center p-2 rounded-3" style="background: #F8FBF8;">
+                        <i class="bi bi-eye" style="color: #22c55e; font-size: 0.9rem;"></i>
+                        <span class="fw-semibold d-block small">{{ $item->views_count }}</span>
+                        <small class="text-secondary" style="font-size: 0.55rem;">Dilihat</small>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="text-center p-2 rounded-3" style="background: #F8FBF8;">
+                        <i class="bi bi-heart" style="color: #dc3545; font-size: 0.9rem;"></i>
+                        <span class="fw-semibold d-block small">{{ $item->wishlists_count ?? ($item->wishlists ? $item->wishlists->count() : 0) }}</span>
+                        <small class="text-secondary" style="font-size: 0.55rem;">Wishlist</small>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="text-center p-2 rounded-3" style="background: #F8FBF8;">
+                        <i class="bi bi-clock-history" style="color: #6c757d; font-size: 0.9rem;"></i>
+                        <span class="fw-semibold d-block small">{{ $item->created_at->diffForHumans(null, true) }}</span>
+                        <small class="text-secondary" style="font-size: 0.55rem;">Lalu</small>
                     </div>
                 </div>
             </div>
 
-            <!-- Stats -->
-            <div class="row g-3">
-                <div class="col-4">
-                    <div class="text-center p-3 rounded-4" style="background: rgba(34, 197, 94,0.02);">
-                        <i class="bi bi-eye fs-4 d-block mb-2" style="color: #22c55e;"></i>
-                        <span class="fw-bold d-block">{{ $item->views_count }}</span>
-                        <small class="text-secondary">Dilihat</small>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="text-center p-3 rounded-4" style="background: rgba(34, 197, 94,0.02);">
-                        <i class="bi bi-heart fs-4 d-block mb-2" style="color: #dc3545;"></i>
-                        <span class="fw-bold d-block">
-                            {{ $item->wishlists_count ?? ($item->wishlists ? $item->wishlists->count() : 0) }}
-                        </span>
-                        <small class="text-secondary">Wishlist</small>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="text-center p-3 rounded-4" style="background: rgba(34, 197, 94,0.02);">
-                        <i class="bi bi-clock-history fs-4 d-block mb-2" style="color: #6c757d;"></i>
-                        <span class="fw-bold d-block">{{ $item->created_at->diffForHumans() }}</span>
-                        <small class="text-secondary">Diupload</small>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Safety Tips -->
-            <div class="alert alert-warning rounded-4 border-0 mt-4" style="background: rgba(255,193,7,0.05);">
-                <div class="d-flex gap-3">
-                    <i class="bi bi-shield-check fs-4" style="color: #ffc107;"></i>
-                    <div>
-                        <h6 class="fw-semibold mb-2">Tips Aman Bertransaksi</h6>
-                        <ul class="small text-secondary mb-0" style="padding-left: 1rem;">
-                            <li>Lakukan transaksi hanya di platform WAKANDE</li>
-                            <li>Serah terima barang di Drop-off Point sekolah</li>
-                            <li>Jangan transfer ke rekening pribadi</li>
-                            <li>Konfirmasi penerimaan barang di aplikasi</li>
-                        </ul>
-                    </div>
+            {{-- SAFETY TIPS MINI --}}
+            <div class="p-2 rounded-3" style="background: #F8FBF8;">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-shield-check" style="color: #ffc107; font-size: 0.9rem;"></i>
+                    <small class="text-secondary" style="font-size: 0.7rem;">Transaksi aman via WAKANDE</small>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Related Items -->
+    {{-- RELATED ITEMS --}}
     @if(isset($related_items) && $related_items->count() > 0)
-        <div class="mt-5 pt-5">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <div>
-                    <h4 class="fw-bold mb-1">Barang Serupa</h4>
-                    <p class="text-secondary mb-0">Temukan barang lain dalam kategori {{ $item->category_label }}</p>
-                </div>
-                <a href="{{ route('catalog.index', ['category' => $item->category]) }}" class="btn btn-link text-decoration-none" style="color: #22c55e;">
-                    Lihat Semua <i class="bi bi-arrow-right"></i>
+        <div class="mt-4 pt-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="fw-semibold mb-0" style="color: #1A2A24;">Barang Serupa</h6>
+                <a href="{{ route('catalog.index', ['category' => $item->category]) }}" class="small text-decoration-none" style="color: #22c55e;">
+                    Lihat Semua <i class="bi bi-chevron-right" style="font-size: 0.7rem;"></i>
                 </a>
             </div>
 
-            <div class="row g-4">
-                @foreach($related_items as $related)
-                    <div class="col-lg-3 col-md-6">
+            <div class="row g-2">
+                @foreach($related_items->take(4) as $related)
+                    <div class="col-6 col-md-3">
                         <x-item-card :item="$related" />
                     </div>
                 @endforeach
@@ -296,6 +245,7 @@
         </div>
     @endif
 </div>
+@endsection
 
 @push('scripts')
 <script>
@@ -306,7 +256,7 @@
         // Update active class
         document.querySelectorAll('.thumbnail-container').forEach(el => {
             el.classList.remove('active');
-            el.style.borderColor = 'transparent';
+            el.style.borderColor = '#EDF2F0';
         });
         element.classList.add('active');
         element.style.borderColor = '#22c55e';
@@ -319,18 +269,16 @@
                 title: '{{ $item->name }}',
                 text: '{{ strip_tags($item->legacy_message) }}',
                 url: window.location.href,
-            })
-            .catch((error) => console.log('Error sharing:', error));
+            }).catch(() => {});
         } else {
-            // Fallback
             navigator.clipboard.writeText(window.location.href);
-            alert('Link katalog berhasil disalin!');
+            alert('Link disalin!');
         }
     }
 
     // Toggle wishlist
     function toggleWishlist(itemId) {
-        const btn = document.getElementById('wishlistBtn');
+        const btn = event.currentTarget;
         const icon = btn.querySelector('i');
         const text = document.getElementById('wishlistText');
 
@@ -346,14 +294,12 @@
         .then(data => {
             if (data.success) {
                 if (data.status === 'added') {
-                    btn.classList.remove('btn-outline-secondary');
-                    btn.classList.add('btn-danger');
-                    icon.className = 'bi bi-heart-fill me-2';
-                    text.textContent = 'Di Wishlist';
+                    icon.className = 'bi bi-heart-fill me-1';
+                    icon.style.color = '#dc3545';
+                    text.textContent = 'Disimpan';
                 } else {
-                    btn.classList.remove('btn-danger');
-                    btn.classList.add('btn-outline-secondary');
-                    icon.className = 'bi bi-heart me-2';
+                    icon.className = 'bi bi-heart me-1';
+                    icon.style.color = '';
                     text.textContent = 'Simpan';
                 }
             }
@@ -361,12 +307,14 @@
         .catch(error => console.error('Error:', error));
     }
 
-    // Zoom image on click (for mobile)
-    document.getElementById('mainImage')?.addEventListener('click', function() {
-        if (window.innerWidth < 768) {
-            // Open image in new tab for mobile
-            window.open(this.src, '_blank');
+    // Zoom on hover desktop
+    document.getElementById('mainImage')?.addEventListener('mouseenter', function() {
+        if (window.innerWidth >= 768) {
+            this.style.transform = 'scale(1.02)';
         }
+    });
+    document.getElementById('mainImage')?.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
     });
 </script>
 @endpush
@@ -375,41 +323,78 @@
 <style>
     .main-image-container {
         background: white;
-        transition: all 0.3s;
+        transition: all 0.2s;
+    }
+
+    .thumbnail-container {
+        transition: all 0.2s;
+        border-color: #EDF2F0 !important;
     }
 
     .thumbnail-container.active {
         border-color: #22c55e !important;
-        box-shadow: 0 0 0 3px rgba(34, 197, 94,0.1);
+        box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.1);
     }
 
-    .legacy-message {
-        background: rgba(34, 197, 94, 0.05);
-        border-left: 6px solid #22c55e;
+    .thumbnail-container:hover {
+        border-color: #22c55e !important;
     }
 
-    .seller-info {
-        background: white;
-        border: 1px solid rgba(0,0,0,0.02);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    .avatar-circle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: white;
+        font-weight: 600;
     }
 
+    /* DARK MODE */
     [data-bs-theme="dark"] .main-image-container {
-        background: #1a1a2c;
+        background: #1A1A2C;
     }
 
-    [data-bs-theme="dark"] .seller-info {
-        background: #1a1a2c;
-        border-color: rgba(255,255,255,0.05);
+    [data-bs-theme="dark"] [style*="background: #F8FBF8"] {
+        background: rgba(255, 255, 255, 0.03) !important;
+    }
+
+    [data-bs-theme="dark"] [style*="background: white"] {
+        background: #1A1A2C !important;
+    }
+
+    [data-bs-theme="dark"] .border {
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    [data-bs-theme="dark"] .text-secondary {
+        color: #9CA3AF !important;
     }
 
     [data-bs-theme="dark"] .thumbnail-container {
-        background: #1a1a2c;
+        border-color: rgba(255, 255, 255, 0.1) !important;
     }
 
-    .breadcrumb a:hover {
-        color: #22c55e !important;
+    [data-bs-theme="dark"] .thumbnail-container.active {
+        border-color: #22c55e !important;
+    }
+
+    /* Pagination */
+    .pagination {
+        gap: 0.2rem;
+    }
+
+    .page-link {
+        border-radius: 30px !important;
+        padding: 0.3rem 0.8rem;
+        font-size: 0.8rem;
+        border: 1px solid #EDF2F0;
+        color: #1A2A24;
+    }
+
+    .page-item.active .page-link {
+        background: #22c55e;
+        border-color: #22c55e;
+        color: white;
     }
 </style>
 @endpush
-@endsection

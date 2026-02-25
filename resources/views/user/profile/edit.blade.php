@@ -6,241 +6,204 @@
 <div class="container py-4">
     <div class="row justify-content-center">
         <div class="col-lg-8">
-            <!-- Header -->
-            <div class="text-center mb-5">
-                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-4 py-2 mb-3">
-                    <i class="bi bi-person me-2"></i>PROFIL
+            {{-- HEADER MINI --}}
+            <div class="text-center mb-4">
+                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-1 mb-2" style="font-size: 0.8rem;">
+                    <i class="bi bi-person me-1"></i>PROFIL
                 </span>
-                <h1 class="h2 fw-bold mb-3">Edit Profil</h1>
-                <p class="text-secondary">
+                <h5 class="fw-bold mb-1" style="color: #1A2A24;">Edit Profil</h5>
+                <p class="small text-secondary" style="max-width: 500px; margin: 0 auto; font-size: 0.8rem;">
                     Perbarui informasi dirimu untuk pengalaman yang lebih baik di WAKANDE
                 </p>
             </div>
 
-            <!-- Profile Photo -->
-            <div class="profile-card p-4 p-md-5 mb-4 text-center">
+            {{-- PROFILE PHOTO --}}
+            <div class="profile-card p-4 mb-3 text-center" style="background: white; border: 1px solid #EDF2F0; border-radius: 16px;">
                 <div class="position-relative d-inline-block">
-                    <!-- Photo Preview -->
-                    <div class="photo-preview mb-3">
+                    {{-- Photo Preview --}}
+                    <div class="photo-preview mb-2">
                         @if(Auth::user()->profile_photo)
                             <img src="{{ Storage::url(Auth::user()->profile_photo) }}"
                                  alt="{{ Auth::user()->name }}"
                                  id="profilePreview"
                                  class="rounded-circle"
-                                 width="120"
-                                 height="120"
-                                 style="object-fit: cover; border: 4px solid rgba(34, 197, 94,0.2);">
+                                 width="80"
+                                 height="80"
+                                 style="object-fit: cover; border: 3px solid rgba(34, 197, 94, 0.2);">
                         @else
-                            <div class="avatar-circle mx-auto"
+                            <div class="avatar-circle mx-auto d-flex align-items-center justify-content-center"
                                  id="profilePreview"
-                                 style="width: 120px; height: 120px; font-size: 3rem; background: #22c55e;">
+                                 style="width: 80px; height: 80px; font-size: 2rem; background: #22c55e; color: white; border-radius: 50%;">
                                 {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                             </div>
                         @endif
                     </div>
 
-                    <!-- Upload Button -->
-                    <label for="profile_photo" class="btn btn-success btn-sm rounded-circle position-absolute bottom-0 end-0 p-2"
-                           style="width: 40px; height: 40px; background: #22c55e; border: 2px solid white;">
-                        <i class="bi bi-camera-fill"></i>
+                    {{-- Upload Button --}}
+                    <label for="profile_photo" class="btn btn-sm rounded-circle position-absolute bottom-0 end-0 p-1 d-flex align-items-center justify-content-center"
+                           style="width: 28px; height: 28px; background: #22c55e; border: 2px solid white;">
+                        <i class="bi bi-camera-fill" style="font-size: 0.7rem; color: white;"></i>
                         <input type="file" id="profile_photo" name="profile_photo" class="d-none" accept="image/*" form="profileForm">
                     </label>
                 </div>
 
-                <p class="small text-secondary mt-3 mb-0">
-                    <i class="bi bi-info-circle me-1"></i>
-                    Format: JPG, PNG. Maksimal 2MB
+                <p class="small text-secondary mt-2 mb-0" style="font-size: 0.7rem;">
+                    <i class="bi bi-info-circle me-1"></i> Format: JPG, PNG. Maksimal 2MB
                 </p>
 
                 @if(Auth::user()->profile_photo)
-                    <button type="button" class="btn btn-link text-danger text-decoration-none mt-2" onclick="removePhoto()">
+                    <button type="button" class="btn btn-link text-danger text-decoration-none mt-1 p-0" style="font-size: 0.7rem;" onclick="removePhoto()">
                         <i class="bi bi-trash me-1"></i>Hapus Foto
                     </button>
                 @endif
             </div>
 
-            <!-- Edit Profile Form -->
-            <form id="profileForm" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+            {{-- FORM --}}
+            <form id="profileForm" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" novalidate>
                 @csrf
                 @method('PUT')
 
-                <!-- Personal Information -->
-                <div class="profile-card p-4 p-md-5 mb-4">
-                    <div class="d-flex align-items-center gap-3 mb-4">
-                        <div class="section-icon d-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10" style="width: 40px; height: 40px;">
-                            <i class="bi bi-person-badge text-success"></i>
+                {{-- INFORMASI PRIBADI --}}
+                <div class="profile-card p-3 mb-3" style="background: white; border: 1px solid #EDF2F0; border-radius: 16px;">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 28px; height: 28px; background: rgba(34,197,94,0.1);">
+                            <i class="bi bi-person-badge" style="color: #22c55e; font-size: 0.8rem;"></i>
                         </div>
-                        <h5 class="fw-bold mb-0">Informasi Pribadi</h5>
+                        <h6 class="fw-semibold mb-0" style="color: #1A2A24; font-size: 0.9rem;">Informasi Pribadi</h6>
                     </div>
 
-                    <div class="row g-4">
-                        <!-- Name -->
+                    <div class="row g-2">
+                        {{-- Name --}}
                         <div class="col-12">
-                            <label for="name" class="form-label fw-semibold">
-                                Nama Lengkap <span class="text-danger">*</span>
-                            </label>
+                            <label class="form-label fw-semibold small mb-1">Nama Lengkap <span class="text-danger">*</span></label>
                             <div class="input-group">
-                                <span class="input-group-text bg-transparent border-end-0 rounded-start-4">
-                                    <i class="bi bi-person text-secondary"></i>
+                                <span class="input-group-text bg-transparent border-end-0 px-2" style="border-color: #EDF2F0;">
+                                    <i class="bi bi-person text-secondary" style="font-size: 0.8rem;"></i>
                                 </span>
-                                <input type="text"
-                                       class="form-control form-control-lg border-start-0 rounded-end-4 @error('name') is-invalid @enderror"
-                                       id="name"
-                                       name="name"
-                                       value="{{ old('name', Auth::user()->name) }}"
-                                       placeholder="Masukkan nama lengkap"
-                                       required>
+                                <input type="text" class="form-control border-start-0 @error('name') is-invalid @enderror"
+                                       name="name" value="{{ old('name', Auth::user()->name) }}" required
+                                       style="font-size: 0.85rem; border-color: #EDF2F0;">
                             </div>
-                            @error('name')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
                         </div>
 
-                        <!-- Email (Read Only) -->
+                        {{-- Email --}}
                         <div class="col-12">
-                            <label for="email" class="form-label fw-semibold">
-                                Email
-                            </label>
+                            <label class="form-label fw-semibold small mb-1">Email</label>
                             <div class="input-group">
-                                <span class="input-group-text bg-transparent border-end-0 rounded-start-4">
-                                    <i class="bi bi-envelope text-secondary"></i>
+                                <span class="input-group-text bg-transparent border-end-0 px-2" style="border-color: #EDF2F0;">
+                                    <i class="bi bi-envelope text-secondary" style="font-size: 0.8rem;"></i>
                                 </span>
-                                <input type="email"
-                                       class="form-control form-control-lg border-start-0 rounded-end-4 bg-light"
-                                       id="email"
-                                       value="{{ Auth::user()->email }}"
-                                       readonly
-                                       disabled>
+                                <input type="email" class="form-control border-start-0 bg-light"
+                                       value="{{ Auth::user()->email }}" readonly disabled
+                                       style="font-size: 0.85rem; border-color: #EDF2F0;">
                             </div>
-                            <small class="text-secondary d-block mt-2">
+                            <small class="text-secondary d-block mt-1" style="font-size: 0.65rem;">
                                 <i class="bi bi-info-circle"></i> Email tidak dapat diubah
                             </small>
                         </div>
 
-                        <!-- Phone -->
+                        {{-- Phone --}}
                         <div class="col-12">
-                            <label for="phone" class="form-label fw-semibold">
-                                Nomor WhatsApp
-                            </label>
+                            <label class="form-label fw-semibold small mb-1">Nomor WhatsApp</label>
                             <div class="input-group">
-                                <span class="input-group-text bg-transparent border-end-0 rounded-start-4">
-                                    <i class="bi bi-whatsapp text-secondary"></i>
+                                <span class="input-group-text bg-transparent border-end-0 px-2" style="border-color: #EDF2F0;">
+                                    <i class="bi bi-whatsapp text-secondary" style="font-size: 0.8rem;"></i>
                                 </span>
-                                <input type="tel"
-                                       class="form-control form-control-lg border-start-0 rounded-end-4 @error('phone') is-invalid @enderror"
-                                       id="phone"
-                                       name="phone"
-                                       value="{{ old('phone', Auth::user()->phone) }}"
-                                       placeholder="Contoh: 081234567890">
+                                <input type="tel" class="form-control border-start-0 @error('phone') is-invalid @enderror"
+                                       name="phone" value="{{ old('phone', Auth::user()->phone) }}"
+                                       placeholder="081234567890" style="font-size: 0.85rem; border-color: #EDF2F0;">
                             </div>
-                            @error('phone')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                            <small class="text-secondary d-block mt-2">
-                                <i class="bi bi-info-circle"></i> Digunakan untuk koordinasi serah terima barang
+                            <small class="text-secondary d-block mt-1" style="font-size: 0.65rem;">
+                                <i class="bi bi-info-circle"></i> Untuk koordinasi serah terima barang
                             </small>
                         </div>
                     </div>
                 </div>
 
-                <!-- School Information -->
-                <div class="profile-card p-4 p-md-5 mb-4">
-                    <div class="d-flex align-items-center gap-3 mb-4">
-                        <div class="section-icon d-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10" style="width: 40px; height: 40px;">
-                            <i class="bi bi-building text-success"></i>
+                {{-- INFORMASI SEKOLAH --}}
+                <div class="profile-card p-3 mb-3" style="background: white; border: 1px solid #EDF2F0; border-radius: 16px;">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 28px; height: 28px; background: rgba(34,197,94,0.1);">
+                            <i class="bi bi-building" style="color: #22c55e; font-size: 0.8rem;"></i>
                         </div>
-                        <h5 class="fw-bold mb-0">Informasi Sekolah</h5>
+                        <h6 class="fw-semibold mb-0" style="color: #1A2A24; font-size: 0.9rem;">Informasi Sekolah</h6>
                     </div>
 
-                    <div class="row g-4">
-                        <!-- School -->
+                    <div class="row g-2">
+                        {{-- School --}}
                         <div class="col-md-8">
-                            <label for="school" class="form-label fw-semibold">
-                                Asal Sekolah <span class="text-danger">*</span>
-                            </label>
+                            <label class="form-label fw-semibold small mb-1">Asal Sekolah <span class="text-danger">*</span></label>
                             <div class="input-group">
-                                <span class="input-group-text bg-transparent border-end-0 rounded-start-4">
-                                    <i class="bi bi-building text-secondary"></i>
+                                <span class="input-group-text bg-transparent border-end-0 px-2" style="border-color: #EDF2F0;">
+                                    <i class="bi bi-building text-secondary" style="font-size: 0.8rem;"></i>
                                 </span>
-                                <input type="text"
-                                       class="form-control form-control-lg border-start-0 rounded-end-4 @error('school') is-invalid @enderror"
-                                       id="school"
-                                       name="school"
-                                       value="{{ old('school', Auth::user()->school) }}"
-                                       placeholder="Contoh: SMAN 1 Balikpapan"
-                                       required>
+                                <input type="text" class="form-control border-start-0 @error('school') is-invalid @enderror"
+                                       name="school" value="{{ old('school', Auth::user()->school) }}"
+                                       placeholder="SMAN 1 Balikpapan" required
+                                       style="font-size: 0.85rem; border-color: #EDF2F0;">
                             </div>
-                            @error('school')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
                         </div>
 
-                        <!-- Grade -->
+                        {{-- Grade --}}
                         <div class="col-md-4">
-                            <label for="grade" class="form-label fw-semibold">
-                                Kelas <span class="text-danger">*</span>
-                            </label>
-                            <select class="form-select form-select-lg rounded-4 @error('grade') is-invalid @enderror"
-                                    id="grade"
-                                    name="grade"
-                                    required>
-                                <option value="" disabled {{ !old('grade', Auth::user()->grade) ? 'selected' : '' }}>Pilih kelas</option>
+                            <label class="form-label fw-semibold small mb-1">Kelas <span class="text-danger">*</span></label>
+                            <select class="form-select @error('grade') is-invalid @enderror"
+                                    name="grade" required style="font-size: 0.85rem; border-color: #EDF2F0;">
+                                <option value="" disabled {{ !old('grade', Auth::user()->grade) ? 'selected' : '' }}>Pilih</option>
                                 <option value="10" {{ old('grade', Auth::user()->grade) == '10' ? 'selected' : '' }}>Kelas 10</option>
                                 <option value="11" {{ old('grade', Auth::user()->grade) == '11' ? 'selected' : '' }}>Kelas 11</option>
                                 <option value="12" {{ old('grade', Auth::user()->grade) == '12' ? 'selected' : '' }}>Kelas 12</option>
                                 <option value="alumni" {{ old('grade', Auth::user()->grade) == 'alumni' ? 'selected' : '' }}>Alumni</option>
                             </select>
-                            @error('grade')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
                         </div>
                     </div>
                 </div>
 
-                <!-- Account Information -->
-                <div class="profile-card p-4 p-md-5 mb-4">
-                    <div class="d-flex align-items-center gap-3 mb-4">
-                        <div class="section-icon d-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10" style="width: 40px; height: 40px;">
-                            <i class="bi bi-shield-check text-success"></i>
+                {{-- INFORMASI AKUN --}}
+                <div class="profile-card p-3 mb-3" style="background: white; border: 1px solid #EDF2F0; border-radius: 16px;">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 28px; height: 28px; background: rgba(34,197,94,0.1);">
+                            <i class="bi bi-shield-check" style="color: #22c55e; font-size: 0.8rem;"></i>
                         </div>
-                        <h5 class="fw-bold mb-0">Informasi Akun</h5>
+                        <h6 class="fw-semibold mb-0" style="color: #1A2A24; font-size: 0.9rem;">Informasi Akun</h6>
                     </div>
 
-                    <div class="row g-4">
+                    <div class="row g-2">
                         <div class="col-md-6">
-                            <div class="p-3 rounded-4" style="background: rgba(34, 197, 94,0.02);">
-                                <small class="text-secondary d-block mb-1">Member Since</small>
-                                <span class="fw-semibold">{{ Auth::user()->created_at->format('d F Y') }}</span>
+                            <div class="p-2 rounded-3" style="background: #F8FBF8;">
+                                <small class="text-secondary d-block mb-0" style="font-size: 0.65rem;">Member Since</small>
+                                <span class="fw-semibold" style="font-size: 0.8rem;">{{ Auth::user()->created_at->format('d F Y') }}</span>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="p-3 rounded-4" style="background: rgba(34, 197, 94,0.02);">
-                                <small class="text-secondary d-block mb-1">Status Akun</small>
-                                <span class="badge bg-success rounded-pill px-3 py-2">
-                                    <i class="bi bi-check-circle me-1"></i>Aktif
+                            <div class="p-2 rounded-3" style="background: #F8FBF8;">
+                                <small class="text-secondary d-block mb-0" style="font-size: 0.65rem;">Status Akun</small>
+                                <span class="badge bg-success rounded-pill px-2 py-0" style="font-size: 0.7rem;">
+                                    <i class="bi bi-check-circle me-1" style="font-size: 0.6rem;"></i>Aktif
                                 </span>
                             </div>
                         </div>
                         <div class="col-12">
-                            <div class="p-3 rounded-4 d-flex justify-content-between align-items-center" style="background: rgba(34, 197, 94,0.02);">
+                            <div class="p-2 rounded-3 d-flex justify-content-between align-items-center" style="background: #F8FBF8;">
                                 <div>
-                                    <small class="text-secondary d-block mb-1">Password</small>
-                                    <span class="fw-semibold">••••••••</span>
+                                    <small class="text-secondary d-block mb-0" style="font-size: 0.65rem;">Password</small>
+                                    <span class="fw-semibold" style="font-size: 0.8rem;">••••••••</span>
                                 </div>
-                                <a href="{{ route('profile.password') }}" class="btn btn-outline-success btn-sm rounded-pill px-4">
-                                    <i class="bi bi-pencil me-1"></i>Ubah Password
+                                <a href="{{ route('profile.password') }}" class="btn btn-sm rounded-4 px-3 py-1"
+                                   style="background: white; border: 1px solid #EDF2F0; color: #22c55e; font-size: 0.7rem;">
+                                    <i class="bi bi-pencil me-1"></i>Ubah
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Submit Buttons -->
-                <div class="d-flex gap-3">
-                    <button type="submit" class="btn btn-success btn-rounded px-5 py-3 grow" style="background: #22c55e; border: none;">
-                        <i class="bi bi-check-circle me-2"></i>Simpan Perubahan
+                {{-- SUBMIT BUTTONS --}}
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-sm rounded-4 px-4 py-2" style="background: #22c55e; color: white; border: none;">
+                        <i class="bi bi-check-circle me-1"></i>Simpan Perubahan
                     </button>
-                    <a href="{{ route('dashboard') }}" class="btn btn-outline-secondary btn-rounded px-5 py-3">
+                    <a href="{{ route('dashboard') }}" class="btn btn-sm rounded-4 px-4 py-2" style="background: white; border: 1px solid #EDF2F0; color: #1A2A24;">
                         Batal
                     </a>
                 </div>
@@ -248,10 +211,11 @@
         </div>
     </div>
 </div>
+@endsection
 
 @push('scripts')
 <script>
-    // Preview profile photo before upload
+    // Preview profile photo
     document.getElementById('profile_photo')?.addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (file) {
@@ -263,13 +227,12 @@
                 if (currentPreview.tagName === 'IMG') {
                     currentPreview.src = e.target.result;
                 } else {
-                    // Replace avatar circle with image
                     const img = document.createElement('img');
                     img.id = 'profilePreview';
                     img.src = e.target.result;
                     img.alt = '{{ Auth::user()->name }}';
                     img.className = 'rounded-circle';
-                    img.style = 'width: 120px; height: 120px; object-fit: cover; border: 4px solid rgba(34, 197, 94,0.2);';
+                    img.style = 'width: 80px; height: 80px; object-fit: cover; border: 3px solid rgba(34, 197, 94, 0.2);';
                     previewContainer.innerHTML = '';
                     previewContainer.appendChild(img);
                 }
@@ -288,62 +251,39 @@
             confirmButtonColor: '#dc3545',
             cancelButtonColor: '#6c757d',
             confirmButtonText: 'Ya, Hapus',
-            cancelButtonText: 'Batal'
+            cancelButtonText: 'Batal',
+            background: 'var(--bs-body-bg)',
+            color: 'var(--bs-body-color)',
+            customClass: {
+                popup: 'rounded-4 p-3',
+                title: 'small fw-bold'
+            }
         }).then((result) => {
             if (result.isConfirmed) {
-                // Create form and submit
                 const form = document.createElement('form');
                 form.method = 'POST';
                 form.action = '{{ route("profile.photo.remove") }}';
-
-                const csrf = document.createElement('input');
-                csrf.name = '_token';
-                csrf.value = '{{ csrf_token() }}';
-
-                const method = document.createElement('input');
-                method.name = '_method';
-                method.value = 'DELETE';
-
-                form.appendChild(csrf);
-                form.appendChild(method);
+                form.innerHTML = `
+                    @csrf
+                    @method('DELETE')
+                `;
                 document.body.appendChild(form);
                 form.submit();
             }
         });
     }
-
-    // Form validation
-    (function() {
-        'use strict';
-        const forms = document.querySelectorAll('.needs-validation');
-        Array.from(forms).forEach(form => {
-            form.addEventListener('submit', event => {
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    })();
 </script>
 @endpush
 
 @push('styles')
 <style>
     .profile-card {
+        transition: all 0.2s;
         background: white;
-        border: 1px solid rgba(0,0,0,0.02);
-        border-radius: 24px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.02);
     }
 
-    .section-icon {
-        transition: all 0.3s;
-    }
-
-    .profile-card:hover .section-icon {
-        transform: scale(1.1);
+    .profile-card:hover {
+        border-color: rgba(34, 197, 94, 0.2) !important;
     }
 
     .avatar-circle {
@@ -355,25 +295,42 @@
         color: white;
     }
 
-    [data-bs-theme="dark"] .profile-card {
-        background: #1a1a2c;
-        border-color: rgba(255,255,255,0.05);
+    /* DARK MODE */
+    [data-bs-theme="dark"] .profile-card,
+    [data-bs-theme="dark"] [style*="background: white"] {
+        background: #1A1A2C !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
     }
 
-    [data-bs-theme="dark"] .bg-light {
-        background: rgba(255,255,255,0.05) !important;
-        color: white !important;
+    [data-bs-theme="dark"] [style*="background: #F8FBF8"] {
+        background: rgba(255, 255, 255, 0.03) !important;
     }
 
-    .form-control:disabled, .form-control[readonly] {
-        background-color: rgba(0,0,0,0.02);
+    [data-bs-theme="dark"] .form-control,
+    [data-bs-theme="dark"] .form-select,
+    [data-bs-theme="dark"] .input-group-text {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        color: #E0E0E0 !important;
     }
 
     [data-bs-theme="dark"] .form-control:disabled,
     [data-bs-theme="dark"] .form-control[readonly] {
-        background-color: rgba(255,255,255,0.05);
-        color: rgba(255,255,255,0.7);
+        background: rgba(255, 255, 255, 0.1) !important;
+        color: #9CA3AF !important;
+    }
+
+    [data-bs-theme="dark"] .bg-light {
+        background: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    [data-bs-theme="dark"] .text-secondary {
+        color: #9CA3AF !important;
+    }
+
+    [data-bs-theme="dark"] .btn-outline-success {
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        color: #E0E0E0 !important;
     }
 </style>
 @endpush
-@endsection

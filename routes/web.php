@@ -46,11 +46,17 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::prefix('profile')->name('profile.')->group(function () {
-        Route::get('/', [App\Http\Controllers\User\ProfileController::class, 'edit'])->name('edit');
-        Route::put('/', [App\Http\Controllers\User\ProfileController::class, 'update'])->name('update');
-        Route::put('/password', [App\Http\Controllers\User\ProfileController::class, 'updatePassword'])->name('password');
-        Route::delete('/photo', [App\Http\Controllers\User\ProfileController::class, 'removePhoto'])->name('photo.remove');
-    });
+    Route::get('/', [App\Http\Controllers\User\ProfileController::class, 'edit'])->name('edit');
+    Route::put('/', [App\Http\Controllers\User\ProfileController::class, 'update'])->name('update');
+
+    // PERBAIKAN: Tambahkan route GET untuk menampilkan form
+    Route::get('/password', [App\Http\Controllers\User\ProfileController::class, 'password'])->name('password');
+
+    // Route PUT untuk submit form (nama diubah jadi password.update)
+    Route::put('/password', [App\Http\Controllers\User\ProfileController::class, 'updatePassword'])->name('password.update');
+
+    Route::delete('/photo', [App\Http\Controllers\User\ProfileController::class, 'removePhoto'])->name('photo.remove');
+});
 
     Route::prefix('wishlist')->name('wishlist.')->group(function () {
         Route::get('/', [App\Http\Controllers\User\WishlistController::class, 'index'])->name('index');

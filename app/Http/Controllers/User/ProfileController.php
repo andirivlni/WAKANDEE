@@ -20,6 +20,14 @@ class ProfileController extends Controller
     }
 
     /**
+     * Show the form to change password.
+     */
+    public function password()
+    {
+        return view('user.profile.password');
+    }
+
+    /**
      * Update the user's profile.
      */
     public function update(Request $request)
@@ -78,5 +86,20 @@ class ProfileController extends Controller
         ]);
 
         return back()->with('success', 'Password berhasil diperbarui.');
+    }
+
+    /**
+     * Remove profile photo.
+     */
+    public function removePhoto()
+    {
+        $user = Auth::user();
+
+        if ($user->profile_photo) {
+            Storage::disk('public')->delete($user->profile_photo);
+            $user->update(['profile_photo' => null]);
+        }
+
+        return back()->with('success', 'Foto profil berhasil dihapus.');
     }
 }

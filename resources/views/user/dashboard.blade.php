@@ -3,455 +3,352 @@
 @section('title', 'Dashboard - WAKANDE')
 
 @section('content')
-    <div class="container py-4">
-        <!-- Welcome Header -->
-        <div class="d-flex justify-content-between align-items-center mb-4">
+<div class="container py-4">
+    {{-- WELCOME HEADER --}}
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+        <div class="d-flex align-items-center gap-3">
+            <div class="rounded-circle d-flex align-items-center justify-content-center"
+                 style="width: 44px; height: 44px; background: rgba(34, 197, 94, 0.1);">
+                <span class="fw-semibold" style="color: #22c55e;">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</span>
+            </div>
             <div>
-                <h1 class="h3 fw-bold mb-1">Halo, {{ Auth::user()->name }}! 👋</h1>
-                <p class="text-secondary mb-0">{{ now()->format('l, d F Y') }}</p>
+                <h5 class="fw-bold mb-0" style="color: #1A2A24;">Halo, {{ Auth::user()->name }}!</h5>
+                <small class="text-secondary">{{ now()->format('l, d F Y') }}</small>
             </div>
-            <a href="{{ route('items.create') }}" class="btn btn-success btn-rounded px-4 py-2"
-                style="background: #22c55e; border: none;">
-                <i class="bi bi-plus-circle me-2"></i>Upload Barang
-            </a>
         </div>
+        <a href="{{ route('items.create') }}"
+           class="btn btn-sm rounded-5 px-4 py-2"
+           style="background: #22c55e; border: none; color: white;">
+            <i class="bi bi-cloud-upload me-1"></i>Upload Barang
+        </a>
+    </div>
 
-        <!-- Stats Cards -->
-        <div class="row g-4 mb-5">
-            <div class="col-xl-3 col-md-6">
-                <div class="stat-card h-100 p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center"
-                            style="width: 48px; height: 48px; background: rgba(34, 197, 94, 0.1);">
-                            <i class="bi bi-box-seam fs-4" style="color: #22c55e;"></i> 
-                        </div>
-                        <span class="badge bg-light text-dark rounded-pill px-3 py-2">Total</span>
-                    </div>
-                    <h3 class="fw-bold mb-1">{{ $stats['total_items'] ?? 0 }}</h3>
-                    <p class="text-secondary small mb-0">Barang Diupload</p>
-                    <div class="mt-3 d-flex align-items-center gap-2">
-                        <span class="badge bg-warning bg-opacity-10 text-warning rounded-pill px-3 py-2">
-                            <i class="bi bi-clock me-1"></i>{{ $stats['pending_items'] ?? 0 }} Pending
-                        </span>
-                        <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2">
-                            <i class="bi bi-check-circle me-1"></i>{{ $stats['approved_items'] ?? 0 }} Disetujui
-                        </span>
+    {{-- 4 STATS CARDS - RAPI & SERAGAM --}}
+    <div class="row g-3 mb-4">
+        {{-- Total --}}
+        <div class="col-6 col-md-3">
+            <div class="stats-card p-3">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="small fw-semibold text-secondary">Total</span>
+                    <div class="stats-icon rounded-2 d-flex align-items-center justify-content-center"
+                         style="width: 32px; height: 32px; background: rgba(34, 197, 94, 0.1);">
+                        <i class="bi bi-box-seam" style="color: #22c55e; font-size: 1rem;"></i>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-xl-3 col-md-6">
-                <div class="stat-card h-100 p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center"
-                            style="width: 48px; height: 48px; background: rgba(74, 222, 128, 0.1);">
-                            <i class="bi bi-gift fs-4" style="color: #4ade80;"></i>
-                        </div>
-                        <span class="badge bg-light text-dark rounded-pill px-3 py-2">Terjual</span>
-                    </div>
-                    <h3 class="fw-bold mb-1">{{ $stats['sold_items'] ?? 0 }}</h3>
-                    <p class="text-secondary small mb-0">Barang Terjual/Terdonasi</p>
-                    <div class="mt-3">
-                        <span class="text-success small">
-                            <i class="bi bi-arrow-up"></i> +{{ rand(2, 8) }} dari bulan lalu
-                        </span>
-                    </div>
+                <div class="d-flex align-items-baseline gap-2 mb-2">
+                    <span class="h4 fw-bold mb-0" style="color: #1A2A24;">{{ $stats['total_items'] ?? 0 }}</span>
+                    <span class="small text-secondary">Barang</span>
                 </div>
-            </div>
-
-            <div class="col-xl-3 col-md-6">
-                <div class="stat-card h-100 p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center"
-                            style="width: 48px; height: 48px; background: rgba(25, 135, 84, 0.1);">
-                            <i class="bi bi-cart-check fs-4" style="color: #198754;"></i>
-                        </div>
-                        <span class="badge bg-light text-dark rounded-pill px-3 py-2">Dibeli</span>
-                    </div>
-                    <h3 class="fw-bold mb-1">{{ $stats['bought_items'] ?? 0 }}</h3>
-                    <p class="text-secondary small mb-0">Barang Didapatkan</p>
-                    <div class="mt-3">
-                        <span class="text-success small">
-                            <i class="bi bi-piggy-bank"></i> Hemat Rp
-                            {{ number_format($stats['total_savings'] ?? 0, 0, ',', '.') }}
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-md-6">
-                <div class="stat-card h-100 p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center"
-                            style="width: 48px; height: 48px; background: rgba(220, 53, 69, 0.1);">
-                            <i class="bi bi-heart fs-4" style="color: #dc3545;"></i>
-                        </div>
-                        <span class="badge bg-light text-dark rounded-pill px-3 py-2">Wishlist</span>
-                    </div>
-                    <h3 class="fw-bold mb-1">{{ $stats['wishlist_count'] ?? 0 }}</h3>
-                    <p class="text-secondary small mb-0">Barang Disimpan</p>
-                    <div class="mt-3">
-                        <a href="{{ route('wishlist.index') }}" class="text-decoration-none small" style="color: #22c55e;">
-                            Lihat semua <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
+                <div class="d-flex gap-2">
+                    <small class="text-warning bg-warning bg-opacity-10 px-2 py-1 rounded-3">
+                        <i class="bi bi-clock me-1" style="font-size: 0.7rem;"></i>{{ $stats['pending_items'] ?? 0 }} Pending
+                    </small>
+                    <small class="text-success bg-success bg-opacity-10 px-2 py-1 rounded-3">
+                        <i class="bi bi-check-circle me-1" style="font-size: 0.7rem;"></i>{{ $stats['approved_items'] ?? 0 }} Disetujui
+                    </small>
                 </div>
             </div>
         </div>
 
-        <!-- Pending Items Alert -->
-        @if (isset($pending_items) && $pending_items->count() > 0)
-            <div class="alert alert-warning alert-dismissible fade show rounded-4 border-0 mb-4"
-                style="background: rgba(255, 193, 7, 0.1); color: #856404;">
+        {{-- Terjual --}}
+        <div class="col-6 col-md-3">
+            <div class="stats-card p-3">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="small fw-semibold text-secondary">Terjual</span>
+                    <div class="stats-icon rounded-2 d-flex align-items-center justify-content-center"
+                         style="width: 32px; height: 32px; background: rgba(74, 222, 128, 0.1);">
+                        <i class="bi bi-gift" style="color: #4ade80; font-size: 1rem;"></i>
+                    </div>
+                </div>
+                <div class="d-flex align-items-baseline gap-2 mb-2">
+                    <span class="h4 fw-bold mb-0" style="color: #1A2A24;">{{ $stats['sold_items'] ?? 0 }}</span>
+                    <span class="small text-secondary">Barang</span>
+                </div>
                 <div class="d-flex align-items-center">
-                    <div class="shrink-0 me-3">
-                        <i class="bi bi-exclamation-triangle-fill fs-4"></i>
-                    </div>
-                    <div class="grow">
-                        <strong class="d-block mb-1">Kamu punya {{ $pending_items->count() }} barang menunggu
-                            moderasi</strong>
-                        <p class="small mb-0">Admin akan memverifikasi barangmu dalam 1x24 jam. Status akan diupdate
-                            otomatis.</p>
-                    </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    <small class="text-success bg-success bg-opacity-10 px-2 py-1 rounded-3">
+                        <i class="bi bi-arrow-up me-1" style="font-size: 0.7rem;"></i>+{{ rand(2, 8) }}%
+                    </small>
                 </div>
             </div>
-        @endif
+        </div>
 
-        <!-- Two Column Layout -->
-        <div class="row g-4">
-            <!-- Left Column - Pending Items -->
-            <div class="col-lg-4">
-                <!-- Quick Actions -->
-                <div class="admin-card p-4 mb-4">
-                    <h6 class="fw-bold mb-3">Aksi Cepat</h6>
-                    <div class="d-grid gap-2">
-                        <a href="{{ route('items.create') }}" class="btn btn-outline-success rounded-pill text-start py-2">
-                            <i class="bi bi-cloud-upload me-2"></i>Upload Barang Baru
-                        </a>
-                        <a href="{{ route('catalog.index') }}"
-                            class="btn btn-outline-secondary rounded-pill text-start py-2">
-                            <i class="bi bi-search me-2"></i>Cari Kebutuhan
-                        </a>
-                        <a href="{{ route('profile.edit') }}"
-                            class="btn btn-outline-secondary rounded-pill text-start py-2">
-                            <i class="bi bi-person me-2"></i>Edit Profile
-                        </a>
+        {{-- Dibeli --}}
+        <div class="col-6 col-md-3">
+            <div class="stats-card p-3">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="small fw-semibold text-secondary">Dibeli</span>
+                    <div class="stats-icon rounded-2 d-flex align-items-center justify-content-center"
+                         style="width: 32px; height: 32px; background: rgba(25, 135, 84, 0.1);">
+                        <i class="bi bi-cart-check" style="color: #198754; font-size: 1rem;"></i>
                     </div>
                 </div>
-
-                <!-- Pending Items List -->
-                @if (isset($pending_items) && $pending_items->count() > 0)
-                    <div class="admin-card p-4">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h6 class="fw-bold mb-0">Menunggu Moderasi</h6>
-                            <span class="badge bg-warning rounded-pill">{{ $pending_items->count() }}</span>
-                        </div>
-
-                        <div class="vstack gap-3">
-                            @foreach ($pending_items as $item)
-                                <div class="d-flex align-items-center gap-3">
-                                    <div class="shrink-0">
-                                        @php
-                                            $images = is_array($item->images)
-                                                ? $item->images
-                                                : (is_string($item->images)
-                                                    ? json_decode($item->images, true)
-                                                    : []);
-                                            $thumb = !empty($images)
-                                                ? Storage::url($images[0])
-                                                : asset('images/default-item.png');
-                                        @endphp
-                                        <img src="{{ $thumb }}" alt="{{ $item->name }}" width="48"
-                                            height="48" style="object-fit: cover; border-radius: 12px;">
-                                    </div>
-                                    <div class="grow">
-                                        <p class="fw-semibold small mb-1">{{ Str::limit($item->name, 30) }}</p>
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="badge bg-light text-dark rounded-pill px-2 py-1"
-                                                style="font-size: 0.7rem;">
-                                                {{ $item->category_label }}
-                                            </span>
-                                            <span class="text-secondary small">
-                                                <i class="bi bi-clock"></i> {{ $item->created_at->diffForHumans() }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <a href="{{ route('items.show', $item->id) }}"
-                                        class="btn btn-sm btn-link text-decoration-none p-0" style="color: #22c55e;">
-                                        Detail
-                                    </a>
-                                </div>
-                            @endforeach
-                        </div>
-
-                        <div class="mt-3 text-center">
-                            <a href="{{ route('items.index') }}" class="text-decoration-none small"
-                                style="color: #22c55e;">
-                                Lihat semua barang <i class="bi bi-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                @endif
+                <div class="d-flex align-items-baseline gap-2 mb-2">
+                    <span class="h4 fw-bold mb-0" style="color: #1A2A24;">{{ $stats['bought_items'] ?? 0 }}</span>
+                    <span class="small text-secondary">Barang</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <small class="text-success bg-success bg-opacity-10 px-2 py-1 rounded-3">
+                        <i class="bi bi-piggy-bank me-1" style="font-size: 0.7rem;"></i>Rp {{ number_format($stats['total_savings'] ?? 0, 0, ',', '.') }}
+                    </small>
+                </div>
             </div>
+        </div>
 
-            <!-- Right Column - Transactions -->
-            <div class="col-lg-8">
-                <!-- Recent Purchases -->
-                <div class="admin-card p-4 mb-4">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h6 class="fw-bold mb-0">
-                            <i class="bi bi-cart-check me-2" style="color: #22c55e;"></i>
-                            Transaksi Pembelian Terbaru
-                        </h6>
-                        <a href="{{ route('transactions.index') }}" class="text-decoration-none small"
-                            style="color: #22c55e;">
-                            Lihat semua <i class="bi bi-arrow-right"></i>
-                        </a>
+        {{-- Wishlist --}}
+        <div class="col-6 col-md-3">
+            <div class="stats-card p-3">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="small fw-semibold text-secondary">Wishlist</span>
+                    <div class="stats-icon rounded-2 d-flex align-items-center justify-content-center"
+                         style="width: 32px; height: 32px; background: rgba(220, 53, 69, 0.1);">
+                        <i class="bi bi-heart-fill" style="color: #dc3545; font-size: 1rem;"></i>
                     </div>
-
-                    @if (isset($recent_purchases) && $recent_purchases->count() > 0)
-                        <div class="table-responsive">
-                            <table class="table table-hover align-middle">
-                                <thead class="small text-secondary">
-                                    <tr>
-                                        <th>Barang</th>
-                                        <th>Penjual</th>
-                                        <th>Total</th>
-                                        <th>Status</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($recent_purchases as $trx)
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center gap-2">
-                                                    @php
-                                                        $itemImages = is_array($trx->item->images)
-                                                            ? $trx->item->images
-                                                            : (is_string($trx->item->images)
-                                                                ? json_decode($trx->item->images, true)
-                                                                : []);
-                                                        $itemThumb = !empty($itemImages)
-                                                            ? Storage::url($itemImages[0])
-                                                            : asset('images/default-item.png');
-                                                    @endphp
-                                                    <img src="{{ $itemThumb }}" alt="{{ $trx->item->name }}"
-                                                        width="40" height="40"
-                                                        style="object-fit: cover; border-radius: 8px;">
-                                                    <div>
-                                                        <p class="fw-semibold small mb-0">
-                                                            {{ Str::limit($trx->item->name, 20) }}</p>
-                                                        <small class="text-secondary">{{ $trx->transaction_code }}</small>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <div class="avatar-circle"
-                                                        style="width: 32px; height: 32px; font-size: 0.8rem; background: rgba(34, 197, 94,0.1); color: #22c55e;">
-                                                        {{ strtoupper(substr($trx->seller->name, 0, 1)) }}
-                                                    </div>
-                                                    <span class="small">{{ Str::limit($trx->seller->name, 15) }}</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <span class="fw-semibold">{{ $trx->formatted_total }}</span>
-                                            </td>
-                                            <td>
-                                                @php
-                                                    $status = $trx->payment_status_label;
-                                                @endphp
-                                                <span
-                                                    class="badge bg-{{ $status['color'] }} bg-opacity-10 text-{{ $status['color'] }} rounded-pill px-3 py-2">
-                                                    {{ $status['label'] }}
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('transactions.show', $trx->id) }}"
-                                                    class="btn btn-sm btn-link text-decoration-none p-0"
-                                                    style="color: #22c55e;">
-                                                    Detail
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    @else
-                        <div class="text-center py-4">
-                            <div class="mb-3">
-                                <i class="bi bi-cart-x fs-1 text-secondary opacity-50"></i>
-                            </div>
-                            <p class="text-secondary mb-2">Belum ada transaksi pembelian</p>
-                            <a href="{{ route('catalog.index') }}" class="btn btn-success btn-sm rounded-pill px-4">
-                                <i class="bi bi-search me-2"></i>Jelajahi Katalog
-                            </a>
-                        </div>
-                    @endif
                 </div>
-
-                <!-- Recent Sales -->
-                <div class="admin-card p-4">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h6 class="fw-bold mb-0">
-                            <i class="bi bi-truck me-2" style="color: #4ade80;"></i>
-                            Transaksi Penjualan Terbaru
-                        </h6>
-                        <a href="{{ route('transactions.index') }}" class="text-decoration-none small"
-                            style="color: #22c55e;">
-                            Lihat semua <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-
-                    @if (isset($recent_sales) && $recent_sales->count() > 0)
-                        <div class="table-responsive">
-                            <table class="table table-hover align-middle">
-                                <thead class="small text-secondary">
-                                    <tr>
-                                        <th>Barang</th>
-                                        <th>Pembeli</th>
-                                        <th>Total</th>
-                                        <th>Status</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($recent_sales as $trx)
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center gap-2">
-                                                    @php
-                                                        $itemImages = is_array($trx->item->images)
-                                                            ? $trx->item->images
-                                                            : (is_string($trx->item->images)
-                                                                ? json_decode($trx->item->images, true)
-                                                                : []);
-                                                        $itemThumb = !empty($itemImages)
-                                                            ? Storage::url($itemImages[0])
-                                                            : asset('images/default-item.png');
-                                                    @endphp
-                                                    <img src="{{ $itemThumb }}" alt="{{ $trx->item->name }}"
-                                                        width="40" height="40"
-                                                        style="object-fit: cover; border-radius: 8px;">
-                                                    <div>
-                                                        <p class="fw-semibold small mb-0">
-                                                            {{ Str::limit($trx->item->name, 20) }}</p>
-                                                        <small class="text-secondary">{{ $trx->transaction_code }}</small>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <div class="avatar-circle"
-                                                        style="width: 32px; height: 32px; font-size: 0.8rem; background: rgba(74, 222, 128,0.1); color: #4ade80;">
-                                                        {{ strtoupper(substr($trx->buyer->name, 0, 1)) }}
-                                                    </div>
-                                                    <span class="small">{{ Str::limit($trx->buyer->name, 15) }}</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <span class="fw-semibold">{{ $trx->formatted_total }}</span>
-                                            </td>
-                                            <td>
-                                                @php
-                                                    $status = $trx->payment_status_label;
-                                                @endphp
-                                                <span
-                                                    class="badge bg-{{ $status['color'] }} bg-opacity-10 text-{{ $status['color'] }} rounded-pill px-3 py-2">
-                                                    {{ $status['label'] }}
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('transactions.show', $trx->id) }}"
-                                                    class="btn btn-sm btn-link text-decoration-none p-0"
-                                                    style="color: #22c55e;">
-                                                    Detail
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    @else
-                        <div class="text-center py-4">
-                            <div class="mb-3">
-                                <i class="bi bi-gift fs-1 text-secondary opacity-50"></i>
-                            </div>
-                            <p class="text-secondary mb-2">Belum ada transaksi penjualan</p>
-                            <a href="{{ route('items.create') }}" class="btn btn-success btn-sm rounded-pill px-4">
-                                <i class="bi bi-cloud-upload me-2"></i>Upload Barang
-                            </a>
-                        </div>
-                    @endif
+                <div class="d-flex align-items-baseline gap-2 mb-2">
+                    <span class="h4 fw-bold mb-0" style="color: #1A2A24;">{{ $stats['wishlist_count'] ?? 0 }}</span>
+                    <span class="small text-secondary">Barang</span>
+                </div>
+                <div>
+                    <a href="{{ route('wishlist.index') }}" class="small text-decoration-none d-flex align-items-center" style="color: #22c55e;">
+                        Lihat semua <i class="bi bi-arrow-right ms-1" style="font-size: 0.8rem;"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
-    @push('styles')
-        <style>
-            .stat-card {
-                background: white;
-                border-radius: 20px;
-                transition: all 0.3s;
-                border: 1px solid rgba(0, 0, 0, 0.02);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-            }
+    {{-- PENDING ALERT (if any) --}}
+    @if (isset($pending_items) && $pending_items->count() > 0)
+        <div class="alert alert-warning alert-dismissible fade show rounded-4 py-3 mb-4" style="background: rgba(255, 193, 7, 0.05); border: 1px solid rgba(255, 193, 7, 0.1);">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-exclamation-triangle-fill me-3" style="color: #FFB347;"></i>
+                <small><strong>{{ $pending_items->count() }} barang</strong> menunggu moderasi</small>
+                <button type="button" class="btn-close ms-auto" style="font-size: 0.8rem;" data-bs-dismiss="alert"></button>
+            </div>
+        </div>
+    @endif
 
-            .stat-card:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 16px 24px rgba(34, 197, 94, 0.08);
-            }
+    {{-- TWO COLUMN LAYOUT --}}
+    <div class="row g-3">
+        {{-- LEFT COLUMN --}}
+        <div class="col-lg-4">
+            {{-- QUICK ACTIONS --}}
+            <div class="dashboard-card p-3 mb-3">
+                <h6 class="fw-semibold mb-3" style="font-size: 0.9rem;">
+                    <i class="bi bi-lightning-charge me-2" style="color: #22c55e;"></i>Aksi Cepat
+                </h6>
+                <div class="vstack gap-2">
+                    <a href="{{ route('items.create') }}" class="quick-link d-flex align-items-center justify-content-between p-2 rounded-3">
+                        <small><i class="bi bi-cloud-upload me-2" style="color: #22c55e;"></i>Upload Barang</small>
+                        <i class="bi bi-chevron-right" style="color: #22c55e; font-size: 0.8rem;"></i>
+                    </a>
+                    <a href="{{ route('catalog.index') }}" class="quick-link d-flex align-items-center justify-content-between p-2 rounded-3">
+                        <small><i class="bi bi-search me-2" style="color: #22c55e;"></i>Cari Kebutuhan</small>
+                        <i class="bi bi-chevron-right" style="color: #22c55e; font-size: 0.8rem;"></i>
+                    </a>
+                    <a href="{{ route('profile.edit') }}" class="quick-link d-flex align-items-center justify-content-between p-2 rounded-3">
+                        <small><i class="bi bi-person me-2" style="color: #22c55e;"></i>Edit Profile</small>
+                        <i class="bi bi-chevron-right" style="color: #22c55e; font-size: 0.8rem;"></i>
+                    </a>
+                </div>
+            </div>
 
-            .admin-card {
-                background: white;
-                border-radius: 20px;
-                border: 1px solid rgba(0, 0, 0, 0.02);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-            }
+            {{-- PENDING ITEMS --}}
+            @if (isset($pending_items) && $pending_items->count() > 0)
+                <div class="dashboard-card p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="fw-semibold mb-0" style="font-size: 0.9rem;">
+                            <i class="bi bi-clock-history me-2" style="color: #FFB347;"></i>Menunggu Moderasi
+                        </h6>
+                        <span class="badge bg-warning bg-opacity-10 text-warning rounded-pill px-2 py-1" style="font-size: 0.7rem;">{{ $pending_items->count() }}</span>
+                    </div>
 
-            [data-bs-theme="dark"] .stat-card,
-            [data-bs-theme="dark"] .admin-card {
-                background: #1a1a2c;
-                border-color: rgba(255, 255, 255, 0.05);
-            }
+                    <div class="vstack gap-2">
+                        @foreach ($pending_items->take(3) as $item)
+                            @php
+                                $images = is_array($item->images) ? $item->images : (is_string($item->images) ? json_decode($item->images, true) : []);
+                                $thumb = !empty($images) ? Storage::url($images[0]) : asset('images/default-item.png');
+                            @endphp
+                            <div class="d-flex align-items-center gap-2 p-2 rounded-3" style="background: #F8FBF8;">
+                                <img src="{{ $thumb }}" alt="" width="36" height="36" style="object-fit: cover; border-radius: 8px;">
+                                <div class="grow">
+                                    <p class="fw-semibold small mb-0">{{ Str::limit($item->name, 20) }}</p>
+                                    <small class="text-secondary" style="font-size: 0.65rem;">
+                                        <i class="bi bi-clock"></i> {{ $item->created_at->diffForHumans() }}
+                                    </small>
+                                </div>
+                                <a href="{{ route('items.show', $item->id) }}" class="btn btn-sm btn-link p-0" style="color: #22c55e; font-size: 0.7rem;">
+                                    Detail
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        </div>
 
-            .table {
-                margin-bottom: 0;
-            }
+        {{-- RIGHT COLUMN --}}
+        <div class="col-lg-8">
+            {{-- RECENT TRANSACTIONS --}}
+            <div class="dashboard-card p-3 mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h6 class="fw-semibold mb-0" style="font-size: 0.9rem;">
+                        <i class="bi bi-arrow-left-right me-2" style="color: #22c55e;"></i>Transaksi Terbaru
+                    </h6>
+                    <a href="{{ route('transactions.index') }}" class="small text-decoration-none" style="color: #22c55e;">
+                        Lihat semua <i class="bi bi-chevron-right" style="font-size: 0.7rem;"></i>
+                    </a>
+                </div>
 
-            .table> :not(caption)>*>* {
-                padding: 1rem 0.5rem;
-                background: transparent;
-                border-bottom-color: rgba(0, 0, 0, 0.02);
-            }
+                @if (isset($recent_purchases) && $recent_purchases->count() > 0)
+                    <div class="vstack gap-2">
+                        @foreach ($recent_purchases->take(3) as $trx)
+                            @php
+                                $itemImages = is_array($trx->item->images) ? $trx->item->images : (is_string($trx->item->images) ? json_decode($trx->item->images, true) : []);
+                                $itemThumb = !empty($itemImages) ? Storage::url($itemImages[0]) : asset('images/default-item.png');
+                                $status = $trx->payment_status_label;
+                            @endphp
+                            <div class="d-flex align-items-center justify-content-between p-2 rounded-3" style="background: #F8FBF8;">
+                                <div class="d-flex align-items-center gap-2">
+                                    <img src="{{ $itemThumb }}" alt="" width="36" height="36" style="object-fit: cover; border-radius: 8px;">
+                                    <div>
+                                        <p class="fw-semibold small mb-0">{{ Str::limit($trx->item->name, 25) }}</p>
+                                        <small class="text-secondary" style="font-size: 0.65rem;">{{ $trx->transaction_code }}</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <span class="fw-semibold small">{{ $trx->formatted_total }}</span>
+                                    <span class="badge rounded-pill px-2 py-1"
+                                          style="background: rgba({{ $status['color'] == 'success' ? '40, 167, 69' : '255, 193, 7' }}, 0.1);
+                                                 color: {{ $status['color'] == 'success' ? '#28a745' : '#ffc107' }}; font-size: 0.6rem;">
+                                        {{ $status['label'] }}
+                                    </span>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @else
+                    <div class="text-center py-4">
+                        <i class="bi bi-inbox fs-2" style="color: #22c55e; opacity: 0.2;"></i>
+                        <p class="small text-secondary mt-2 mb-0">Belum ada transaksi</p>
+                    </div>
+                @endif
+            </div>
 
-            [data-bs-theme="dark"] .table> :not(caption)>*>* {
-                border-bottom-color: rgba(255, 255, 255, 0.05);
-            }
+            {{-- RECENT SALES --}}
+            <div class="dashboard-card p-3">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h6 class="fw-semibold mb-0" style="font-size: 0.9rem;">
+                        <i class="bi bi-truck me-2" style="color: #4ade80;"></i>Penjualan Terbaru
+                    </h6>
+                    <a href="{{ route('transactions.index') }}" class="small text-decoration-none" style="color: #22c55e;">
+                        Lihat semua <i class="bi bi-chevron-right" style="font-size: 0.7rem;"></i>
+                    </a>
+                </div>
 
-            .avatar-circle {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 50%;
-                font-weight: 600;
-            }
+                @if (isset($recent_sales) && $recent_sales->count() > 0)
+                    <div class="vstack gap-2">
+                        @foreach ($recent_sales->take(3) as $trx)
+                            @php
+                                $itemImages = is_array($trx->item->images) ? $trx->item->images : (is_string($trx->item->images) ? json_decode($trx->item->images, true) : []);
+                                $itemThumb = !empty($itemImages) ? Storage::url($itemImages[0]) : asset('images/default-item.png');
+                                $status = $trx->payment_status_label;
+                            @endphp
+                            <div class="d-flex align-items-center justify-content-between p-2 rounded-3" style="background: #F8FBF8;">
+                                <div class="d-flex align-items-center gap-2">
+                                    <img src="{{ $itemThumb }}" alt="" width="36" height="36" style="object-fit: cover; border-radius: 8px;">
+                                    <div>
+                                        <p class="fw-semibold small mb-0">{{ Str::limit($trx->item->name, 25) }}</p>
+                                        <small class="text-secondary" style="font-size: 0.65rem;">{{ $trx->buyer->name }}</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <span class="fw-semibold small">{{ $trx->formatted_total }}</span>
+                                    <span class="badge rounded-pill px-2 py-1"
+                                          style="background: rgba({{ $status['color'] == 'success' ? '40, 167, 69' : '255, 193, 7' }}, 0.1);
+                                                 color: {{ $status['color'] == 'success' ? '#28a745' : '#ffc107' }}; font-size: 0.6rem;">
+                                        {{ $status['label'] }}
+                                    </span>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @else
+                    <div class="text-center py-4">
+                        <i class="bi bi-gift fs-2" style="color: #4ade80; opacity: 0.2;"></i>
+                        <p class="small text-secondary mt-2 mb-0">Belum ada penjualan</p>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
 
-            .btn-outline-success {
-                border-color: rgba(34, 197, 94, 0.2);
-                color: #22c55e;
-            }
+@push('styles')
+<style>
+    /* PROPORTIONAL DASHBOARD STYLES */
+    .stats-card {
+        background: white;
+        border-radius: 16px;
+        border: 1px solid rgba(0, 0, 0, 0.02);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        transition: all 0.2s;
+        height: 100%;
+    }
 
-            .btn-outline-success:hover {
-                background: rgba(34, 197, 94, 0.1);
-                border-color: #22c55e;
-                color: #22c55e;
-            }
-        </style>
-    @endpush
+    .stats-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(34, 197, 94, 0.05);
+        border-color: rgba(34, 197, 94, 0.1);
+    }
+
+    .stats-icon {
+        transition: all 0.2s;
+    }
+
+    .stats-card:hover .stats-icon {
+        transform: scale(1.05);
+    }
+
+    .dashboard-card {
+        background: white;
+        border-radius: 16px;
+        border: 1px solid rgba(0, 0, 0, 0.02);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    .quick-link {
+        background: #F8FBF8;
+        transition: all 0.2s;
+        color: #1A2A24;
+        text-decoration: none;
+    }
+
+    .quick-link:hover {
+        background: rgba(34, 197, 94, 0.05);
+        transform: translateX(2px);
+    }
+
+    /* Small text adjustments */
+    .small {
+        font-size: 0.8rem;
+    }
+
+    .text-secondary {
+        color: #4A5A54 !important;
+    }
+
+    /* Dark mode */
+    [data-bs-theme="dark"] .stats-card,
+    [data-bs-theme="dark"] .dashboard-card {
+        background: #1A1A2C;
+        border-color: rgba(255, 255, 255, 0.03);
+    }
+
+    [data-bs-theme="dark"] .quick-link,
+    [data-bs-theme="dark"] [style*="background: #F8FBF8"] {
+        background: rgba(255, 255, 255, 0.03) !important;
+    }
+</style>
+@endpush
 @endsection

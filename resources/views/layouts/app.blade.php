@@ -30,11 +30,9 @@
         }
 
         .navbar {
-    /* backdrop-filter: blur(10px); */
-    /* -webkit-backdrop-filter: blur(10px); */
-    z-index: 1050;
-    border-bottom: 1px solid rgba(74, 222, 128, 0.2);
-}
+            z-index: 1050;
+            border-bottom: 1px solid rgba(74, 222, 128, 0.2);
+        }
 
         .avatar-circle {
             width: 36px;
@@ -59,13 +57,12 @@
             border-radius: 12px;
             z-index: 1100;
         }
-
-        
     </style>
 </head>
 
 <body>
     <div id="app">
+        {{-- NAVBAR --}}
         <nav class="navbar navbar-expand-lg sticky-top bg-white">
             <div class="container">
                 <a class="navbar-brand fw-bold" href="{{ url('/') }}">
@@ -79,23 +76,29 @@
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto">
-                        <li class="nav-item"><a class="nav-link {{ request()->is('/') ? 'active' : '' }}"
-                                href="{{ url('/') }}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link {{ request()->is('catalog*') ? 'active' : '' }}"
-                                href="{{ route('catalog.index') }}">Katalog</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('catalog*') ? 'active' : '' }}" href="{{ route('catalog.index') }}">Katalog</a>
+                        </li>
                         @auth
-                            <li class="nav-item"><a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}"
-                                    href="{{ route('dashboard') }}">Dashboard</a></li>
-                            <li class="nav-item"><a
-                                    class="nav-link {{ request()->routeIs('items.create') ? 'active' : '' }}"
-                                    href="{{ route('items.create') }}">Upload</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                {{-- LINK UPLOAD (PINDAH HALAMAN) --}}
+                                <a class="nav-link {{ request()->routeIs('items.create') ? 'active' : '' }}"
+                                   href="{{ route('items.create') }}">
+                                    Upload
+                                </a>
+                            </li>
                         @endauth
                     </ul>
 
                     <div class="d-flex align-items-center gap-3">
                         @guest
-                            <a href="{{ route('login') }}"
-                                class="btn btn-outline-success btn-sm rounded-pill px-4">Login</a>
+                            <a href="{{ route('login') }}" class="btn btn-outline-success btn-sm rounded-pill px-4">Login</a>
                         @else
                             <div class="dropdown">
                                 <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#"
@@ -141,19 +144,20 @@
             </div>
         </nav>
 
+        {{-- MAIN CONTENT --}}
         <main class="py-4">
             <div class="container">
                 @if (session('success'))
                     <div class="alert alert-success border-0 shadow-sm rounded-4 alert-dismissible fade show">
                         <i class="bi bi-check-circle-fill me-2"></i>{{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-alert="dismiss"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
                 @endif
 
                 @if (session('error'))
                     <div class="alert alert-danger border-0 shadow-sm rounded-4 alert-dismissible fade show">
                         <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ session('error') }}
-                        <button type="button" class="btn-close" data-bs-alert="dismiss"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
                 @endif
             </div>

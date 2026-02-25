@@ -4,52 +4,56 @@
 
 @section('content')
 <div class="container-fluid px-4">
-    <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div class="d-flex align-items-center gap-3">
-            <a href="{{ route('admin.moderation.index', ['status' => $item->status]) }}" class="btn btn-outline-secondary rounded-circle p-2" style="width: 40px; height: 40px;">
-                <i class="bi bi-arrow-left"></i>
+    {{-- HEADER MINI --}}
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+        <div class="d-flex align-items-center gap-2">
+            <a href="{{ route('admin.moderation.index', ['status' => $item->status]) }}"
+               class="btn btn-sm rounded-circle p-1 d-flex align-items-center justify-content-center"
+               style="width: 32px; height: 32px; background: #F8FBF8; border: 1px solid #EDF2F0;">
+                <i class="bi bi-arrow-left" style="font-size: 0.9rem;"></i>
             </a>
             <div>
-                <h1 class="h3 fw-bold mb-1">Detail Barang</h1>
-                <p class="text-secondary mb-0">Moderasi ID: #{{ $item->id }}</p>
+                <h5 class="fw-bold mb-0" style="color: #1A2A24;">Detail Barang</h5>
+                <p class="small text-secondary mb-0" style="font-size: 0.7rem;">Moderasi ID: #{{ $item->id }}</p>
             </div>
         </div>
 
         @if($item->status == 'pending')
             <div class="d-flex gap-2">
-                <button type="button" class="btn btn-success btn-lg rounded-pill px-5 py-3" onclick="approveItem()">
-                    <i class="bi bi-check-circle me-2"></i>Setujui
+                <button type="button" class="btn btn-sm rounded-4 px-3 py-1"
+                        style="background: #22c55e; color: white; border: none; font-size: 0.8rem;"
+                        onclick="approveItem()">
+                    <i class="bi bi-check-circle me-1"></i>Setujui
                 </button>
-                <button type="button" class="btn btn-danger btn-lg rounded-pill px-5 py-3" onclick="rejectItem()">
-                    <i class="bi bi-x-circle me-2"></i>Tolak
+                <button type="button" class="btn btn-sm rounded-4 px-3 py-1"
+                        style="background: #dc3545; color: white; border: none; font-size: 0.8rem;"
+                        onclick="rejectItem()">
+                    <i class="bi bi-x-circle me-1"></i>Tolak
                 </button>
             </div>
         @endif
     </div>
 
-    <div class="row g-4">
-        <!-- Left Column - Item Details -->
+    <div class="row g-3">
+        {{-- LEFT COLUMN - ITEM DETAILS --}}
         <div class="col-xl-8">
-            <!-- Item Images -->
-            <div class="admin-card p-4 rounded-3 mb-4">
-                <h5 class="fw-bold mb-3">
-                    <i class="bi bi-images me-2" style="color: #22c55e;"></i>
-                    Foto Barang
-                </h5>
+            {{-- ITEM IMAGES --}}
+            <div class="admin-card p-3 rounded-3 mb-3" style="background: white; border: 1px solid #EDF2F0;">
+                <h6 class="fw-semibold mb-2" style="font-size: 0.9rem;">
+                    <i class="bi bi-images me-1" style="color: #22c55e;"></i>Foto Barang
+                </h6>
 
                 @php
-                    // Fix: Ensure images is an array
                     $images = $item->images ?? [];
                     if (is_string($images)) {
-                        $images = is_array($images) ? $images : (is_string($images) ? json_decode($images, true) : []) ?? [];
+                        $images = json_decode($images, true) ?? [];
                     }
                     $firstImage = !empty($images) ? Storage::url($images[0]) : asset('images/default-item.png');
                 @endphp
 
-                <div class="row g-3">
+                <div class="row g-2">
                     <div class="col-lg-8">
-                        <div class="main-image-container rounded-3 overflow-hidden" style="background: #f8f9fa; aspect-ratio: 1;">
+                        <div class="main-image-container rounded-3 overflow-hidden border" style="background: #F8FBF8; aspect-ratio: 1;">
                             <img src="{{ $firstImage }}" alt="{{ $item->name }}" id="mainImage" class="w-100 h-100" style="object-fit: contain;">
                         </div>
                     </div>
@@ -59,7 +63,7 @@
                                 @foreach($images as $index => $image)
                                     @if(!empty($image))
                                     <div class="col-6 col-lg-12">
-                                        <div class="thumbnail-container rounded-3 overflow-hidden {{ $index == 0 ? 'active' : '' }}"
+                                        <div class="thumbnail-container rounded-3 overflow-hidden border {{ $index == 0 ? 'active' : '' }}"
                                              onclick="changeMainImage('{{ Storage::url($image) }}', this)"
                                              style="aspect-ratio: 1; cursor: pointer;">
                                             <img src="{{ Storage::url($image) }}" class="w-100 h-100" style="object-fit: cover;">
@@ -68,9 +72,9 @@
                                     @endif
                                 @endforeach
                             @else
-                                <div class="col-12 text-center py-4">
-                                    <i class="bi bi-image text-secondary fs-1"></i>
-                                    <p class="text-secondary mt-2">Tidak ada foto</p>
+                                <div class="col-12 text-center py-3">
+                                    <i class="bi bi-image text-secondary" style="font-size: 2rem;"></i>
+                                    <p class="small text-secondary mt-1">Tidak ada foto</p>
                                 </div>
                             @endif
                         </div>
@@ -78,80 +82,80 @@
                 </div>
             </div>
 
-            <!-- Item Information -->
-            <div class="admin-card p-4 rounded-3 mb-4">
-                <h5 class="fw-bold mb-3">
-                    <i class="bi bi-info-circle me-2" style="color: #22c55e;"></i>
-                    Informasi Barang
-                </h5>
+            {{-- ITEM INFORMATION --}}
+            <div class="admin-card p-3 rounded-3 mb-3" style="background: white; border: 1px solid #EDF2F0;">
+                <h6 class="fw-semibold mb-2" style="font-size: 0.9rem;">
+                    <i class="bi bi-info-circle me-1" style="color: #22c55e;"></i>Informasi Barang
+                </h6>
 
-                <div class="row g-4">
+                <div class="row g-2">
                     <div class="col-md-6">
-                        <div class="info-group">
-                            <small class="text-secondary d-block mb-1">Nama Barang</small>
-                            <p class="fw-semibold mb-0">{{ $item->name }}</p>
+                        <div class="info-group p-2 rounded-2" style="background: #F8FBF8;">
+                            <small class="text-secondary d-block" style="font-size: 0.6rem;">Nama Barang</small>
+                            <p class="fw-semibold mb-0" style="font-size: 0.8rem;">{{ $item->name }}</p>
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="info-group">
-                            <small class="text-secondary d-block mb-1">Kategori</small>
-                            <p class="fw-semibold mb-0">{{ $item->category_label }}</p>
+                        <div class="info-group p-2 rounded-2" style="background: #F8FBF8;">
+                            <small class="text-secondary d-block" style="font-size: 0.6rem;">Kategori</small>
+                            <p class="fw-semibold mb-0" style="font-size: 0.8rem;">{{ $item->category_label }}</p>
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="info-group">
-                            <small class="text-secondary d-block mb-1">Kondisi</small>
-                            <p class="fw-semibold mb-0">{{ $item->condition_label }}</p>
+                        <div class="info-group p-2 rounded-2" style="background: #F8FBF8;">
+                            <small class="text-secondary d-block" style="font-size: 0.6rem;">Kondisi</small>
+                            <p class="fw-semibold mb-0" style="font-size: 0.8rem;">{{ $item->condition_label }}</p>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="info-group">
-                            <small class="text-secondary d-block mb-1">Tipe</small>
+                        <div class="info-group p-2 rounded-2" style="background: #F8FBF8;">
+                            <small class="text-secondary d-block" style="font-size: 0.6rem;">Tipe</small>
                             <p class="fw-semibold mb-0">
                                 @if($item->type == 'gift')
-                                    <span class="badge bg-success">Gratis</span>
+                                    <span class="badge rounded-pill px-2 py-0" style="font-size: 0.65rem; background: rgba(34,197,94,0.1); color: #22c55e;">Gratis</span>
                                 @else
-                                    <span class="badge bg-success">Dijual - Rp {{ number_format($item->price, 0, ',', '.') }}</span>
+                                    <span class="badge rounded-pill px-2 py-0" style="font-size: 0.65rem; background: rgba(34,197,94,0.1); color: #22c55e;">
+                                        Dijual - Rp{{ number_format($item->price, 0, ',', '.') }}
+                                    </span>
                                 @endif
                             </p>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="info-group">
-                            <small class="text-secondary d-block mb-1">Tanggal Upload</small>
-                            <p class="fw-semibold mb-0">{{ $item->created_at->format('d F Y H:i') }}</p>
-                            <small class="text-secondary">{{ $item->created_at->diffForHumans() }}</small>
+                        <div class="info-group p-2 rounded-2" style="background: #F8FBF8;">
+                            <small class="text-secondary d-block" style="font-size: 0.6rem;">Tanggal Upload</small>
+                            <p class="fw-semibold mb-0" style="font-size: 0.8rem;">{{ $item->created_at->format('d M Y H:i') }}</p>
+                            <small class="text-secondary" style="font-size: 0.6rem;">{{ $item->created_at->diffForHumans() }}</small>
                         </div>
                     </div>
                     <div class="col-12">
-                        <div class="info-group">
-                            <small class="text-secondary d-block mb-1">Deskripsi Barang</small>
-                            <div class="p-3 rounded-3" style="background: #f8fafc;">
-                                <p class="mb-0" style="line-height: 1.6;">{{ nl2br(e($item->description)) }}</p>
+                        <div class="info-group p-2 rounded-2" style="background: #F8FBF8;">
+                            <small class="text-secondary d-block mb-1" style="font-size: 0.6rem;">Deskripsi Barang</small>
+                            <div class="p-2 rounded-2" style="background: white;">
+                                <p class="small mb-0" style="font-size: 0.75rem; line-height: 1.5;">{{ nl2br(e($item->description)) }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Legacy Message -->
-            <div class="legacy-card p-4 rounded-3 mb-4">
-                <div class="d-flex gap-3">
-                    <i class="bi bi-quote fs-1" style="color: #22c55e; opacity: 0.3;"></i>
+            {{-- LEGACY MESSAGE --}}
+            <div class="legacy-card p-3 rounded-3 mb-3" style="background: #F8FBF8; border-left: 3px solid #22c55e;">
+                <div class="d-flex gap-2">
+                    <i class="bi bi-quote" style="color: #22c55e; font-size: 1.5rem; opacity: 0.5;"></i>
                     <div>
-                        <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2 mb-2">
+                        <span class="badge rounded-pill px-2 py-0 mb-1" style="font-size: 0.6rem; background: rgba(34,197,94,0.1); color: #22c55e;">
                             <i class="bi bi-chat-quote me-1"></i>Legacy Message
                         </span>
-                        <p class="fw-light fst-italic mb-3" style="font-size: 1.2rem;">
-                            "{{ $item->legacy_message }}"
-                        </p>
+                        <p class="fw-light fst-italic mb-2" style="font-size: 0.9rem;">"{{ $item->legacy_message }}"</p>
                         <div class="d-flex align-items-center gap-2">
-                            <div class="avatar-circle" style="width: 40px; height: 40px; background: #22c55e;">
+                            <div class="avatar-circle rounded-circle d-flex align-items-center justify-content-center"
+                                 style="width: 28px; height: 28px; background: #22c55e; color: white; font-size: 0.7rem;">
                                 {{ strtoupper(substr($item->user->name, 0, 1)) }}
                             </div>
                             <div>
-                                <p class="fw-semibold mb-1">{{ $item->user->name }}</p>
-                                <small class="text-secondary">{{ $item->user->school ?? 'Sekolah' }}</small>
+                                <p class="fw-semibold mb-0" style="font-size: 0.7rem;">{{ $item->user->name }}</p>
+                                <small class="text-secondary" style="font-size: 0.6rem;">{{ $item->user->school ?? 'Sekolah' }}</small>
                             </div>
                         </div>
                     </div>
@@ -159,78 +163,76 @@
             </div>
         </div>
 
-        <!-- Right Column - User & Moderation Info -->
+        {{-- RIGHT COLUMN - USER & MODERATION INFO --}}
         <div class="col-xl-4">
-            <!-- Uploader Info -->
-            <div class="admin-card p-4 rounded-3 mb-4">
-                <h5 class="fw-bold mb-3">
-                    <i class="bi bi-person me-2" style="color: #22c55e;"></i>
-                    Informasi Uploader
-                </h5>
+            {{-- UPLOADER INFO --}}
+            <div class="admin-card p-3 rounded-3 mb-3" style="background: white; border: 1px solid #EDF2F0;">
+                <h6 class="fw-semibold mb-2" style="font-size: 0.9rem;">
+                    <i class="bi bi-person me-1" style="color: #22c55e;"></i>Informasi Uploader
+                </h6>
 
-                <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="d-flex align-items-center gap-2 mb-2">
                     @if($item->user->profile_photo)
-                        <img src="{{ Storage::url($item->user->profile_photo) }}" alt="{{ $item->user->name }}" class="rounded-circle" width="64" height="64" style="object-fit: cover;">
+                        <img src="{{ Storage::url($item->user->profile_photo) }}" alt="" class="rounded-circle" width="40" height="40" style="object-fit: cover;">
                     @else
-                        <div class="avatar-circle" style="width: 64px; height: 64px; font-size: 1.5rem; background: #22c55e;">
+                        <div class="avatar-circle rounded-circle d-flex align-items-center justify-content-center"
+                             style="width: 40px; height: 40px; background: #22c55e; color: white; font-size: 1rem;">
                             {{ strtoupper(substr($item->user->name, 0, 1)) }}
                         </div>
                     @endif
                     <div>
-                        <h6 class="fw-bold mb-1">{{ $item->user->name }}</h6>
-                        <p class="text-secondary small mb-1">{{ $item->user->email }}</p>
-                        <span class="badge bg-light text-dark rounded-pill px-3 py-2">
-                            <i class="bi bi-building me-1"></i>{{ $item->user->school ?? '-' }}
-                        </span>
+                        <p class="fw-semibold mb-0" style="font-size: 0.8rem;">{{ $item->user->name }}</p>
+                        <small class="text-secondary" style="font-size: 0.6rem;">{{ $item->user->email }}</small>
                     </div>
                 </div>
 
-                <div class="vstack gap-2">
+                <div class="vstack gap-1 mb-2">
                     <div class="d-flex justify-content-between">
-                        <small class="text-secondary">Total Barang</small>
-                        <span class="fw-semibold">{{ $item->user->items()->count() }} barang</span>
+                        <small class="text-secondary" style="font-size: 0.65rem;">Total Barang</small>
+                        <span class="fw-semibold" style="font-size: 0.7rem;">{{ $item->user->items()->count() }} barang</span>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <small class="text-secondary">Bergabung</small>
-                        <span class="fw-semibold">{{ $item->user->created_at->format('d F Y') }}</span>
+                        <small class="text-secondary" style="font-size: 0.65rem;">Bergabung</small>
+                        <span class="fw-semibold" style="font-size: 0.7rem;">{{ $item->user->created_at->format('d M Y') }}</span>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <small class="text-secondary">Status</small>
-                        <span class="badge bg-success">Aktif</span>
+                        <small class="text-secondary" style="font-size: 0.65rem;">Status</small>
+                        <span class="badge rounded-pill px-2 py-0" style="font-size: 0.6rem; background: rgba(34,197,94,0.1); color: #22c55e;">Aktif</span>
                     </div>
                 </div>
 
-                <hr class="opacity-25 my-3">
+                <hr class="opacity-25 my-2">
 
-                <a href="{{ route('admin.users.show', $item->user_id) }}" class="btn btn-outline-success rounded-pill w-100 py-2">
-                    <i class="bi bi-box-arrow-up-right me-2"></i>Lihat Profil Uploader
+                <a href="{{ route('admin.users.show', $item->user_id) }}" class="btn btn-sm rounded-4 w-100 py-1"
+                   style="background: #F8FBF8; border: 1px solid #EDF2F0; color: #22c55e; font-size: 0.7rem;">
+                    <i class="bi bi-box-arrow-up-right me-1"></i>Lihat Profil Uploader
                 </a>
             </div>
 
-            <!-- Moderation History -->
-            <div class="admin-card p-4 rounded-3 mb-4">
-                <h5 class="fw-bold mb-3">
-                    <i class="bi bi-clock-history me-2" style="color: #22c55e;"></i>
-                    Riwayat Moderasi
-                </h5>
+            {{-- MODERATION HISTORY --}}
+            <div class="admin-card p-3 rounded-3 mb-3" style="background: white; border: 1px solid #EDF2F0;">
+                <h6 class="fw-semibold mb-2" style="font-size: 0.9rem;">
+                    <i class="bi bi-clock-history me-1" style="color: #22c55e;"></i>Riwayat Moderasi
+                </h6>
 
                 @if($moderation_history->count() > 0)
-                    <div class="vstack gap-3">
+                    <div class="vstack gap-2">
                         @foreach($moderation_history as $log)
-                            <div class="d-flex gap-3">
-                                <div class="timeline-icon">
+                            <div class="d-flex gap-2">
+                                <div class="timeline-icon flex-shrink-0">
                                     <div class="rounded-circle d-flex align-items-center justify-content-center"
-                                         style="width: 40px; height: 40px; background: rgba({{ $log->action == 'approved' ? '25,135,84' : '220,53,69' }}, 0.1);">
-                                        <i class="bi bi-{{ $log->action == 'approved' ? 'check-circle' : 'x-circle' }} text-{{ $log->action == 'approved' ? 'success' : 'danger' }}"></i>
+                                         style="width: 28px; height: 28px; background: rgba({{ $log->action == 'approved' ? '25,135,84' : '220,53,69' }}, 0.1);">
+                                        <i class="bi bi-{{ $log->action == 'approved' ? 'check-circle' : 'x-circle' }}"
+                                           style="color: {{ $log->action == 'approved' ? '#198754' : '#dc3545' }}; font-size: 0.8rem;"></i>
                                     </div>
                                 </div>
-                                <div class="grow">
+                                <div class="flex-grow-1">
                                     <div class="d-flex justify-content-between">
-                                        <h6 class="fw-semibold mb-1">{{ ucfirst($log->action) }} oleh {{ $log->admin->name }}</h6>
-                                        <small class="text-secondary">{{ $log->created_at->diffForHumans() }}</small>
+                                        <p class="fw-semibold mb-0" style="font-size: 0.7rem;">{{ ucfirst($log->action) }} oleh {{ $log->admin->name }}</p>
+                                        <small class="text-secondary" style="font-size: 0.55rem;">{{ $log->created_at->diffForHumans() }}</small>
                                     </div>
                                     @if($log->reason)
-                                        <p class="small text-secondary mb-0 mt-2 p-2 rounded-3" style="background: transparent;">
+                                        <p class="small text-secondary mb-0 mt-1 p-1 rounded-2" style="font-size: 0.6rem; background: #F8FBF8;">
                                             <i class="bi bi-chat me-1"></i>{{ $log->reason }}
                                         </p>
                                     @endif
@@ -239,63 +241,61 @@
                         @endforeach
                     </div>
                 @else
-                    <div class="text-center py-4">
-                        <i class="bi bi-clock text-secondary fs-1 mb-3"></i>
-                        <p class="text-secondary mb-0">Belum ada riwayat moderasi</p>
+                    <div class="text-center py-2">
+                        <i class="bi bi-clock text-secondary" style="font-size: 1.5rem;"></i>
+                        <p class="small text-secondary mt-1 mb-0">Belum ada riwayat moderasi</p>
                     </div>
                 @endif
             </div>
 
-            <!-- Moderation Guidelines -->
-            <div class="guidelines-card p-4 rounded-3">
-                <h6 class="fw-bold mb-3">
-                    <i class="bi bi-shield-check me-2" style="color: #22c55e;"></i>
-                    Panduan Moderasi
+            {{-- MODERATION GUIDELINES --}}
+            <div class="p-2 rounded-3" style="background: #F8FBF8;">
+                <h6 class="fw-semibold small mb-1" style="color: #1A2A24;">
+                    <i class="bi bi-shield-check me-1" style="color: #22c55e; font-size: 0.7rem;"></i>Panduan Moderasi
                 </h6>
-                <ul class="small text-secondary mb-0" style="padding-left: 1rem;">
-                    <li class="mb-2">Pastikan foto barang jelas dan sesuai</li>
-                    <li class="mb-2">Deskripsi barang harus lengkap dan jujur</li>
-                    <li class="mb-2">Harga barang wajar (jika dijual)</li>
-                    <li class="mb-2">Legacy Message harus positif dan inspiratif</li>
-                    <li class="mb-2">Tidak mengandung SARA atau konten negatif</li>
-                    <li>Tidak ada duplikasi barang yang sama</li>
+                <ul class="small text-secondary mb-0" style="padding-left: 1rem; font-size: 0.6rem;">
+                    <li class="mb-1">Pastikan foto barang jelas</li>
+                    <li class="mb-1">Deskripsi harus lengkap</li>
+                    <li class="mb-1">Harga barang wajar</li>
+                    <li class="mb-1">Legacy Message positif</li>
+                    <li class="mb-1">Tidak mengandung SARA</li>
+                    <li>Tidak ada duplikasi</li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Approve Modal -->
+{{-- APPROVE MODAL MINI --}}
 <div class="modal fade" id="approveModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content rounded-3 border-0">
-            <div class="modal-header border-0 pt-4 px-4">
-                <h5 class="modal-title fw-bold">Setujui Barang</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <div class="modal-content rounded-4 border-0">
+            <div class="modal-header border-0 pt-3 px-3">
+                <h6 class="modal-title fw-semibold">Setujui Barang</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" style="font-size: 0.7rem;"></button>
             </div>
             <form action="{{ route('admin.moderation.approve', $item->id) }}" method="POST">
                 @csrf
-                <div class="modal-body px-4 pb-4">
-                    <p class="text-secondary mb-3">Apakah kamu yakin ingin menyetujui barang ini?</p>
-                    <div class="alert alert-success rounded-3 border-0" style="background: #f0fdf4;">
-                        <div class="d-flex gap-2">
-                            <i class="bi bi-check-circle-fill text-success mt-1"></i>
+                <div class="modal-body px-3 pb-3">
+                    <p class="small text-secondary mb-2">Apakah kamu yakin ingin menyetujui barang ini?</p>
+                    <div class="alert p-2 rounded-3 mb-2" style="background: rgba(25,135,84,0.05);">
+                        <div class="d-flex gap-1">
+                            <i class="bi bi-check-circle-fill text-success" style="font-size: 0.8rem;"></i>
                             <div>
-                                <small class="text-success d-block fw-semibold mb-1">Setelah disetujui:</small>
-                                <small class="text-secondary">Barang akan langsung tampil di katalog dan dapat diakses oleh semua pengguna.</small>
+                                <small class="text-success d-block fw-semibold" style="font-size: 0.65rem;">Setelah disetujui:</small>
+                                <small class="text-secondary" style="font-size: 0.6rem;">Barang akan langsung tampil di katalog.</small>
                             </div>
                         </div>
                     </div>
-
-                    <div class="mb-3">
-                        <label for="note" class="form-label fw-semibold">Catatan (Opsional)</label>
-                        <textarea class="form-control rounded-3" id="note" name="note" rows="2" placeholder="Tambahkan catatan untuk pengupload..."></textarea>
+                    <div class="mb-2">
+                        <label class="small fw-semibold mb-1" style="font-size: 0.7rem;">Catatan (Opsional)</label>
+                        <textarea class="form-control rounded-3" name="note" rows="1" style="font-size: 0.7rem;" placeholder="Tambahkan catatan..."></textarea>
                     </div>
                 </div>
-                <div class="modal-footer border-0 px-4 pb-4">
-                    <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-success rounded-pill px-4">
-                        <i class="bi bi-check-circle me-2"></i>Ya, Setujui
+                <div class="modal-footer border-0 px-3 pb-3">
+                    <button type="button" class="btn btn-sm rounded-4 px-3 py-1" data-bs-dismiss="modal" style="background: white; border: 1px solid #EDF2F0; color: #1A2A24;">Batal</button>
+                    <button type="submit" class="btn btn-sm rounded-4 px-3 py-1" style="background: #22c55e; color: white; border: none;">
+                        <i class="bi bi-check-circle me-1"></i>Ya, Setujui
                     </button>
                 </div>
             </form>
@@ -303,62 +303,60 @@
     </div>
 </div>
 
-<!-- Reject Modal -->
+{{-- REJECT MODAL MINI --}}
 <div class="modal fade" id="rejectModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content rounded-3 border-0">
-            <div class="modal-header border-0 pt-4 px-4">
-                <h5 class="modal-title fw-bold">Tolak Barang</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <div class="modal-content rounded-4 border-0">
+            <div class="modal-header border-0 pt-3 px-3">
+                <h6 class="modal-title fw-semibold">Tolak Barang</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" style="font-size: 0.7rem;"></button>
             </div>
             <form action="{{ route('admin.moderation.reject', $item->id) }}" method="POST">
                 @csrf
-                <div class="modal-body px-4 pb-4">
-                    <div class="alert alert-danger rounded-3 border-0 mb-4" style="background: #fef2f2;">
-                        <div class="d-flex gap-2">
-                            <i class="bi bi-exclamation-triangle-fill text-danger mt-1"></i>
+                <div class="modal-body px-3 pb-3">
+                    <div class="alert p-2 rounded-3 mb-2" style="background: rgba(220,53,69,0.05);">
+                        <div class="d-flex gap-1">
+                            <i class="bi bi-exclamation-triangle-fill text-danger" style="font-size: 0.8rem;"></i>
                             <div>
-                                <small class="text-danger d-block fw-semibold mb-1">Perhatikan:</small>
-                                <small class="text-secondary">Alasan penolakan akan dikirim ke pengupload. Berikan alasan yang jelas dan konstruktif.</small>
+                                <small class="text-danger d-block fw-semibold" style="font-size: 0.65rem;">Perhatikan:</small>
+                                <small class="text-secondary" style="font-size: 0.6rem;">Alasan penolakan akan dikirim ke pengupload.</small>
                             </div>
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="reason_category" class="form-label fw-semibold">Kategori Alasan <span class="text-danger">*</span></label>
-                        <select class="form-select rounded-3" id="reason_category" name="reason_category" required>
-                            <option value="">Pilih kategori alasan</option>
-                            <option value="foto_kurang_jelas">Foto kurang jelas/tidak sesuai</option>
+                    <div class="mb-2">
+                        <label class="small fw-semibold mb-1" style="font-size: 0.7rem;">Kategori Alasan <span class="text-danger">*</span></label>
+                        <select class="form-select rounded-3" id="reason_category" name="reason_category" required style="font-size: 0.7rem;">
+                            <option value="">Pilih kategori</option>
+                            <option value="foto_kurang_jelas">Foto kurang jelas</option>
                             <option value="deskripsi_kurang_lengkap">Deskripsi kurang lengkap</option>
                             <option value="harga_tidak_wajar">Harga tidak wajar</option>
-                            <option value="kondisi_tidak_sesuai">Kondisi barang tidak sesuai</option>
-                            <option value="kategori_salah">Kategori barang salah</option>
+                            <option value="kondisi_tidak_sesuai">Kondisi tidak sesuai</option>
+                            <option value="kategori_salah">Kategori salah</option>
                             <option value="gambar_tidak_relevan">Gambar tidak relevan</option>
                             <option value="duplikat">Barang duplikat</option>
-                            <option value="melanggar_aturan">Melanggar aturan platform</option>
+                            <option value="melanggar_aturan">Melanggar aturan</option>
                             <option value="lainnya">Lainnya</option>
                         </select>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="reason" class="form-label fw-semibold">Alasan Penolakan <span class="text-danger">*</span></label>
-                        <textarea class="form-control rounded-3" id="reason" name="reason" rows="4"
-                                  placeholder="Jelaskan alasan penolakan secara detail agar pengupload bisa memperbaiki..." required></textarea>
-                        <small class="text-secondary d-block mt-2">
-                            <i class="bi bi-info-circle"></i> Minimal 10 karakter
-                        </small>
+                    <div class="mb-2">
+                        <label class="small fw-semibold mb-1" style="font-size: 0.7rem;">Alasan Penolakan <span class="text-danger">*</span></label>
+                        <textarea class="form-control rounded-3" id="reason" name="reason" rows="2" required style="font-size: 0.7rem;"></textarea>
+                        <small class="text-secondary d-block mt-1" style="font-size: 0.55rem;">Minimal 10 karakter</small>
                     </div>
                 </div>
-                <div class="modal-footer border-0 px-4 pb-4">
-                    <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-danger rounded-pill px-4">
-                        <i class="bi bi-x-circle me-2"></i>Ya, Tolak
+                <div class="modal-footer border-0 px-3 pb-3">
+                    <button type="button" class="btn btn-sm rounded-4 px-3 py-1" data-bs-dismiss="modal" style="background: white; border: 1px solid #EDF2F0; color: #1A2A24;">Batal</button>
+                    <button type="submit" class="btn btn-sm rounded-4 px-3 py-1" style="background: #dc3545; color: white; border: none;">
+                        <i class="bi bi-x-circle me-1"></i>Ya, Tolak
                     </button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+@endsection
 
 @push('scripts')
 <script>
@@ -367,18 +365,17 @@
         document.getElementById('mainImage').src = src;
         document.querySelectorAll('.thumbnail-container').forEach(el => {
             el.classList.remove('active');
+            el.style.borderColor = '#EDF2F0';
         });
         element.classList.add('active');
+        element.style.borderColor = '#22c55e';
     };
 
     // Approve item
     window.approveItem = function() {
         const modalEl = document.getElementById('approveModal');
         if (modalEl) {
-            const modal = new bootstrap.Modal(modalEl);
-            modal.show();
-        } else {
-            alert('Modal tidak ditemukan!');
+            new bootstrap.Modal(modalEl).show();
         }
     };
 
@@ -386,45 +383,31 @@
     window.rejectItem = function() {
         const modalEl = document.getElementById('rejectModal');
         if (modalEl) {
-            const modal = new bootstrap.Modal(modalEl);
-            modal.show();
-        } else {
-            alert('Modal tidak ditemukan!');
+            new bootstrap.Modal(modalEl).show();
         }
     };
 
-    // Character counter
+    // Auto-fill reason
     document.addEventListener('DOMContentLoaded', function() {
-        const reasonField = document.getElementById('reason');
-        if (reasonField) {
-            reasonField.addEventListener('input', function() {
-                if (this.value.length < 10) {
-                    this.classList.add('is-invalid');
-                } else {
-                    this.classList.remove('is-invalid');
-                }
-            });
-        }
-
-        // Auto-fill reason based on category
         const categorySelect = document.getElementById('reason_category');
-        if (categorySelect) {
+        const reasonField = document.getElementById('reason');
+
+        if (categorySelect && reasonField) {
+            const reasons = {
+                'foto_kurang_jelas': 'Foto barang kurang jelas. Silakan upload ulang dengan foto yang lebih jelas.',
+                'deskripsi_kurang_lengkap': 'Deskripsi terlalu singkat. Lengkapi informasi seperti ukuran, tahun, kondisi.',
+                'harga_tidak_wajar': 'Harga tidak sesuai dengan kondisi pasar.',
+                'kondisi_tidak_sesuai': 'Kondisi barang tidak sesuai dengan deskripsi.',
+                'kategori_salah': 'Kategori barang tidak tepat.',
+                'gambar_tidak_relevan': 'Gambar tidak relevan dengan barang.',
+                'duplikat': 'Barang ini sudah pernah diupload.',
+                'melanggar_aturan': 'Melanggar ketentuan platform.',
+                'lainnya': 'Barang ditolak karena alasan lain.'
+            };
+
             categorySelect.addEventListener('change', function() {
-                const reasons = {
-                    'foto_kurang_jelas': 'Foto barang kurang jelas. Silakan upload ulang dengan foto yang lebih jelas.',
-                    'deskripsi_kurang_lengkap': 'Deskripsi terlalu singkat. Lengkapi informasi seperti ukuran, tahun, kondisi.',
-                    'harga_tidak_wajar': 'Harga tidak sesuai dengan kondisi pasar.',
-                    'kondisi_tidak_sesuai': 'Kondisi barang tidak sesuai dengan deskripsi.',
-                    'kategori_salah': 'Kategori barang tidak tepat.',
-                    'gambar_tidak_relevan': 'Gambar tidak relevan dengan barang.',
-                    'duplikat': 'Barang ini sudah pernah diupload.',
-                    'melanggar_aturan': 'Melanggar ketentuan platform.',
-                    'lainnya': 'Barang ditolak karena alasan lain.'
-                };
-                const reasonField = document.getElementById('reason');
                 if (this.value && reasons[this.value]) {
                     reasonField.value = reasons[this.value];
-                    reasonField.dispatchEvent(new Event('input'));
                 } else {
                     reasonField.value = '';
                 }
@@ -436,47 +419,101 @@
 
 @push('styles')
 <style>
-    .main-image-container {
+    .admin-card {
+        transition: all 0.2s;
         background: white;
-        border: 1px solid transparent;
+        border: 1px solid #EDF2F0 !important;
+    }
+
+    .admin-card:hover {
+        border-color: rgba(34, 197, 94, 0.2) !important;
+    }
+
+    .main-image-container {
+        background: #F8FBF8;
+        border: 1px solid #EDF2F0;
     }
 
     .thumbnail-container {
-        border: 2px solid transparent;
-        transition: all 0.3s;
+        border: 2px solid #EDF2F0;
+        transition: all 0.2s;
     }
 
     .thumbnail-container.active {
-        border-color: #22c55e;
+        border-color: #22c55e !important;
     }
 
-    .legacy-card {
-        background: #f0fdf4;
-        border-left: 6px solid #22c55e;
-    }
-
-    .guidelines-card {
-        background: #f8fafc;
-        border: 1px solid #dcfce7;
+    .thumbnail-container:hover {
+        opacity: 0.8;
     }
 
     .info-group {
-        padding: 1rem;
-        background: rgba(0,0,0,0.01);
-        border-radius: 12px;
+        background: #F8FBF8;
+    }
+
+    .legacy-card {
+        background: #F8FBF8;
+        border-left: 3px solid #22c55e;
+    }
+
+    .avatar-circle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-weight: 600;
+        color: white;
+    }
+
+    /* DARK MODE */
+    [data-bs-theme="dark"] .admin-card,
+    [data-bs-theme="dark"] [style*="background: white"] {
+        background: #1A1A2C !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    [data-bs-theme="dark"] [style*="background: #F8FBF8"] {
+        background: rgba(255, 255, 255, 0.03) !important;
     }
 
     [data-bs-theme="dark"] .main-image-container {
-        background: #1a1a2c;
+        background: #1A1A2C;
     }
 
     [data-bs-theme="dark"] .info-group {
-        background: transparent;
+        background: rgba(255, 255, 255, 0.03);
     }
 
-    [data-bs-theme="dark"] .guidelines-card {
-        background: transparent;
+    [data-bs-theme="dark"] .thumbnail-container {
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    [data-bs-theme="dark"] .thumbnail-container.active {
+        border-color: #22c55e !important;
+    }
+
+    [data-bs-theme="dark"] .text-secondary {
+        color: #9CA3AF !important;
+    }
+
+    /* MODAL DARK MODE */
+    [data-bs-theme="dark"] .modal-content {
+        background: #1A1A2C;
+    }
+
+    [data-bs-theme="dark"] .modal-header .btn-close {
+        filter: invert(1) grayscale(100%) brightness(200%);
+    }
+
+    [data-bs-theme="dark"] .form-control,
+    [data-bs-theme="dark"] .form-select {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.1);
+        color: #E0E0E0;
+    }
+
+    [data-bs-theme="dark"] .form-control:focus {
+        background: rgba(255, 255, 255, 0.1);
     }
 </style>
 @endpush
-@endsection

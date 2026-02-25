@@ -4,123 +4,124 @@
 
 @section('content')
 <div class="container-fluid px-3 px-lg-4">
-    <!-- Header -->
-    <div class="d-flex flex-wrap gap-3 justify-content-between align-items-center mb-4">
+    {{-- HEADER MINI --}}
+    <div class="d-flex flex-wrap gap-3 justify-content-between align-items-center mb-3">
         <div>
-            <h1 class="h3 fw-bold mb-1">Manajemen User</h1>
-            <p class="text-secondary mb-0">Kelola dan monitoring semua pengguna WAKANDE</p>
+            <h5 class="fw-bold mb-1" style="color: #1A2A24;">Manajemen User</h5>
+            <p class="small text-secondary mb-0" style="font-size: 0.8rem;">Kelola dan monitoring semua pengguna WAKANDE</p>
         </div>
-        <button class="btn btn-success btn-sm rounded-pill px-3 py-2" onclick="openCreateAdminModal()">
-            <i class="bi bi-person-plus me-2"></i>Tambah Admin
+        <button class="btn btn-sm rounded-4 px-3 py-1" onclick="openCreateAdminModal()"
+                style="background: #22c55e; color: white; border: none; font-size: 0.8rem;">
+            <i class="bi bi-person-plus me-1"></i>Tambah Admin
         </button>
     </div>
 
-    <!-- Stats Cards -->
-    <div class="row g-3 mb-4">
+    {{-- STATS CARDS MINI --}}
+    <div class="row g-2 mb-3">
         <div class="col-xl-3 col-md-6">
-            <div class="user-stat-card p-3 rounded-3">
+            <div class="user-stat-card p-2 rounded-3">
                 <div class="d-flex align-items-center gap-2">
-                    <div class="stat-icon rounded-2 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: #dcfce7;">
-                        <i class="bi bi-people fs-4" style="color: #22c55e;"></i>
+                    <div class="stat-icon rounded-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: #dcfce7;">
+                        <i class="bi bi-people fs-5" style="color: #22c55e;"></i>
                     </div>
                     <div>
-                        <h4 class="fw-bold mb-0">{{ number_format($stats['total_users'] ?? 0) }}</h4>
-                        <small class="text-secondary">Total Users</small>
+                        <h5 class="fw-bold mb-0" style="font-size: 1.2rem;">{{ number_format($stats['total_users'] ?? 0) }}</h5>
+                        <small class="text-secondary" style="font-size: 0.65rem;">Total Users</small>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
-            <div class="user-stat-card p-3 rounded-3">
+            <div class="user-stat-card p-2 rounded-3">
                 <div class="d-flex align-items-center gap-2">
-                    <div class="stat-icon rounded-2 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: #dcfce7;">
-                        <i class="bi bi-check-circle fs-4" style="color: #198754;"></i>
+                    <div class="stat-icon rounded-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: #dcfce7;">
+                        <i class="bi bi-check-circle fs-5" style="color: #198754;"></i>
                     </div>
                     <div>
-                        <h4 class="fw-bold mb-0">{{ number_format($stats['active_users'] ?? 0) }}</h4>
-                        <small class="text-secondary">Aktif</small>
+                        <h5 class="fw-bold mb-0" style="font-size: 1.2rem;">{{ number_format($stats['active_users'] ?? 0) }}</h5>
+                        <small class="text-secondary" style="font-size: 0.65rem;">Aktif</small>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
-            <div class="user-stat-card p-3 rounded-3">
+            <div class="user-stat-card p-2 rounded-3">
                 <div class="d-flex align-items-center gap-2">
-                    <div class="stat-icon rounded-2 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: #f3f4f6;">
-                        <i class="bi bi-x-circle fs-4" style="color: #6c757d;"></i>
+                    <div class="stat-icon rounded-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: #f3f4f6;">
+                        <i class="bi bi-x-circle fs-5" style="color: #6c757d;"></i>
                     </div>
                     <div>
-                        <h4 class="fw-bold mb-0">{{ number_format($stats['inactive_users'] ?? 0) }}</h4>
-                        <small class="text-secondary">Nonaktif</small>
+                        <h5 class="fw-bold mb-0" style="font-size: 1.2rem;">{{ number_format($stats['inactive_users'] ?? 0) }}</h5>
+                        <small class="text-secondary" style="font-size: 0.65rem;">Nonaktif</small>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
-            <div class="user-stat-card p-3 rounded-3">
+            <div class="user-stat-card p-2 rounded-3">
                 <div class="d-flex align-items-center gap-2">
-                    <div class="stat-icon rounded-2 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: #dcfce7;">
-                        <i class="bi bi-shield fs-4" style="color: #4ade80;"></i>
+                    <div class="stat-icon rounded-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: #dcfce7;">
+                        <i class="bi bi-shield fs-5" style="color: #4ade80;"></i>
                     </div>
                     <div>
-                        <h4 class="fw-bold mb-0">{{ number_format($stats['total_admins'] ?? 0) }}</h4>
-                        <small class="text-secondary">Admin</small>
+                        <h5 class="fw-bold mb-0" style="font-size: 1.2rem;">{{ number_format($stats['total_admins'] ?? 0) }}</h5>
+                        <small class="text-secondary" style="font-size: 0.65rem;">Admin</small>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Filter & Search -->
-    <div class="admin-card p-3 rounded-3 mb-4">
+    {{-- FILTER & SEARCH --}}
+    <div class="admin-card p-2 rounded-3 mb-3" style="background: white; border: 1px solid #EDF2F0;">
         <div class="row g-2 align-items-center">
             <div class="col-lg-5">
                 <form action="{{ route('admin.users.index') }}" method="GET" id="searchForm">
-                    <div class="search-box position-relative">
-                        <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary" style="font-size: 0.9rem;"></i>
-                        <input type="text"
-                               name="search"
-                               class="form-control form-control-sm rounded-pill border-0 shadow-none"
-                               style="padding-left: 35px; background: #f8fafc; font-size: 0.9rem;"
-                               placeholder="Cari nama, email, atau sekolah..."
-                               value="{{ request('search') }}">
+                    <div class="position-relative">
+                        <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary" style="font-size: 0.8rem;"></i>
+                        <input type="text" name="search" class="form-control rounded-4 border-0"
+                               style="padding-left: 32px; padding-top: 0.4rem; padding-bottom: 0.4rem; background: #F8FBF8; font-size: 0.8rem;"
+                               placeholder="Cari nama, email, atau sekolah..." value="{{ request('search') }}">
                     </div>
                 </form>
             </div>
             <div class="col-lg-7">
                 <div class="d-flex flex-wrap gap-2 justify-content-lg-end">
-                    <!-- Role Filter -->
-                    <select name="role" form="filterForm" class="form-select form-select-sm rounded-pill px-3 py-2" style="width: auto; font-size: 0.9rem;">
+                    {{-- Role Filter --}}
+                    <select name="role" form="filterForm" class="form-select rounded-4 px-2 py-1"
+                            style="width: auto; font-size: 0.75rem; background: #F8FBF8; border: 1px solid #EDF2F0;">
                         <option value="">Semua Role</option>
                         <option value="user" {{ request('role') == 'user' ? 'selected' : '' }}>👤 User</option>
                         <option value="admin" {{ request('role') == 'admin' ? 'selected' : '' }}>🛡️ Admin</option>
                     </select>
 
-                    <!-- Status Filter -->
-                    <select name="status" form="filterForm" class="form-select form-select-sm rounded-pill px-3 py-2" style="width: auto; font-size: 0.9rem;">
+                    {{-- Status Filter --}}
+                    <select name="status" form="filterForm" class="form-select rounded-4 px-2 py-1"
+                            style="width: auto; font-size: 0.75rem; background: #F8FBF8; border: 1px solid #EDF2F0;">
                         <option value="">Semua Status</option>
                         <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>✅ Aktif</option>
                         <option value="inactive" {{ request('status') == 'inactive' ? 'selected' : '' }}>❌ Nonaktif</option>
                     </select>
 
-                    <a href="{{ route('admin.users.index') }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3 py-2" style="font-size: 0.9rem;">
-                        <i class="bi bi-arrow-repeat me-2"></i>Reset
+                    <a href="{{ route('admin.users.index') }}" class="btn btn-sm rounded-4 px-2 py-1 d-flex align-items-center"
+                       style="background: white; border: 1px solid #EDF2F0; color: #1A2A24; font-size: 0.75rem;">
+                        <i class="bi bi-arrow-repeat me-1"></i>Reset
                     </a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Users Table -->
+    {{-- USERS TABLE --}}
     @if($users->count() > 0)
-        <div class="admin-card p-3 rounded-3">
+        <div class="admin-card p-2 rounded-3" style="background: white; border: 1px solid #EDF2F0;">
             <div class="table-responsive">
-                <table class="table table-hover align-middle" style="font-size: 0.9rem;">
+                <table class="table table-hover align-middle" style="font-size: 0.75rem;">
                     <thead class="small text-secondary">
                         <tr>
                             <th>User</th>
                             <th>Kontak</th>
-                            <th>Sekolah & Kelas</th>
+                            <th>Sekolah</th>
                             <th>Role</th>
                             <th>Status</th>
                             <th>Bergabung</th>
@@ -135,28 +136,24 @@
                                     <div class="d-flex align-items-center gap-2">
                                         <div class="position-relative">
                                             @if($user->profile_photo)
-                                                <img src="{{ Storage::url($user->profile_photo) }}"
-                                                     alt="{{ $user->name }}"
-                                                     class="rounded-circle"
-                                                     width="40" height="40"
-                                                     style="object-fit: cover;">
+                                                <img src="{{ Storage::url($user->profile_photo) }}" alt="" class="rounded-circle" width="32" height="32" style="object-fit: cover;">
                                             @else
-                                                <div class="avatar-circle"
-                                                     style="width: 40px; height: 40px; background: #22c55e; font-size: 1rem;">
+                                                <div class="avatar-circle rounded-circle d-flex align-items-center justify-content-center"
+                                                     style="width: 32px; height: 32px; background: #22c55e; color: white; font-size: 0.8rem;">
                                                     {{ strtoupper(substr($user->name, 0, 1)) }}
                                                 </div>
                                             @endif
                                             @if($user->is_active)
-                                                <span class="position-absolute bottom-0 end-0 p-1 bg-success border-2 border-white rounded-circle" style="width: 10px; height: 10px;"></span>
+                                                <span class="position-absolute bottom-0 end-0 p-1 bg-success border-2 border-white rounded-circle" style="width: 8px; height: 8px;"></span>
                                             @else
-                                                <span class="position-absolute bottom-0 end-0 p-1 bg-secondary border-2 border-white rounded-circle" style="width: 10px; height: 10px;"></span>
+                                                <span class="position-absolute bottom-0 end-0 p-1 bg-secondary border-2 border-white rounded-circle" style="width: 8px; height: 8px;"></span>
                                             @endif
                                         </div>
                                         <div>
-                                            <h6 class="fw-bold mb-0" style="font-size: 0.9rem;">{{ $user->name }}</h6>
-                                            <small class="text-secondary" style="font-size: 0.75rem;">{{ $user->email }}</small>
+                                            <p class="fw-semibold mb-0" style="font-size: 0.75rem;">{{ $user->name }}</p>
+                                            <small class="text-secondary" style="font-size: 0.6rem;">{{ $user->email }}</small>
                                             @if($user->role == 'admin')
-                                                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-2 py-0 ms-1" style="font-size: 0.65rem;">
+                                                <span class="badge rounded-pill px-1 py-0 ms-1" style="font-size: 0.55rem; background: rgba(34,197,94,0.1); color: #22c55e;">
                                                     <i class="bi bi-shield"></i>
                                                 </span>
                                             @endif
@@ -165,87 +162,84 @@
                                 </td>
                                 <td>
                                     @if($user->phone)
-                                        <span class="small d-block" style="font-size: 0.8rem;">
-                                            <i class="bi bi-whatsapp text-success me-1" style="font-size: 0.75rem;"></i>{{ $user->phone }}
+                                        <span class="small d-block" style="font-size: 0.7rem;">
+                                            <i class="bi bi-whatsapp text-success me-1" style="font-size: 0.6rem;"></i>{{ $user->phone }}
                                         </span>
                                     @else
-                                        <span class="small text-secondary" style="font-size: 0.8rem;">-</span>
+                                        <span class="small text-secondary" style="font-size: 0.7rem;">-</span>
                                     @endif
                                 </td>
                                 <td>
-                                    <span class="fw-semibold d-block" style="font-size: 0.8rem;">{{ $user->school ?? '-' }}</span>
-                                    <small class="text-secondary" style="font-size: 0.7rem;">Kelas {{ $user->grade ?? '-' }}</small>
+                                    <span class="fw-semibold d-block" style="font-size: 0.7rem;">{{ $user->school ?? '-' }}</span>
+                                    <small class="text-secondary" style="font-size: 0.6rem;">Kelas {{ $user->grade ?? '-' }}</small>
                                 </td>
                                 <td>
                                     @if($user->role == 'admin')
-                                        <span class="badge bg-success rounded-pill px-2 py-1" style="font-size: 0.75rem;">
-                                            <i class="bi bi-shield me-1"></i>Admin
+                                        <span class="badge rounded-pill px-2 py-0" style="font-size: 0.6rem; background: rgba(34,197,94,0.1); color: #22c55e;">
+                                            <i class="bi bi-shield me-1" style="font-size: 0.5rem;"></i>Admin
                                         </span>
                                     @else
-                                        <span class="badge bg-light text-dark rounded-pill px-2 py-1" style="font-size: 0.75rem;">
-                                            <i class="bi bi-person me-1"></i>User
+                                        <span class="badge rounded-pill px-2 py-0" style="font-size: 0.6rem; background: #F0F5F0; color: #1A2A24;">
+                                            <i class="bi bi-person me-1" style="font-size: 0.5rem;"></i>User
                                         </span>
                                     @endif
                                 </td>
                                 <td>
                                     @if($user->is_active)
-                                        <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-2 py-1" style="font-size: 0.75rem;">
-                                            <i class="bi bi-check-circle me-1"></i>Aktif
+                                        <span class="badge rounded-pill px-2 py-0" style="font-size: 0.6rem; background: rgba(25,135,84,0.1); color: #198754;">
+                                            <i class="bi bi-check-circle me-1" style="font-size: 0.5rem;"></i>Aktif
                                         </span>
                                     @else
-                                        <span class="badge bg-secondary bg-opacity-10 text-secondary rounded-pill px-2 py-1" style="font-size: 0.75rem;">
-                                            <i class="bi bi-x-circle me-1"></i>Nonaktif
+                                        <span class="badge rounded-pill px-2 py-0" style="font-size: 0.6rem; background: rgba(108,117,125,0.1); color: #6c757d;">
+                                            <i class="bi bi-x-circle me-1" style="font-size: 0.5rem;"></i>Nonaktif
                                         </span>
                                     @endif
                                 </td>
                                 <td>
-                                    <span class="small text-secondary d-block" style="font-size: 0.75rem;">
+                                    <span class="small text-secondary d-block" style="font-size: 0.6rem;">
                                         <i class="bi bi-calendar me-1"></i>{{ $user->created_at->format('d/m/Y') }}
                                     </span>
-                                    <small class="text-secondary" style="font-size: 0.65rem;">
+                                    <small class="text-secondary" style="font-size: 0.55rem;">
                                         {{ $user->created_at->diffForHumans() }}
                                     </small>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column gap-0">
-                                        <span class="small" style="font-size: 0.7rem;">
-                                            <i class="bi bi-box me-1"></i>{{ $user->items_count ?? 0 }} barang
+                                        <span class="small" style="font-size: 0.6rem;">
+                                            <i class="bi bi-box me-1"></i>{{ $user->items_count ?? 0 }}
                                         </span>
-                                        <span class="small" style="font-size: 0.7rem;">
-                                            <i class="bi bi-cart-check me-1"></i>{{ $user->bought_transactions_count ?? 0 }} beli
+                                        <span class="small" style="font-size: 0.6rem;">
+                                            <i class="bi bi-cart-check me-1"></i>{{ $user->bought_transactions_count ?? 0 }}
                                         </span>
-                                        <span class="small" style="font-size: 0.7rem;">
-                                            <i class="bi bi-truck me-1"></i>{{ $user->sold_transactions_count ?? 0 }} jual
+                                        <span class="small" style="font-size: 0.6rem;">
+                                            <i class="bi bi-truck me-1"></i>{{ $user->sold_transactions_count ?? 0 }}
                                         </span>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="d-flex gap-1">
                                         <a href="{{ route('admin.users.show', $user->id) }}"
-                                           class="btn btn-sm btn-outline-success rounded-circle p-1"
-                                           style="width: 32px; height: 32px;"
-                                           data-bs-toggle="tooltip"
-                                           title="Detail">
-                                            <i class="bi bi-eye" style="font-size: 0.9rem;"></i>
+                                           class="btn btn-sm rounded-circle p-0 d-flex align-items-center justify-content-center"
+                                           style="width: 26px; height: 26px; background: #F8FBF8; border: 1px solid #EDF2F0; color: #1A2A24;"
+                                           data-bs-toggle="tooltip" title="Detail">
+                                            <i class="bi bi-eye" style="font-size: 0.7rem;"></i>
                                         </a>
 
                                         @if($user->role == 'user')
                                             <button type="button"
-                                                    class="btn btn-sm {{ $user->is_active ? 'btn-outline-warning' : 'btn-outline-success' }} rounded-circle p-1"
-                                                    style="width: 32px; height: 32px;"
-                                                    data-bs-toggle="tooltip"
-                                                    title="{{ $user->is_active ? 'Nonaktifkan' : 'Aktifkan' }}"
+                                                    class="btn btn-sm rounded-circle p-0 d-flex align-items-center justify-content-center"
+                                                    style="width: 26px; height: 26px; background: #F8FBF8; border: 1px solid #EDF2F0; color: {{ $user->is_active ? '#ffc107' : '#22c55e' }};"
+                                                    data-bs-toggle="tooltip" title="{{ $user->is_active ? 'Nonaktifkan' : 'Aktifkan' }}"
                                                     onclick="toggleUserStatus({{ $user->id }}, '{{ $user->name }}', {{ $user->is_active ? 'false' : 'true' }})">
-                                                <i class="bi bi-{{ $user->is_active ? 'pause-circle' : 'play-circle' }}" style="font-size: 0.9rem;"></i>
+                                                <i class="bi bi-{{ $user->is_active ? 'pause-circle' : 'play-circle' }}" style="font-size: 0.7rem;"></i>
                                             </button>
 
                                             <button type="button"
-                                                    class="btn btn-sm btn-outline-danger rounded-circle p-1"
-                                                    style="width: 32px; height: 32px;"
-                                                    data-bs-toggle="tooltip"
-                                                    title="Hapus"
+                                                    class="btn btn-sm rounded-circle p-0 d-flex align-items-center justify-content-center"
+                                                    style="width: 26px; height: 26px; background: #F8FBF8; border: 1px solid #EDF2F0; color: #dc3545;"
+                                                    data-bs-toggle="tooltip" title="Hapus"
                                                     onclick="deleteUser({{ $user->id }}, '{{ $user->name }}')">
-                                                <i class="bi bi-trash" style="font-size: 0.9rem;"></i>
+                                                <i class="bi bi-trash" style="font-size: 0.7rem;"></i>
                                             </button>
                                         @endif
                                     </div>
@@ -256,103 +250,82 @@
                 </table>
             </div>
 
-            <!-- Pagination -->
-            <div class="d-flex justify-content-center mt-3">
+            {{-- PAGINATION --}}
+            <div class="d-flex justify-content-center mt-2">
                 {{ $users->withQueryString()->links() }}
             </div>
         </div>
     @else
-        <!-- Empty State -->
-        <div class="admin-card p-4 rounded-3 text-center">
+        {{-- EMPTY STATE MINI --}}
+        <div class="admin-card p-3 rounded-3 text-center" style="background: white; border: 1px solid #EDF2F0;">
             <div class="empty-state">
-                <i class="bi bi-people fs-1 text-secondary opacity-25 mb-3"></i>
-                <h5 class="fw-bold mb-3">Tidak Ada User</h5>
-                <p class="text-secondary mb-4">Belum ada pengguna yang terdaftar di WAKANDE.</p>
-                <a href="{{ route('admin.dashboard') }}" class="btn btn-success rounded-pill px-4 py-2">
-                    <i class="bi bi-arrow-left me-2"></i>Kembali ke Dashboard
+                <i class="bi bi-people" style="color: #22c55e; opacity: 0.3; font-size: 2rem;"></i>
+                <h6 class="fw-semibold mt-2 mb-1" style="color: #1A2A24;">Tidak Ada User</h6>
+                <p class="small text-secondary mb-2" style="font-size: 0.75rem;">Belum ada pengguna yang terdaftar di WAKANDE.</p>
+                <a href="{{ route('admin.dashboard') }}" class="btn btn-sm rounded-4 px-2 py-1"
+                   style="background: #22c55e; color: white; border: none; font-size: 0.7rem;">
+                    <i class="bi bi-arrow-left me-1"></i>Kembali ke Dashboard
                 </a>
             </div>
         </div>
     @endif
 </div>
 
-<!-- Create Admin Modal -->
+{{-- CREATE ADMIN MODAL MINI --}}
 <div class="modal fade" id="createAdminModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content rounded-3 border-0">
-            <div class="modal-header border-0 pt-3 px-3">
-                <h5 class="modal-title fw-bold" style="font-size: 1.1rem;">
-                    <i class="bi bi-person-plus me-2" style="color: #22c55e;"></i>
+        <div class="modal-content rounded-4 border-0">
+            <div class="modal-header border-0 pt-2 px-3">
+                <h6 class="modal-title fw-semibold" style="font-size: 0.9rem;">
+                    <i class="bi bi-person-plus me-1" style="color: #22c55e;"></i>
                     Tambah Admin Baru
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" style="font-size: 0.7rem;"></button>
             </div>
-            <form action="{{ route('admin.users.store-admin') }}" method="POST" class="needs-validation" novalidate>
+            <form action="{{ route('admin.users.store-admin') }}" method="POST" novalidate>
                 @csrf
-                <div class="modal-body px-3 pb-3">
+                <div class="modal-body px-3 pb-2">
                     <div class="mb-2">
-                        <label for="name" class="form-label fw-semibold small">Nama Lengkap <span class="text-danger">*</span></label>
-                        <input type="text"
-                               class="form-control form-control-sm rounded-3"
-                               id="name"
-                               name="name"
-                               placeholder="Masukkan nama admin"
-                               required>
+                        <label class="small fw-semibold mb-1" style="font-size: 0.7rem;">Nama Lengkap <span class="text-danger">*</span></label>
+                        <input type="text" name="name" class="form-control rounded-3" required style="font-size: 0.75rem;">
                     </div>
 
                     <div class="mb-2">
-                        <label for="email" class="form-label fw-semibold small">Email <span class="text-danger">*</span></label>
-                        <input type="email"
-                               class="form-control form-control-sm rounded-3"
-                               id="email"
-                               name="email"
-                               placeholder="admin@contoh.com"
-                               required>
+                        <label class="small fw-semibold mb-1" style="font-size: 0.7rem;">Email <span class="text-danger">*</span></label>
+                        <input type="email" name="email" class="form-control rounded-3" required style="font-size: 0.75rem;">
                     </div>
 
                     <div class="mb-2">
-                        <label for="password" class="form-label fw-semibold small">Password <span class="text-danger">*</span></label>
+                        <label class="small fw-semibold mb-1" style="font-size: 0.7rem;">Password <span class="text-danger">*</span></label>
                         <div class="input-group">
-                            <input type="password"
-                                   class="form-control form-control-sm rounded-start-3"
-                                   id="password"
-                                   name="password"
-                                   placeholder="Minimal 8 karakter"
-                                   required>
-                            <button class="btn btn-outline-secondary btn-sm rounded-end-3"
-                                    type="button"
-                                    onclick="togglePassword('password', 'passwordIcon')">
-                                <i class="bi bi-eye-slash" id="passwordIcon"></i>
+                            <input type="password" name="password" class="form-control rounded-start-3" required style="font-size: 0.75rem;">
+                            <button class="btn btn-outline-secondary rounded-end-3" type="button" onclick="togglePassword('password', 'passwordIcon')" style="padding: 0.2rem 0.6rem;">
+                                <i class="bi bi-eye-slash" id="passwordIcon" style="font-size: 0.7rem;"></i>
                             </button>
                         </div>
                     </div>
 
                     <div class="mb-2">
-                        <label for="password_confirmation" class="form-label fw-semibold small">Konfirmasi Password <span class="text-danger">*</span></label>
+                        <label class="small fw-semibold mb-1" style="font-size: 0.7rem;">Konfirmasi Password <span class="text-danger">*</span></label>
                         <div class="input-group">
-                            <input type="password"
-                                   class="form-control form-control-sm rounded-start-3"
-                                   id="password_confirmation"
-                                   name="password_confirmation"
-                                   placeholder="Masukkan password yang sama"
-                                   required>
-                            <button class="btn btn-outline-secondary btn-sm rounded-end-3"
-                                    type="button"
-                                    onclick="togglePassword('password_confirmation', 'confirmIcon')">
-                                <i class="bi bi-eye-slash" id="confirmIcon"></i>
+                            <input type="password" name="password_confirmation" class="form-control rounded-start-3" required style="font-size: 0.75rem;">
+                            <button class="btn btn-outline-secondary rounded-end-3" type="button" onclick="togglePassword('password_confirmation', 'confirmIcon')" style="padding: 0.2rem 0.6rem;">
+                                <i class="bi bi-eye-slash" id="confirmIcon" style="font-size: 0.7rem;"></i>
                             </button>
                         </div>
                     </div>
 
-                    <div class="alert alert-info rounded-3 border-0 mt-2 p-2" style="background: #f0fdf4;">
-                        <i class="bi bi-info-circle me-2" style="color: #22c55e; font-size: 0.8rem;"></i>
-                        <small class="text-secondary" style="font-size: 0.75rem;">Admin akan memiliki akses penuh ke panel moderasi dan manajemen user.</small>
+                    <div class="alert p-1 rounded-2 mt-2" style="background: rgba(34,197,94,0.05);">
+                        <small class="text-secondary" style="font-size: 0.6rem;">
+                            <i class="bi bi-info-circle me-1" style="color: #22c55e;"></i>
+                            Admin akan memiliki akses penuh ke panel moderasi dan manajemen user.
+                        </small>
                     </div>
                 </div>
-                <div class="modal-footer border-0 px-3 pb-3">
-                    <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill px-3" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-success btn-sm rounded-pill px-3" style="background: #22c55e; border: none;">
-                        <i class="bi bi-person-plus me-2"></i>Tambah Admin
+                <div class="modal-footer border-0 px-3 pb-2">
+                    <button type="button" class="btn btn-sm rounded-4 px-2 py-0" data-bs-dismiss="modal" style="background: white; border: 1px solid #EDF2F0; color: #1A2A24; font-size: 0.7rem;">Batal</button>
+                    <button type="submit" class="btn btn-sm rounded-4 px-2 py-0" style="background: #22c55e; color: white; border: none; font-size: 0.7rem;">
+                        <i class="bi bi-person-plus me-1"></i>Tambah Admin
                     </button>
                 </div>
             </form>
@@ -360,12 +333,13 @@
     </div>
 </div>
 
-<!-- Hidden Form for Filters -->
+{{-- Hidden Form for Filters --}}
 <form id="filterForm" action="{{ route('admin.users.index') }}" method="GET">
     @if(request('search'))
         <input type="hidden" name="search" value="{{ request('search') }}">
     @endif
 </form>
+@endsection
 
 @push('scripts')
 <script>
@@ -402,7 +376,10 @@
             confirmButtonColor: activate ? '#198754' : '#ffc107',
             cancelButtonColor: '#6c757d',
             confirmButtonText: `Ya, ${activate ? 'Aktifkan' : 'Nonaktifkan'}`,
-            cancelButtonText: 'Batal'
+            cancelButtonText: 'Batal',
+            background: 'var(--bs-body-bg)',
+            color: 'var(--bs-body-color)',
+            customClass: { popup: 'rounded-4 p-3', title: 'small fw-bold' }
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch(`/admin/users/${userId}/toggle-status`, {
@@ -415,13 +392,15 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        Swal.fire(
-                            'Berhasil!',
-                            `Akun ${userName} telah ${action}.`,
-                            'success'
-                        ).then(() => {
-                            location.reload();
-                        });
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil!',
+                            text: `Akun ${userName} telah ${action}.`,
+                            showConfirmButton: false,
+                            timer: 1500,
+                            background: 'var(--bs-body-bg)',
+                            color: 'var(--bs-body-color)'
+                        }).then(() => location.reload());
                     }
                 });
             }
@@ -432,14 +411,17 @@
     function deleteUser(userId, userName) {
         Swal.fire({
             title: 'Hapus User?',
-            html: `<p>Kamu yakin ingin menghapus akun <strong>${userName}</strong>?</p>
-                   <p class="small text-danger">Semua data terkait (barang, transaksi) akan ikut terhapus!</p>`,
+            html: `<p class="small mb-1">Kamu yakin ingin menghapus akun <strong>${userName}</strong>?</p>
+                   <p class="small text-danger mb-0">Semua data terkait akan ikut terhapus!</p>`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#dc3545',
             cancelButtonColor: '#6c757d',
             confirmButtonText: 'Ya, Hapus',
-            cancelButtonText: 'Batal'
+            cancelButtonText: 'Batal',
+            background: 'var(--bs-body-bg)',
+            color: 'var(--bs-body-color)',
+            customClass: { popup: 'rounded-4 p-3', title: 'small fw-bold' }
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch(`/admin/users/${userId}`, {
@@ -452,13 +434,15 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        Swal.fire(
-                            'Dihapus!',
-                            `Akun ${userName} berhasil dihapus.`,
-                            'success'
-                        ).then(() => {
-                            location.reload();
-                        });
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Dihapus!',
+                            text: `Akun ${userName} berhasil dihapus.`,
+                            showConfirmButton: false,
+                            timer: 1500,
+                            background: 'var(--bs-body-bg)',
+                            color: 'var(--bs-body-color)'
+                        }).then(() => location.reload());
                     }
                 });
             }
@@ -491,21 +475,6 @@
             return new bootstrap.Tooltip(tooltipTriggerEl);
         });
     });
-
-    // Form validation
-    (function() {
-        'use strict';
-        const forms = document.querySelectorAll('.needs-validation');
-        Array.from(forms).forEach(form => {
-            form.addEventListener('submit', event => {
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    })();
 </script>
 @endpush
 
@@ -513,14 +482,37 @@
 <style>
     .user-stat-card {
         background: white;
-        border: 1px solid rgba(34, 197, 94, 0.1);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-        transition: all 0.3s;
+        border: 1px solid #EDF2F0;
+        border-radius: 10px;
+        transition: all 0.2s;
     }
 
     .user-stat-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(34, 197, 94, 0.1);
+        border-color: #22c55e;
+        box-shadow: 0 2px 8px rgba(34, 197, 94, 0.05);
+    }
+
+    .admin-card {
+        background: white;
+        border: 1px solid #EDF2F0;
+        border-radius: 10px;
+    }
+
+    .table th {
+        font-weight: 600;
+        color: #1A2A24;
+        border-bottom: 1px solid #EDF2F0;
+        padding: 0.4rem !important;
+        font-size: 0.7rem;
+    }
+
+    .table td {
+        padding: 0.4rem !important;
+        border-bottom: 1px solid #F0F5F0;
+    }
+
+    .table tr:last-child td {
+        border-bottom: none;
     }
 
     .avatar-circle {
@@ -532,54 +524,46 @@
         color: white;
     }
 
-    .table > :not(caption) > * > * {
-        padding: 0.75rem 0.5rem !important;
-        background: transparent;
-        border-bottom-color: rgba(34, 197, 94, 0.05);
-    }
-
-    .admin-card {
-        background: white;
-        border: 1px solid rgba(34, 197, 94, 0.1);
-        border-radius: 12px;
-    }
-
-    /* Dark mode */
+    /* DARK MODE */
     [data-bs-theme="dark"] .user-stat-card,
-    [data-bs-theme="dark"] .admin-card {
-        background: #1a1a2c;
-        border-color: rgba(255,255,255,0.05);
+    [data-bs-theme="dark"] .admin-card,
+    [data-bs-theme="dark"] [style*="background: white"] {
+        background: #1A1A2C !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
     }
 
-    [data-bs-theme="dark"] .table > :not(caption) > * > * {
-        border-bottom-color: rgba(255,255,255,0.05);
+    [data-bs-theme="dark"] [style*="background: #F8FBF8"] {
+        background: rgba(255, 255, 255, 0.03) !important;
+    }
+
+    [data-bs-theme="dark"] .table th {
+        color: #E0E0E0;
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+
+    [data-bs-theme="dark"] .table td {
+        border-bottom-color: rgba(255, 255, 255, 0.05);
+    }
+
+    [data-bs-theme="dark"] .text-secondary {
+        color: #9CA3AF !important;
     }
 
     [data-bs-theme="dark"] .modal-content {
-        background: #1a1a2c;
+        background: #1A1A2C;
+    }
+
+    [data-bs-theme="dark"] .modal-header .btn-close {
+        filter: invert(1) grayscale(100%) brightness(200%);
     }
 
     .empty-state {
-        animation: fadeIn 0.5s ease;
+        animation: fadeIn 0.3s ease;
     }
 
     @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
+        from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Responsif */
-    @media (max-width: 768px) {
-        .container-fluid {
-            padding-left: 0.75rem !important;
-            padding-right: 0.75rem !important;
-        }
-
-        .table td, .table th {
-            padding: 0.5rem 0.25rem !important;
-            font-size: 0.8rem;
-        }
     }
 </style>
 @endpush
-@endsection

@@ -64,8 +64,8 @@
                 <hr class="opacity-25">
                 <div class="d-flex justify-content-between align-items-center">
                     <button class="btn btn-link text-white p-0" id="theme-toggle-admin">
-                        <i class="bi bi-sun-fill" id="light-icon-admin"></i>
-                        <i class="bi bi-moon-stars-fill" id="dark-icon-admin" style="display: none;"></i>
+                        <i class="bi bi-sun-fill" id="light-icon-admin" style="display: {{ session('theme', 'light') === 'light' ? 'inline-block' : 'none' }};"></i>
+                        <i class="bi bi-moon-stars-fill" id="dark-icon-admin" style="display: {{ session('theme', 'light') === 'dark' ? 'inline-block' : 'none' }};"></i>
                     </button>
                     <a href="{{ route('logout') }}" class="text-white text-decoration-none small" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="bi bi-box-arrow-right me-1"></i> Logout
@@ -144,3 +144,189 @@
         </div>
     </div>
 @endif
+
+@push('scripts')
+<script>
+    // Theme toggle functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const themeToggle = document.getElementById('theme-toggle-admin');
+        if (!themeToggle) return;
+
+        const lightIcon = document.getElementById('light-icon-admin');
+        const darkIcon = document.getElementById('dark-icon-admin');
+
+        // Get current theme from localStorage or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-bs-theme', currentTheme);
+
+        // Update icons based on current theme
+        if (currentTheme === 'dark') {
+            lightIcon.style.display = 'none';
+            darkIcon.style.display = 'inline-block';
+        } else {
+            lightIcon.style.display = 'inline-block';
+            darkIcon.style.display = 'none';
+        }
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+            // Update HTML attribute
+            document.documentElement.setAttribute('data-bs-theme', newTheme);
+
+            // Save to localStorage
+            localStorage.setItem('theme', newTheme);
+
+            // Update icons
+            if (newTheme === 'dark') {
+                lightIcon.style.display = 'none';
+                darkIcon.style.display = 'inline-block';
+            } else {
+                lightIcon.style.display = 'inline-block';
+                darkIcon.style.display = 'none';
+            }
+        });
+    });
+</script>
+@endpush
+
+@push('styles')
+<style>
+    .admin-sidebar {
+        width: 260px;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        background: linear-gradient(180deg, #0B2A1F 0%, #1A4A35 100%);
+        color: white;
+        padding: 1.5rem 1rem;
+        overflow-y: auto;
+        z-index: 1000;
+    }
+
+    .admin-sidebar .nav-link {
+        color: rgba(255, 255, 255, 0.7);
+        padding: 0.75rem 1rem;
+        margin: 0.25rem 0;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.9rem;
+        transition: all 0.2s;
+    }
+
+    .admin-sidebar .nav-link i {
+        font-size: 1.1rem;
+    }
+
+    .admin-sidebar .nav-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+
+    .admin-sidebar .nav-link.active {
+        background: #22c55e;
+        color: white;
+    }
+
+    .admin-sidebar .avatar-circle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-weight: 600;
+        color: white;
+    }
+
+    .user-sidebar {
+        width: 260px;
+        background: white;
+        border-right: 1px solid #EDF2F0;
+        padding: 1.5rem 1rem;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        overflow-y: auto;
+    }
+
+    .user-sidebar .nav-link {
+        color: #4A5A54;
+        padding: 0.75rem 1rem;
+        margin: 0.25rem 0;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.9rem;
+        transition: all 0.2s;
+    }
+
+    .user-sidebar .nav-link i {
+        font-size: 1.1rem;
+        color: #22c55e;
+    }
+
+    .user-sidebar .nav-link:hover {
+        background: #F8FBF8;
+        color: #1A2A24;
+    }
+
+    .user-sidebar .nav-link.active {
+        background: #22c55e;
+        color: white;
+    }
+
+    .user-sidebar .nav-link.active i {
+        color: white;
+    }
+
+    .user-sidebar .avatar-circle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-weight: 600;
+        color: white;
+    }
+
+    /* Dark mode untuk user sidebar */
+    [data-bs-theme="dark"] .user-sidebar {
+        background: #1A1A2C;
+        border-right-color: rgba(255, 255, 255, 0.1);
+    }
+
+    [data-bs-theme="dark"] .user-sidebar .nav-link {
+        color: #9CA3AF;
+    }
+
+    [data-bs-theme="dark"] .user-sidebar .nav-link:hover {
+        background: rgba(255, 255, 255, 0.03);
+        color: #E0E0E0;
+    }
+
+    [data-bs-theme="dark"] .user-sidebar .nav-link.active {
+        background: #22c55e;
+        color: white;
+    }
+
+    [data-bs-theme="dark"] .badge.bg-light {
+        background: rgba(255, 255, 255, 0.1) !important;
+        color: #E0E0E0 !important;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .admin-sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s;
+        }
+        .admin-sidebar.show {
+            transform: translateX(0);
+        }
+    }
+</style>
+@endpush

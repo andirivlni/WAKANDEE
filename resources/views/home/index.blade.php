@@ -72,7 +72,7 @@
             </div>
 
             <!-- Hero Image/Illustration -->
-            <div class="col-lg-6 d-none d-lg-block">
+            {{-- <div class="col-lg-6 d-none d-lg-block">
                 <div class="position-relative">
                     <!-- Floating Cards -->
                     <div class="position-absolute top-0 start-0 translate-middle-y" style="animation: float 6s ease-in-out infinite;">
@@ -120,7 +120,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
 <!-- Categories Section -->
 <section class="py-5">
@@ -194,7 +194,7 @@
     <div class="container">
         <div class="text-center mb-5">
             <span class="badge bg-light text-dark rounded-pill px-4 py-2 mb-3">CARA KERJA</span>
-            <h2 class="fw-bold mb-3">Gampang, Cepat, Berkah</h2>
+            <h2 class="fw-bold mb-3">Gampang, Cepat, Aman</h2>
             <p class="text-secondary" style="max-width: 600px; margin: 0 auto;">
                 Hanya 4 langkah sederhana untuk mulai mewariskan atau mendapatkan perlengkapan sekolah
             </p>
@@ -227,7 +227,7 @@
                         <span class="h3 fw-bold mb-0" style="color: #22c55e;">3</span>
                     </div>
                     <h5 class="fw-bold mb-3">Temukan & Transaksi</h5>
-                    <p class="small text-secondary">Cari barang yang kamu butuhkan, pilih metode pembayaran QRIS atau COD</p>
+                    <p class="small text-secondary">Cari barang yang kamu butuhkan, pilih metode pembayaran Transfer atau COD</p>
                 </div>
             </div>
 
