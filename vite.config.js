@@ -6,7 +6,10 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/sass/app.scss',
+                'resources/css/app.css',
+                'resources/css/dark-mode.css',
                 'resources/js/app.js',
+                'resources/js/theme.js',
             ],
             refresh: true,
         }),
