@@ -21,8 +21,8 @@ class AdminUserSeeder extends Seeder
             DB::table('users')->insert([
                 'name' => 'Administrator WAKANDE',
                 'email' => 'admin@belajar.id',
-                'password' => Hash::make('admin123'),
-                'school' => 'Dinas Pendidikan Balikpapan',
+                'password' => Hash::make('admin111'),
+                'school' => 'none',
                 'grade' => 'Admin',
                 'phone' => '081234567890',
                 'role' => 'admin',
