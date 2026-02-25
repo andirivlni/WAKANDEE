@@ -15,12 +15,12 @@ class AdminUserSeeder extends Seeder
     public function run(): void
     {
         // Cek apakah admin sudah ada
-        $adminExists = DB::table('users')->where('email', 'admin@belajar.id')->exists();
+        $adminExists = DB::table('users')->where('email', 'wakande@belajar.id')->exists();
 
         if (!$adminExists) {
             DB::table('users')->insert([
                 'name' => 'Administrator WAKANDE',
-                'email' => 'admin@belajar.id',
+                'email' => 'wakande@belajar.id',
                 'password' => Hash::make('admin111'),
                 'school' => 'none',
                 'grade' => 'Admin',
