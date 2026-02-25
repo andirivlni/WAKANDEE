@@ -9,6 +9,7 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/css/dark-mode.css',
                 'resources/js/app.js',
+                'resources/js/theme.js',
             ],
             refresh: true,
         }),
